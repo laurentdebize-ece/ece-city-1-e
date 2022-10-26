@@ -1,5 +1,5 @@
 #include <stdio.h>
 
 int main () {
-    printf("ça marche ?");
+    printf("C'est sur ?");
 }
