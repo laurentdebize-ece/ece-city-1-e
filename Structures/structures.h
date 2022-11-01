@@ -1,0 +1,6 @@
+#ifndef ECE_CITY_1_E_STRUCTURES_H
+#define ECE_CITY_1_E_STRUCTURES_H
+
+
+
+#endif
