@@ -61,3 +61,28 @@ void initialisationHabitation(City * city){
 
 
 }
+
+void lireMatrice(char * nomFichier,City* city) {
+    FILE *ifs = fopen(nomFichier, "r");
+    if (!ifs) {
+        printf("Erreur de lecture fichier\n");
+        exit(-1);
+    }
+
+    int terrain[colonnes][ligne];
+    for (int i=0; i< colonnes; ++i) {
+        for (int j = 0; j < ligne; ++j) {
+            fscanf(ifs, "%d",&terrain[i][j]);
+        }
+    }
+    for (int i = 0; i < colonnes; ++i) {
+        for (int j = 0; j < ligne; ++j) {
+            city->terrain[i][j]=terrain[i][j];
+        }
+    }
+    for (int i = 0; i < colonnes; ++i) {
+        for (int j = 0; j < ligne; ++j) {
+            printf("%d ",city->terrain[i][j]);
+        }
+    }
+}

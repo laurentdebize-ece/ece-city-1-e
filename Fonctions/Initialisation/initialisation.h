@@ -3,5 +3,6 @@
 #include "../../Structures/structures.h"
 
 void initialisationHabitation(City * city);
+void lireMatrice(char * nomFichier,City* city);
 
 #endif

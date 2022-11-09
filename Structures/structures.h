@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
+#include "..\Fonctions\Initialisation\initialisation.h"
 #define colonnes 45 //case
 #define ligne 35 //case
 
