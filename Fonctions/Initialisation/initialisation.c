@@ -90,9 +90,4 @@ void lireMatrice(char * nomFichier,City* city) {
             city->terrain[i][j]=terrain[i][j];
         }
     }
-    for (int i = 0; i < colonnes; ++i) {
-        for (int j = 0; j < ligne; ++j) {
-            printf("%d ",city->terrain[i][j]);
-        }
-    }
 }
