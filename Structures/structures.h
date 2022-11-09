@@ -9,6 +9,8 @@
 #define COLONNES 45 //case X
 #define LIGNES 35 //case Y
 
+
+
 typedef struct {
     bool boolMenuPrincipal; //permet de rester dans la boucle de cette page
     bool partie;
