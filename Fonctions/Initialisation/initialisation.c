@@ -6,7 +6,7 @@ void initialisationHabitation(City * city) {
     //---------------- Terrain Vague ----------------//
 
     city->ruine.prix = 1000; // 1000 ECE flouz et apèrs plus de prix car augmente avec compteur
-    city->ruine.nhHabitant = 0;
+    city->ruine.nbHabitant = 0;
     //city->ruine.capacite = ;
     //city->ruine.matriceX = ;
     //city->ruine.matriceY = ;
@@ -15,7 +15,7 @@ void initialisationHabitation(City * city) {
 
     //---------------- Cabanne ----------------//
 
-    city->cabane.nhHabitant = 10;
+    city->cabane.nbHabitant = 10;
     //city->cabane.capacite = ;
     //city->cabane.matriceX = ;
     //city->cabane.matriceY = ;
@@ -24,7 +24,7 @@ void initialisationHabitation(City * city) {
 
     //---------------- Maison ----------------//
 
-    city->maison.nhHabitant = 50;
+    city->maison.nbHabitant = 50;
     //city->maison.capacite = ;
     //city->maison.matriceX = ;
     //city->maison.matriceY = ;
@@ -33,7 +33,7 @@ void initialisationHabitation(City * city) {
 
     //---------------- Immeuble ----------------//
 
-    city->immeuble.nhHabitant = 100;
+    city->immeuble.nbHabitant = 100;
     //city->immeuble.capacite = ;
     //city->immeuble.matriceX = ;
     //city->immeuble.matriceY = ;
@@ -43,7 +43,7 @@ void initialisationHabitation(City * city) {
 
     //---------------- Gratte Ciel ----------------//
 
-    city->gratteCiel.nhHabitant = 1000;
+    city->gratteCiel.nbHabitant = 1000;
     //city->gratteCiel.capacite = ;
     //city->gratteCiel.matriceX = ;
     //city->gratteCiel.matriceY = ;

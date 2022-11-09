@@ -6,6 +6,7 @@
 #include <time.h>
 #include <stdbool.h>
 
+
 #include "../txt/fichierTexte.h"
 #include "../Fonctions/Map/map.h"
 #include "../Fonctions/Initialisation/initialisation.h"
@@ -63,7 +64,7 @@ typedef struct {
 typedef struct {
 
     int prix;
-    int nhHabitant;
+    int nbHabitant;
     int tailleX, tailleY;
     int capacite, flot;
     int matriceX, matriceY;
@@ -95,6 +96,6 @@ typedef struct {
     int argent; // solde du joueur
     int nbHabitant;
     bool capitaliste;
-} City;
+}City;
 
 #endif
