@@ -5,7 +5,7 @@ void test (City* city){
 }
 
 int main () {
-    City city;
+    City city = {0};
     test(&city);
     return 0;
 }
