@@ -82,4 +82,5 @@ typedef struct {
     int argent; // solde du joueur
     bool capitaliste;
 } City;
+
 #endif
