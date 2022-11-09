@@ -64,7 +64,7 @@ typedef struct {
 } Batiment;
 
 typedef struct {
-//Allegro allegro;// Contient tous les éléments ALLEGRO, plus facile pour les free etc.
+
     Batiment ruine;
     Batiment cabane;
     Batiment maison;

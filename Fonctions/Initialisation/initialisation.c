@@ -60,4 +60,8 @@ void initialisationHabitation(City * city){
     city->route.prix= 10; // par unité de grille
 
 
+    city->chateauEau.capacite = 5000; // alimente 5000 habitants par chateau
+    city->centrale.capacite = 5000;// alimente 5000 habitants par centrale
+
+
 }
