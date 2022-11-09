@@ -68,7 +68,7 @@ typedef struct {
     Batiment ruine;
     Batiment cabane;
     Batiment maison;
-    Batiment imeuble;
+    Batiment immeuble;
     Batiment gratteCiel;
     Batiment centrale;
     Batiment chateauEau;
@@ -81,4 +81,5 @@ typedef struct {
     int argent; // solde du joueur
     bool capitaliste;
 } City;
+
 #endif
