@@ -4,7 +4,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
-
+#define colonnes 45 //case
+#define ligne 35 //case
 
 typedef struct {
     bool boolMenuPrincipal; //permet de rester dans la boucle de cette page
@@ -76,6 +77,7 @@ typedef struct {
 
     Pages page;
 
+    int terrain[colonnes][ligne];
     int cycle; //15 secondes
     int argent; // solde du joueur
     bool capitaliste;
