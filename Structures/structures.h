@@ -1,11 +1,16 @@
 #ifndef ECE_CITY_1_E_STRUCTURES_H
 #define ECE_CITY_1_E_STRUCTURES_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
-#define colonnes 45 //case
-#define ligne 35 //case
+
+#include "../txt/fichierTexte.h"
+#include "../Fonctions/Map/map.h"
+
+#define COLONNES 45 //case X
+#define LIGNES 35 //case Y
 
 typedef struct {
     bool boolMenuPrincipal; //permet de rester dans la boucle de cette page
@@ -54,14 +59,21 @@ typedef struct {
     PageJeux pageJeux;
 } Pages;
 
-
 typedef struct {
+
     int prix;
     int nhHabitant;
     int tailleX, tailleY;
     int capacite;
     int matriceX, matriceY;
 } Batiment;
+
+typedef struct {
+    int typeBloc; // Provient du fichier .txt
+    int decor;
+    bool blocPlein; // bloc vide ou plein considère si c'est un obstacle ou pas
+
+}Terrain;
 
 typedef struct {
 //Allegro allegro;// Contient tous les éléments ALLEGRO, plus facile pour les free etc.
@@ -73,11 +85,12 @@ typedef struct {
     Batiment centrale;
     Batiment chateauEau;
     Batiment route;
-    Batiment decor;
+
+    int decor;
 
     Pages page;
 
-    int terrain[colonnes][ligne];
+Terrain terrain[LIGNES][COLONNES];
     int cycle; //15 secondes
     int argent; // solde du joueur
     bool capitaliste;
