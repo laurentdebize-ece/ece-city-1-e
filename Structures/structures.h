@@ -6,11 +6,6 @@
 #include <time.h>
 #include <stdbool.h>
 
-
-#include "../txt/fichierTexte.h"
-#include "../Fonctions/Map/map.h"
-#include "../Fonctions/Initialisation/initialisation.h"
-
 #define COLONNES 45 //case X
 #define LIGNES 35 //case Y
 
@@ -78,7 +73,6 @@ typedef struct {
 }Terrain;
 
 typedef struct {
-//Allegro allegro;// Contient tous les éléments ALLEGRO, plus facile pour les free etc.
     Batiment ruine;
     Batiment cabane;
     Batiment maison;
@@ -87,7 +81,6 @@ typedef struct {
     Batiment centrale;
     Batiment chateauEau;
     Batiment route;
-    Batiment decor;
 
     Pages page;
 
@@ -96,6 +89,6 @@ typedef struct {
     int argent; // solde du joueur
     int nbHabitant;
     bool capitaliste;
-}City;
+} City;
 
 #endif
