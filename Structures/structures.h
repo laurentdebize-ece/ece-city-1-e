@@ -85,8 +85,7 @@ typedef struct {
     Batiment centrale;
     Batiment chateauEau;
     Batiment route;
-
-    int decor;
+    Batiment decor;
 
     Pages page;
 
