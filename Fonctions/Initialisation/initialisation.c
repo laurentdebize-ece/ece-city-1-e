@@ -10,8 +10,8 @@ void initialisationHabitation(City * city){
     //city->ruine.capacite = ;
     //city->ruine.matriceX = ;
     //city->ruine.matriceY = ;
-    //city->ruine.tailleX = ;
-    //city->ruine.tailleY = ;
+    city->ruine.tailleX = 3;
+    city->ruine.tailleY = 3;
 
     ////Cabane///////////////
 
@@ -20,8 +20,8 @@ void initialisationHabitation(City * city){
     //city->cabane.capacite = ;
     //city->cabane.matriceX = ;
     //city->cabane.matriceY = ;
-    //city->cabane.tailleX = ;
-    //city->cabane.tailleY = ;
+    city->cabane.tailleX = 3;
+    city->cabane.tailleY = 3;
 
     /////Maison//////
 
@@ -30,8 +30,8 @@ void initialisationHabitation(City * city){
     //city->maison.capacite = ;
     //city->maison.matriceX = ;
     //city->maison.matriceY = ;
-    //city->maison.tailleX = ;
-    //city->maison.tailleY = ;
+    city->maison.tailleX = 3;
+    city->maison.tailleY = 3;
 
     //////Immeuble////////
 
@@ -40,8 +40,8 @@ void initialisationHabitation(City * city){
     //city->immeuble.capacite = ;
     //city->immeuble.matriceX = ;
     //city->immeuble.matriceY = ;
-    //city->immeuble.tailleX = ;
-    //city->immeuble.tailleY = ;
+    city->immeuble.tailleX = 3;
+    city->immeuble.tailleY = 3;
 
 
     //////Gratte Ciel///////////
@@ -51,13 +51,23 @@ void initialisationHabitation(City * city){
     //city->gratteCiel.capacite = ;
     //city->gratteCiel.matriceX = ;
     //city->gratteCiel.matriceY = ;
-    //city->gratteCiel.tailleX = ;
-    //city->gratteCiel.tailleY = ;
+    city->gratteCiel.tailleX = 3;
+    city->gratteCiel.tailleY = 3;
 
-    ////Prix Autre Batiment///
+    ////Autre Batiment///
     city->centrale.prix = 100000;
-    city->chateauEau.prix =100000;
-    city->route.prix= 10; // par unité de grille
+    city->centrale.capacite = 5000;
+    city->centrale.tailleX = 4;
+    city->centrale.tailleY = 6;
+
+    city->chateauEau.prix = 100000;
+    city->chateauEau.capacite = 5000;
+    city->chateauEau.tailleX = 4;
+    city->chateauEau.tailleY = 6;
+
+    city->route.prix = 10; // par unité de grille
+    city->route.tailleX = 1;
+    city->route.tailleY = 1;
 
 
 }
