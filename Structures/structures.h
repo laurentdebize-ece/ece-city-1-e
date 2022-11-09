@@ -81,6 +81,7 @@ typedef struct {
     int terrain[colonnes][ligne];
     int cycle; //15 secondes
     int argent; // solde du joueur
+    int nbHabitant;
     bool capitaliste;
 } City;
 

@@ -68,6 +68,10 @@ void initialisationHabitation(City * city) {
     city->route.prix = 10; // par unité de grille
     city->route.tailleX = 1;
     city->route.tailleY = 1;
+
+    /////////////////Argent///////
+    city->argent = 500000;
+    city->nbHabitant = 0;
 }
 
 
