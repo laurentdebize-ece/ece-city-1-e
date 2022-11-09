@@ -1,6 +1,5 @@
 #ifndef ECE_CITY_1_E_STRUCTURES_H
 #define ECE_CITY_1_E_STRUCTURES_H
-#include <stdio.h>
 #define colonnes 45 //case
 #define ligne 35 //case
 #define hauteurResolution 1024 //pixel
