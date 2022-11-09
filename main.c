@@ -1,5 +1,11 @@
-#include <stdio.h>
+#include "Structures/structures.h"
+
+void initAll (City* city){
+
+}
 
 int main () {
-    printf("Bon...");
+    City city;
+
+    initAll(&city);
 }
