@@ -1,7 +1,7 @@
 #include "initialisation.h"
 
 
-void initialisationHabitation(City * city){
+void initialisationHabitation(City * city) {
 
     /////Terrain Vague////////////////
 
@@ -68,9 +68,8 @@ void initialisationHabitation(City * city){
     city->route.prix = 10; // par unité de grille
     city->route.tailleX = 1;
     city->route.tailleY = 1;
-
-
 }
+
 
 void lireMatrice(char * nomFichier,City* city) {
     FILE *ifs = fopen(nomFichier, "r");
@@ -80,14 +79,14 @@ void lireMatrice(char * nomFichier,City* city) {
     }
 
     int terrain[colonnes][ligne];
-    for (int i=0; i< colonnes; ++i) {
+    for (int i = 0; i < colonnes; ++i) {
         for (int j = 0; j < ligne; ++j) {
-            fscanf(ifs, "%d",&terrain[i][j]);
+            fscanf(ifs, "%d", &terrain[i][j]);
         }
     }
     for (int i = 0; i < colonnes; ++i) {
         for (int j = 0; j < ligne; ++j) {
-            city->terrain[i][j]=terrain[i][j];
+            city->terrain[i][j] = terrain[i][j];
         }
     }
 }
