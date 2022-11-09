@@ -1,11 +1,11 @@
 #include "Structures/structures.h"
 
-void initAll (City* city){
+void test (City* city){
 
 }
 
 int main () {
     City city;
-    initAll(&city);
+    test(&city);
     return 0;
 }

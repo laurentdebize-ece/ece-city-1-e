@@ -3,7 +3,7 @@
 
 void initialisationHabitation(City * city) {
 
-    /////Terrain Vague////////////////
+    //---------------- Terrain Vague ----------------//
 
     city->ruine.prix = 1000; // 1000 ECE flouz et apèrs plus de prix car augmente avec compteur
     city->ruine.nhHabitant = 0;
@@ -13,9 +13,8 @@ void initialisationHabitation(City * city) {
     city->ruine.tailleX = 3;
     city->ruine.tailleY = 3;
 
-    ////Cabane///////////////
+    //---------------- Cabanne ----------------//
 
-    //city->cabane.prix = ;
     city->cabane.nhHabitant = 10;
     //city->cabane.capacite = ;
     //city->cabane.matriceX = ;
@@ -23,9 +22,8 @@ void initialisationHabitation(City * city) {
     city->cabane.tailleX = 3;
     city->cabane.tailleY = 3;
 
-    /////Maison//////
+    //---------------- Maison ----------------//
 
-    //city->maison.prix = ;
     city->maison.nhHabitant = 50;
     //city->maison.capacite = ;
     //city->maison.matriceX = ;
@@ -33,9 +31,8 @@ void initialisationHabitation(City * city) {
     city->maison.tailleX = 3;
     city->maison.tailleY = 3;
 
-    //////Immeuble////////
+    //---------------- Immeuble ----------------//
 
-    //city->ruine.prix = ;
     city->immeuble.nhHabitant = 100;
     //city->immeuble.capacite = ;
     //city->immeuble.matriceX = ;
@@ -44,9 +41,8 @@ void initialisationHabitation(City * city) {
     city->immeuble.tailleY = 3;
 
 
-    //////Gratte Ciel///////////
+    //---------------- Gratte Ciel ----------------//
 
-    //city->gratteCiel.prix = ;
     city->gratteCiel.nhHabitant = 1000;
     //city->gratteCiel.capacite = ;
     //city->gratteCiel.matriceX = ;
@@ -54,7 +50,7 @@ void initialisationHabitation(City * city) {
     city->gratteCiel.tailleX = 3;
     city->gratteCiel.tailleY = 3;
 
-    ////Autre Batiment///
+    //---------------- Autre ----------------//
     city->centrale.prix = 100000;
     city->centrale.capacite = 5000;
     city->centrale.tailleX = 4;
@@ -72,25 +68,4 @@ void initialisationHabitation(City * city) {
     /////////////////Argent///////
     city->argent = 500000;
     city->nbHabitant = 0;
-}
-
-
-void lireMatrice(char * nomFichier,City* city) {
-    FILE *ifs = fopen(nomFichier, "r");
-    if (!ifs) {
-        printf("Erreur de lecture fichier\n");
-        exit(-1);
-    }
-
-    int terrain[colonnes][ligne];
-    for (int i = 0; i < colonnes; ++i) {
-        for (int j = 0; j < ligne; ++j) {
-            fscanf(ifs, "%d", &terrain[i][j]);
-        }
-    }
-    for (int i = 0; i < colonnes; ++i) {
-        for (int j = 0; j < ligne; ++j) {
-            city->terrain[i][j] = terrain[i][j];
-        }
-    }
 }

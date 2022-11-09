@@ -8,6 +8,7 @@
 
 #include "../txt/fichierTexte.h"
 #include "../Fonctions/Map/map.h"
+#include "../Fonctions/Initialisation/initialisation.h"
 
 #define COLONNES 45 //case X
 #define LIGNES 35 //case Y
@@ -64,7 +65,7 @@ typedef struct {
     int prix;
     int nhHabitant;
     int tailleX, tailleY;
-    int capacite;
+    int capacite, flot;
     int matriceX, matriceY;
 } Batiment;
 
@@ -89,7 +90,7 @@ typedef struct {
 
     Pages page;
 
-Terrain terrain[LIGNES][COLONNES];
+    Terrain terrain[LIGNES][COLONNES];
     int cycle; //15 secondes
     int argent; // solde du joueur
     int nbHabitant;
