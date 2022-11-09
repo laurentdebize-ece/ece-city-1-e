@@ -59,12 +59,12 @@ typedef struct {
 } Pages;
 
 typedef struct {
-
     int prix;
     int nbHabitant;
     int tailleX, tailleY;
     int capacite, flot;
     int matriceX, matriceY;
+    char *nomBlock;
 } Batiment;
 
 typedef struct {

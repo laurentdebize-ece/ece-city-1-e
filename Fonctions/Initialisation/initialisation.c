@@ -1,7 +1,7 @@
 #include "initialisation.h"
 
 
-void initialisationHabitation(City * city) {
+void initialisationVille (City * city) {
 
     //---------------- Terrain Vague ----------------//
 
