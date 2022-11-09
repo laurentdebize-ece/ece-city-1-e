@@ -1,12 +1,13 @@
 #include "initialisation.h"
 
 
-void initialisationVille (City * city) {
+void initialisationVille(City *city) {
 
     //---------------- Terrain Vague ----------------//
 
     city->ruine.prix = 1000; // 1000 ECE flouz et apèrs plus de prix car augmente avec compteur
     city->ruine.nbHabitant = 0;
+    city->ruine.numeroBatiment = 0;
     //city->ruine.capacite = ;
     //city->ruine.matriceX = ;
     //city->ruine.matriceY = ;
@@ -16,6 +17,7 @@ void initialisationVille (City * city) {
     //---------------- Cabanne ----------------//
 
     city->cabane.nbHabitant = 10;
+    city->cabane.numeroBatiment = 0;
     //city->cabane.capacite = ;
     //city->cabane.matriceX = ;
     //city->cabane.matriceY = ;
@@ -25,6 +27,7 @@ void initialisationVille (City * city) {
     //---------------- Maison ----------------//
 
     city->maison.nbHabitant = 50;
+    city->maison.numeroBatiment = 0;
     //city->maison.capacite = ;
     //city->maison.matriceX = ;
     //city->maison.matriceY = ;
@@ -34,6 +37,7 @@ void initialisationVille (City * city) {
     //---------------- Immeuble ----------------//
 
     city->immeuble.nbHabitant = 100;
+    city->immeuble.numeroBatiment = 0;
     //city->immeuble.capacite = ;
     //city->immeuble.matriceX = ;
     //city->immeuble.matriceY = ;
@@ -44,6 +48,7 @@ void initialisationVille (City * city) {
     //---------------- Gratte Ciel ----------------//
 
     city->gratteCiel.nbHabitant = 1000;
+    city->gratteCiel.numeroBatiment = 0;
     //city->gratteCiel.capacite = ;
     //city->gratteCiel.matriceX = ;
     //city->gratteCiel.matriceY = ;
@@ -55,15 +60,25 @@ void initialisationVille (City * city) {
     city->centrale.capacite = 5000;
     city->centrale.tailleX = 4;
     city->centrale.tailleY = 6;
+    city->centrale.numeroBatiment = 0;
 
     city->chateauEau.prix = 100000;
     city->chateauEau.capacite = 5000;
     city->chateauEau.tailleX = 4;
     city->chateauEau.tailleY = 6;
+    city->chateauEau.numeroBatiment = 0;
 
     city->route.prix = 10; // par unité de grille
     city->route.tailleX = 1;
     city->route.tailleY = 1;
+    city->route.numeroBatiment = 0;
+
+    city->nombreBatiment = (city->centrale.numeroBatiment +
+                            city->chateauEau.numeroBatiment + city->ruine.numeroBatiment +
+                            city->cabane.numeroBatiment + city->maison.numeroBatiment +
+                            city->immeuble.numeroBatiment + city->gratteCiel.numeroBatiment);
+    city->numeroConstruction = 0;
+
 
     /////////////////Argent///////
     city->argent = 500000;

@@ -65,6 +65,8 @@ typedef struct {
     int capacite, flot;
     int matriceX, matriceY;
     char *nomBlock;
+    int numeroBatiment;
+    int laCoordonneX, laCoordonneY;
 } Batiment;
 
 typedef struct {
@@ -89,6 +91,8 @@ typedef struct {
     Terrain terrain[LIGNES][COLONNES];
     int cycle; //15 secondes
     int argent; // solde du joueur
+    int nombreBatiment;
+    int numeroConstruction;
     int nbHabitant;
     bool capitaliste;
 } City;
