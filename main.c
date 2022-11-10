@@ -2,6 +2,7 @@
 #include "Fonctions/Map/map.h"
 #include "Fonctions/Construction/construction.h"
 #include "Fonctions/Initialisation/initialisation.h"
+#include "Fonctions/Reseau/electriciter.h"
 
 void mainAurelien (City *city) {
 

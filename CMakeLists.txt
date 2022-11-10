@@ -3,4 +3,8 @@ project(ece-city-1-e C)
 
 set(CMAKE_C_STANDARD 11)
 
+add_subdirectory(raylib)
+
 add_executable(ece-city-1-e main.c Structures/structures.c Structures/structures.h Fonctions/Initialisation/initialisation.c Fonctions/Initialisation/initialisation.h txt/fichierTexte.c txt/fichierTexte.h Fonctions/Map/map.c Fonctions/Map/map.h Fonctions/Construction/construction.c Fonctions/Construction/construction.h Fonctions/Reseau/electriciter.c Fonctions/Reseau/electriciter.h)
+
+target_link_libraries(ece-city-1-e raylib)

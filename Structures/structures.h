@@ -85,18 +85,16 @@ typedef struct {
     Batiment centrale;
     Batiment chateauEau;
     Batiment route;
+    int numeroConstruction[100];
 
     Pages page;
 
     Terrain terrain[LIGNES][COLONNES];
     int cycle; //15 secondes
     int argent; // solde du joueur
-    int CapaciteTotalElectriciter;
+    int capaciteTotalElectriciter;
     int nombreHabitation;
     int nombreConstruction;
-
-    Batiment *numeroConstruction;
-
     int nbHabitant;
     bool capitaliste;
 } City;

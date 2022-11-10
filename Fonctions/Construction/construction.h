@@ -9,12 +9,14 @@ void coordonneesConstructions (City *city);
 void nbConstruction (City *city);
 void nbHabitant (City *city);
 
+void savoirNumeroConstruction (City *city);
+
 void getCoordonneConstruction4x6 (City *city);
 void getCoordonneConstruction3x3 (City *city);
 
 bool constructionViable(City *city, int numeroConstruction);
 
-bool viabiliteeRoutiere (City *city, int numeroConstruction);
+bool viabiliteeRoutiere(City *city, int numeroConstruction);
 bool viabiliteeElectrique (City *city, int numeroConstruction);
 bool viabiliteeEau (City *city, int numeroConstruction);
 

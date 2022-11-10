@@ -118,31 +118,36 @@ void nbConstruction(City *city) {
     city->immeuble.numeroBatiment = city->immeuble.numeroBatiment / 9;
     city->gratteCiel.numeroBatiment = city->gratteCiel.numeroBatiment / 9;
 
-    city->centrale.capacite = city->centrale.numeroBatiment*city->centrale.capacite;
-    city->chateauEau.capacite = city->chateauEau.numeroBatiment*city->chateauEau.capacite;
+    city->centrale.capacite = city->centrale.numeroBatiment * city->centrale.capacite;
+    city->chateauEau.capacite = city->chateauEau.numeroBatiment * city->chateauEau.capacite;
 
     city->nombreConstruction = (city->centrale.numeroBatiment +
                                 city->chateauEau.numeroBatiment + city->ruine.numeroBatiment +
                                 city->cabane.numeroBatiment + city->maison.numeroBatiment +
                                 city->immeuble.numeroBatiment + city->gratteCiel.numeroBatiment);
     city->nombreHabitation = (city->ruine.numeroBatiment +
-                            city->cabane.numeroBatiment + city->maison.numeroBatiment +
-                            city->immeuble.numeroBatiment + city->gratteCiel.numeroBatiment);
-
-
+                              city->cabane.numeroBatiment + city->maison.numeroBatiment +
+                              city->immeuble.numeroBatiment + city->gratteCiel.numeroBatiment);
 }
-void nbHabitant (City *city) {
-    if (city->cabane.numeroBatiment != 0){
-        city->nbHabitant += city->cabane.nbHabitant*city->cabane.numeroBatiment;
+
+void nbHabitant(City *city) {
+    if (city->cabane.numeroBatiment != 0) {
+        city->nbHabitant += city->cabane.nbHabitant * city->cabane.numeroBatiment;
     }
-    if (city->maison.numeroBatiment != 0){
-        city->nbHabitant += city->maison.nbHabitant*city->maison.numeroBatiment;
+    if (city->maison.numeroBatiment != 0) {
+        city->nbHabitant += city->maison.nbHabitant * city->maison.numeroBatiment;
     }
-    if (city->immeuble.numeroBatiment != 0){
-        city->nbHabitant += city->immeuble.nbHabitant*city->immeuble.numeroBatiment;
+    if (city->immeuble.numeroBatiment != 0) {
+        city->nbHabitant += city->immeuble.nbHabitant * city->immeuble.numeroBatiment;
     }
-    if (city->gratteCiel.numeroBatiment != 0){
-        city->nbHabitant += city->gratteCiel.nbHabitant*city->gratteCiel.numeroBatiment;
+    if (city->gratteCiel.numeroBatiment != 0) {
+        city->nbHabitant += city->gratteCiel.nbHabitant * city->gratteCiel.numeroBatiment;
+    }
+}
+
+void savoirNumeroConstruction(City *city) {
+    for (int i = 0; i < city->nombreConstruction; i++) {
+        //city->numeroConstruction[i] =
     }
 }
 
@@ -174,7 +179,8 @@ void getCoordonneConstruction4x6(City *city) {
         }
     }
 }
-void getCoordonneConstruction3x3 (City *city) {
+
+void getCoordonneConstruction3x3(City *city) {
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {
             if (city->terrain[i][j].typeBloc == 5) {
@@ -201,7 +207,7 @@ void getCoordonneConstruction3x3 (City *city) {
     }
 }
 
-bool constructionViable(City *city, int numeroConstruction) { //relier à la route
+bool constructionViable(City *city, int numeroConstruction) {
     if ((viabiliteeRoutiere(city, numeroConstruction) == true) &&
         (viabiliteeElectrique(city, numeroConstruction) == true) &&
         (viabiliteeEau(city, numeroConstruction) == true)) {
@@ -212,40 +218,18 @@ bool constructionViable(City *city, int numeroConstruction) { //relier à la rou
 }
 
 bool viabiliteeRoutiere(City *city, int numeroConstruction) {
-    city->centrale.laCoordonneX;
-    city->centrale.laCoordonneY;
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {
             // si position numeroConstruction de -1 jusqu'a +1 en i pareil en j
             // si il y a une route alors OUI
-            if (city->terrain[i][j].typeBloc == 2) {
-
-            }
-            if (city->terrain[i][j].typeBloc == 4) {
-                for (int k = 0; k < city->centrale.tailleX + 2; k++) {
-                    for (int l = 0; l < city->centrale.tailleY + 2; l++) {
-                        if (city->terrain[k][l].typeBloc == 2) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }
+            if ((city->terrain[i][j].typeBloc == 3) || (city->terrain[i][j].typeBloc == 4) ||
+                (city->terrain[i][j].typeBloc == 5) || (city->terrain[i][j].typeBloc == 6) ||
+                (city->terrain[i][j].typeBloc == 7) || (city->terrain[i][j].typeBloc == 8) ||
+                (city->terrain[i][j].typeBloc == 9)) {
+                if ((city->terrain[i - 1][j - 1].typeBloc == 2) ||
+                    (city->terrain[i + 1][j + 1].typeBloc == 2)) {
+                    return true;
                 }
-            }
-            if (city->terrain[i][j].typeBloc == 5) {
-                city->ruine.numeroBatiment++;
-            }
-            if (city->terrain[i][j].typeBloc == 6) {
-                city->cabane.numeroBatiment++;
-            }
-            if (city->terrain[i][j].typeBloc == 7) {
-                city->maison.numeroBatiment++;
-            }
-            if (city->terrain[i][j].typeBloc == 8) {
-                city->immeuble.numeroBatiment++;
-            }
-            if (city->terrain[i][j].typeBloc == 9) {
-                city->gratteCiel.numeroBatiment++;
             }
         }
     }
