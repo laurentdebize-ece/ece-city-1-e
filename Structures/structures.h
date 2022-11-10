@@ -66,7 +66,7 @@ typedef struct {
     int matriceX, matriceY;
     char *nomBlock;
     int numeroBatiment;
-    int laCoordonneX, laCoordonneY;
+    int laCoordonneX, laCoordonneY; //permet de lire la coordonnée en 6 fois 4 si elle est posée en 4 fois 6
 } Batiment;
 
 typedef struct {
@@ -92,8 +92,11 @@ typedef struct {
     int cycle; //15 secondes
     int argent; // solde du joueur
     int CapaciteTotalElectriciter;
-    int nombreBatiment;
-    int numeroConstruction;
+    int nombreHabitation;
+    int nombreConstruction;
+
+    Batiment *numeroConstruction;
+
     int nbHabitant;
     bool capitaliste;
 } City;

@@ -3,7 +3,7 @@
 
 void initialisationVille(City *city) {
 
-    //---------------- Terrain Vague ----------------//
+    //---------------- Terrain Vague _ Ruine ----------------//
 
     city->ruine.prix = 1000; // 1000 ECE flouz et apèrs plus de prix car augmente avec compteur
     city->ruine.nbHabitant = 0;
@@ -73,11 +73,9 @@ void initialisationVille(City *city) {
     city->route.tailleY = 1;
     city->route.numeroBatiment = 0;
 
-    city->nombreBatiment = (city->centrale.numeroBatiment +
-                            city->chateauEau.numeroBatiment + city->ruine.numeroBatiment +
-                            city->cabane.numeroBatiment + city->maison.numeroBatiment +
-                            city->immeuble.numeroBatiment + city->gratteCiel.numeroBatiment);
-    city->numeroConstruction = 0;
+    city->nombreConstruction = 0;
+
+
 
 
     /////////////////Argent///////

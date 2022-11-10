@@ -15,8 +15,13 @@ void initDataMap (City *city) {
     associerFichierAuxBlocs(city);
     coordonneesConstructions(city);
     nbConstruction(city);
+    nbHabitant(city);
 
     getCoordonneConstruction4x6 (city);
+    getCoordonneConstruction3x3(city);
+
+
+    //viabiliteeRoutiere(city);
 }
 
 void associerFichierAuxBlocs (City* city) {
