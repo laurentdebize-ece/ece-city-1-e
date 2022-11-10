@@ -91,6 +91,7 @@ typedef struct {
     Terrain terrain[LIGNES][COLONNES];
     int cycle; //15 secondes
     int argent; // solde du joueur
+    int CapaciteTotalElectriciter;
     int nombreBatiment;
     int numeroConstruction;
     int nbHabitant;
