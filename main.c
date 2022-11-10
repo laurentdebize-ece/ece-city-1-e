@@ -3,7 +3,19 @@
 #include "Fonctions/Construction/construction.h"
 #include "Fonctions/Initialisation/initialisation.h"
 
-void test (City* city){
+void mainAurelien (City *city) {
+
+}
+
+void mainNino (City *city) {
+
+}
+
+void mainTrystan (City *city) {
+
+}
+
+void mainPL (City* city){
     initialisationVille(city);
     initDataMap(city);
 
@@ -24,6 +36,9 @@ void test (City* city){
 
 int main () {
     City city = {0};
-    test(&city);
+    mainPL(&city);
+    //mainAurelien(&city);
+    //mainNino(&city);
+    //mainTrystan(&city);
     return 0;
 }
