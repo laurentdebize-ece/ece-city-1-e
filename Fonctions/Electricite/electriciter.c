@@ -2,16 +2,16 @@
 
 
 void capaciteTotalElectriciter(City* city){
-    city->capaciteTotalElectriciter = city->centrale.numeroBatiment * city->centrale.capacite;
+    city->centrale.capacite = city->centrale.numeroBatiment * city->centrale.capacite;
 }
 
 void alimenteElectricite(City* city){
     nbConstruction(city);
     capaciteTotalElectriciter(city);
-    if(city->capaciteTotalElectriciter >= city->nbHabitant){
-        printf("Toute les maissons sont alimenter");
+    if(city->centrale.capacite >= city->nbHabitant){
+        printf("Toute les maissons sont alimenter\n");
     }else{
-        int manque = city->nbHabitant - city->capaciteTotalElectriciter;
+        int manque = city->nbHabitant - city->centrale.capacite;
         while (city->cabane.numeroBatiment != 0 || manque != 0){
             city->cabane.numeroBatiment--;
             manque-=10;
