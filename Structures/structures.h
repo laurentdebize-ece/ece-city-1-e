@@ -62,7 +62,7 @@ typedef struct {
     int prix;
     int nbHabitant;
     int tailleX, tailleY;
-    int capacite, flot;
+    int capacite, capaciteTotal;
     int matriceX, matriceY;
     char *nomBlock;
     int numeroBatiment;
@@ -72,6 +72,8 @@ typedef struct {
 typedef struct {
     int typeBloc; // Provient du fichier .txt
     int decor;
+    bool eau;
+    bool electricite;
     bool blocPlein; // bloc vide ou plein considère si c'est un obstacle ou pas
 
 }Terrain;
