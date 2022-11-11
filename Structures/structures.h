@@ -80,9 +80,8 @@ typedef struct {
 }Terrain;
 
 typedef struct {
-    int numeroConstruction;
-    int numeroType; // route ruine...
-
+    int numero;
+    int Type; //  ruine central...
 }Construction;
 
 typedef struct {
@@ -103,7 +102,7 @@ typedef struct {
     int nombreHabitation;
     int nombreConstruction;
 
-    Construction numeroConstruction[150];
+    Construction listeConstruction[150];
 
     int nbHabitant;
     bool capitaliste;
