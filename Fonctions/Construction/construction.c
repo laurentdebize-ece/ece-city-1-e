@@ -108,9 +108,9 @@ void nbHabitant(City *city) {
 void savoirIndiceConstruction(City *city) {
     for (int i = 0; i < city->nombreConstruction; i++) {
         city->tabConstruction[i].numeroDesConstructions = i;
-        city->tabConstruction[i].typeDeConstruction = 3;
-        city->tabConstruction[i].coordonneeX = city->centrale.laCoordonneX;
-        city->tabConstruction[i].coordonneeY = city->centrale.laCoordonneY;
+        //city->tabConstruction[i].typeDeConstruction = 3;
+        //city->tabConstruction[i].coordonneeX = city->centrale.laCoordonneX;
+        //city->tabConstruction[i].coordonneeY = city->centrale.laCoordonneY;
     }
     /*for (int j = 0 ; j < city->chateauEau.numeroBatiment ; j++) {
         city->tabConstruction[i].numeroDesConstructions = i;
@@ -152,6 +152,7 @@ void savoirIndiceConstruction(City *city) {
 // --------------- A FAIRE --------------- //
 
 void getCoordonneConstruction4x6(City *city) {
+    int nbConstru = 0;
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {
             if (city->terrain[i][j].typeBloc == 3) {
@@ -159,10 +160,18 @@ void getCoordonneConstruction4x6(City *city) {
                     (city->terrain[i - 1][j].typeBloc != 3) && (city->terrain[i][j - 1].typeBloc != 3)) {
                     city->centrale.laCoordonneX = i;
                     city->centrale.laCoordonneY = j;
+                    city->tabConstruction[nbConstru].coordonneeX = i;
+                    city->tabConstruction[nbConstru].coordonneeY = j;
+                    city->tabConstruction[nbConstru].typeDeConstruction = 3;
+                    nbConstru++;
                 } else if ((city->terrain[i][(j + 5)].typeBloc != 3) && (city->terrain[i + 4][j].typeBloc == 3) &&
                            (city->terrain[i - 1][j].typeBloc != 3) && (city->terrain[i][j - 1].typeBloc != 3)) {
                     city->centrale.laCoordonneX = i;
                     city->centrale.laCoordonneY = j + 3;
+                    city->tabConstruction[nbConstru].coordonneeX = i;
+                    city->tabConstruction[nbConstru].coordonneeY = j;
+                    city->tabConstruction[nbConstru].typeDeConstruction = 3;
+                    nbConstru++;
                 }
             }
             if (city->terrain[i][j].typeBloc == 4) {
@@ -170,10 +179,18 @@ void getCoordonneConstruction4x6(City *city) {
                     (city->terrain[i - 1][j].typeBloc != 4) && (city->terrain[i][j - 1].typeBloc != 4)) {
                     city->chateauEau.laCoordonneX = i;
                     city->chateauEau.laCoordonneY = j;
+                    city->tabConstruction[nbConstru].coordonneeX = i;
+                    city->tabConstruction[nbConstru].coordonneeY = j;
+                    city->tabConstruction[nbConstru].typeDeConstruction = 4;
+                    nbConstru++;
                 } else if ((city->terrain[i][(j + 5)].typeBloc != 4) && (city->terrain[i + 4][j].typeBloc == 4) &&
                            (city->terrain[i - 1][j].typeBloc != 4) && (city->terrain[i][j - 1].typeBloc != 4)) {
                     city->chateauEau.laCoordonneX = i;
                     city->chateauEau.laCoordonneY = j + 3;
+                    city->tabConstruction[nbConstru].coordonneeX = i;
+                    city->tabConstruction[nbConstru].coordonneeY = j;
+                    city->tabConstruction[nbConstru].typeDeConstruction = 4;
+                    nbConstru++;
                 }
             }
         }
