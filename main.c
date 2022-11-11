@@ -4,19 +4,19 @@
 #include "Fonctions/Initialisation/initialisation.h"
 #include "Fonctions/Electricite/electriciter.h"
 
-void mainAurelien (City *city) {
+void mainAurelien(City *city) {
+    alimenteElectricite(city);
+}
+
+void mainNino(City *city) {
 
 }
 
-void mainNino (City *city) {
+void mainTrystan(City *city) {
 
 }
 
-void mainTrystan (City *city) {
-
-}
-
-void mainPL (City* city) {
+void mainPL(City *city) {
     initialisationVille(city);
     initDataMap(city);
     //nbHabitant(city);
@@ -32,6 +32,10 @@ void mainPL (City* city) {
     printf("La ville possède %d de capacité d'eau\n", city->chateauEau.capacite);
     }*/
 
+    //printf("Il y a %d contructions\n", city->nombreConstruction);
+    /*for (int i = 0; i < city->nombreConstruction; i++) {
+        printf("Construction n°%d\n", city->numeroConstruction[i]);
+    }*/
 
     /*if (viabiliteeRoute(city,) == true) {
         printf("OUI route");
@@ -46,7 +50,7 @@ void mainPL (City* city) {
     //printf("Dans la ville il y a %d habitants\n", city->nbHabitant);
 }
 
-int main () {
+int main() {
     City city = {0};
     mainPL(&city);
     //mainAurelien(&city);

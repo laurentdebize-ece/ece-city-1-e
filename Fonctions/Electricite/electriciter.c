@@ -9,7 +9,7 @@ void alimenteElectricite(City* city){
     nbConstruction(city);
     capaciteTotalElectriciter(city);
     if(city->centrale.capacite >= city->nbHabitant){
-        printf("Toute les maissons sont alimenter\n");
+        printf("Toutes les maisons sont alimentees\n");
     }else{
         int manque = city->nbHabitant - city->centrale.capacite;
         while (city->cabane.numeroBatiment != 0 || manque != 0){

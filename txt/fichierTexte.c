@@ -11,4 +11,5 @@ void lireFichierTexte (char *nomFichier, City* city) {
             fscanf(file, " %d", &(city->terrain[i][j].typeBloc));
         }
     }
+    fclose(file);
 }
