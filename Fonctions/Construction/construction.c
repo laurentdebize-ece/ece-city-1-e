@@ -43,6 +43,9 @@ void detecterConstructionPRINTF(City *city) {
 void nbConstruction(City *city) {
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {
+            if (city->terrain[i][j].typeBloc == 2) {
+                city->route.numeroBatiment++;
+            }
             if (city->terrain[i][j].typeBloc == 3) {
                 city->centrale.numeroBatiment++;
             }
@@ -102,11 +105,49 @@ void nbHabitant(City *city) {
 }
 
 // --------------- A FAIRE --------------- //
-void savoirNumeroConstruction(City *city) {
+void savoirIndiceConstruction(City *city) {
     for (int i = 0; i < city->nombreConstruction; i++) {
-        //city->numeroConstruction[i];
+        city->tabConstruction[i].numeroDesConstructions = i;
+        city->tabConstruction[i].typeDeConstruction = 3;
+        city->tabConstruction[i].coordonneeX = city->centrale.laCoordonneX;
+        city->tabConstruction[i].coordonneeY = city->centrale.laCoordonneY;
     }
-    //city->numeroConstruction[i];
+    /*for (int j = 0 ; j < city->chateauEau.numeroBatiment ; j++) {
+        city->tabConstruction[i].numeroDesConstructions = i;
+        city->tabConstruction[i].typeDeConstruction = 4;
+        city->tabConstruction[i].coordonneeX = city->chateauEau.laCoordonneX;
+        city->tabConstruction[i].coordonneeY = city->chateauEau.laCoordonneY;
+    }
+    for (int j = 0 ; j < city->ruine.numeroBatiment ; j++) {
+        city->tabConstruction[i].numeroDesConstructions = i;
+        city->tabConstruction[i].typeDeConstruction = 5;
+        city->tabConstruction[i].coordonneeX = city->ruine.laCoordonneX;
+        city->tabConstruction[i].coordonneeY = city->ruine.laCoordonneY;
+    }
+    for (int j = 0 ; j < city->cabane.numeroBatiment ; j++) {
+        city->tabConstruction[i].numeroDesConstructions = i;
+        city->tabConstruction[i].typeDeConstruction = 6;
+        city->tabConstruction[i].coordonneeX = city->cabane.laCoordonneX;
+        city->tabConstruction[i].coordonneeY = city->cabane.laCoordonneY;
+    }
+    for (int j = 0 ; j < city->maison.numeroBatiment ; j++) {
+        city->tabConstruction[i].numeroDesConstructions = i;
+        city->tabConstruction[i].typeDeConstruction = 7;
+        city->tabConstruction[i].coordonneeX = city->maison.laCoordonneX;
+        city->tabConstruction[i].coordonneeY = city->maison.laCoordonneY;
+    }
+    for (int j = 0 ; j < city->immeuble.numeroBatiment ; j++) {
+        city->tabConstruction[i].numeroDesConstructions = i;
+        city->tabConstruction[i].typeDeConstruction = 8;
+        city->tabConstruction[i].coordonneeX = city->immeuble.laCoordonneX;
+        city->tabConstruction[i].coordonneeY = city->immeuble.laCoordonneY;
+    }
+    for (int j = 0 ; j < city->gratteCiel.numeroBatiment ; j++) {
+        city->tabConstruction[i].numeroDesConstructions = i;
+        city->tabConstruction[i].typeDeConstruction = 9;
+        city->tabConstruction[i].coordonneeX = city->gratteCiel.laCoordonneX;
+        city->tabConstruction[i].coordonneeY = city->gratteCiel.laCoordonneY;
+    }*/
 }
 // --------------- A FAIRE --------------- //
 
@@ -138,7 +179,6 @@ void getCoordonneConstruction4x6(City *city) {
         }
     }
 }
-
 void getCoordonneConstruction3x3(City *city) {
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {

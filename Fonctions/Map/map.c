@@ -23,7 +23,7 @@ void initDataMap (City *city) {
     // --------- A REMETTRE --------- //
     //poserConstruction(city, "../txt/map.txt");
 
-    savoirNumeroConstruction(city);
+    savoirIndiceConstruction(city);
 
     //viabiliteeRoutiere(city);
 }

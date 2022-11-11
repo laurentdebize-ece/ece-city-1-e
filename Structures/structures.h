@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
+#include "raylib.h"
 
 #define COLONNES 45 //case X
 #define LIGNES 35 //case Y
@@ -66,23 +67,22 @@ typedef struct {
     int matriceX, matriceY;
     char *nomBlock;
     int numeroBatiment;
-    int laCoordonneX, laCoordonneY; //permet de lire la coordonnée en 6 fois 4 si elle est posée en 4 fois 6
+    int laCoordonneX, laCoordonneY; // Permet de lire la coordonnée en 6 fois 4 si elle est posée en 4 fois 6
 } Batiment;
 
 typedef struct {
-    int typeBloc; // Provient du fichier .txt
-    int decor;
-    int numConstruction;
-    bool eau;
-    bool electricite;
-    bool obstacle; // bloc vide ou plein considère si c'est un obstacle ou pas
+    int typeBloc;       // Provient du fichier map.txt
+    bool eau;           // Affichage niveau -1
+    bool electricite;   // Affichage niveau -2
+    bool obstacle;      // savoir si c'est un obstacle ou pas
 
-}Terrain;
+} Terrain;
 
 typedef struct {
     int numeroDesConstructions;
     int typeDeConstruction; // route ruine...
-}Construction;
+    int coordonneeX, coordonneeY;
+} Construction;
 
 typedef struct {
     Batiment ruine;
@@ -97,7 +97,7 @@ typedef struct {
     Pages page;
 
     Terrain terrain[LIGNES][COLONNES];
-    int cycle; //15 secondes
+    int cycle;  // 15 secondes
     int argent; // solde du joueur
     int nombreHabitation;
     int nombreConstruction;

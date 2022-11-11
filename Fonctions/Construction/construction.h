@@ -8,7 +8,7 @@ void detecterConstructionPRINTF (City *city);
 void nbConstruction (City *city);
 void nbHabitant (City *city);
 
-void savoirNumeroConstruction (City *city);
+void savoirIndiceConstruction (City *city);
 
 void getCoordonneConstruction4x6 (City *city);
 void getCoordonneConstruction3x3 (City *city);

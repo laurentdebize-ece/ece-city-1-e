@@ -33,9 +33,10 @@ void mainPL(City *city) {
     }*/
 
     //printf("Il y a %d contructions\n", city->nombreConstruction);
-    /*for (int i = 0; i < city->nombreConstruction; i++) {
-        printf("Construction n°%d\n", city->numeroConstruction[i]);
-    }*/
+    for (int i = 0; i < city->nombreConstruction; i++) {
+        printf("Construction n°%d est de type %d et de coordonnées (%d,%d)\n", city->tabConstruction[i].numeroDesConstructions+1, city->tabConstruction[i].typeDeConstruction, city->tabConstruction[i].coordonneeX, city->tabConstruction[i].coordonneeY);
+    }
+
 
     /*if (viabiliteeRoute(city,) == true) {
         printf("OUI route");
