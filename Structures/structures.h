@@ -62,7 +62,7 @@ typedef struct {
     int prix;
     int nbHabitant;
     int tailleX, tailleY;
-    int capacite, flot;
+    int capacite, capaciteTotal;
     int matriceX, matriceY;
     char *nomBlock;
     int numeroBatiment;
@@ -72,9 +72,18 @@ typedef struct {
 typedef struct {
     int typeBloc; // Provient du fichier .txt
     int decor;
-    bool obstacle; // bloc vide ou plein considère si c'est un obstacle ou pas
+    int numContruction;
+    bool eau;
+    bool electricite;
+    bool blocPlein; // bloc vide ou plein considère si c'est un obstacle ou pas
 
 }Terrain;
+
+typedef struct {
+    int numeroConstruction;
+    int numeroType; // route ruine...
+
+}Construction;
 
 typedef struct {
     Batiment ruine;
@@ -94,7 +103,7 @@ typedef struct {
     int nombreHabitation;
     int nombreConstruction;
 
-    int numeroConstruction[150];
+    Construction numeroConstruction[150];
 
     int nbHabitant;
     bool capitaliste;
