@@ -74,7 +74,8 @@ void initialisationVille(City *city) {
     city->route.numeroBatiment = 0;
 
     for (int i = 0; i < 150; i++) {
-        city->numeroConstruction[i] = 0;
+        city->tabConstruction[i].numeroDesConstructions = 0;
+        city->tabConstruction[i].typeDeConstruction = 0;
     }
 
     city->nombreConstruction = 0;

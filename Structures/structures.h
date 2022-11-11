@@ -75,13 +75,13 @@ typedef struct {
     int numConstruction;
     bool eau;
     bool electricite;
-    bool blocPlein; // bloc vide ou plein considère si c'est un obstacle ou pas
+    bool obstacle; // bloc vide ou plein considère si c'est un obstacle ou pas
 
 }Terrain;
 
 typedef struct {
-    int numero;
-    int Type; //  ruine central...
+    int numeroDesConstructions;
+    int typeDeConstruction; // route ruine...
 }Construction;
 
 typedef struct {
@@ -102,7 +102,7 @@ typedef struct {
     int nombreHabitation;
     int nombreConstruction;
 
-    Construction listeConstruction[150];
+    Construction tabConstruction[150];
 
     int nbHabitant;
     bool capitaliste;

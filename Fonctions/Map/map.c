@@ -20,7 +20,8 @@ void initDataMap (City *city) {
     nbConstruction(city);
     nbHabitant(city);
 
-    poserConstruction(city, "../txt/map.txt");
+    // --------- A REMETTRE --------- //
+    //poserConstruction(city, "../txt/map.txt");
 
     savoirNumeroConstruction(city);
 
