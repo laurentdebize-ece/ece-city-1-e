@@ -191,78 +191,90 @@ void poserConstruction(City *city, char *nomFichier) {
     printf("coordonnées Y : \n");
     scanf(" %d", &coordonneeY);
 
-    switch (choix) {
-        case 'r' : {
-            city->terrain[coordonneeX][coordonneeY].typeBloc = 5;
-            city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 5;
-            city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 5;
-            city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 5;
-            city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 5;
-            city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 5;
-            city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 5;
-            city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 5;
-            city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 5;
-            break;
+    if ((city->terrain[coordonneeX][coordonneeY].typeBloc != 1) ||
+        (city->terrain[coordonneeX][coordonneeY + 1].typeBloc != 1) ||
+        (city->terrain[coordonneeX][coordonneeY + 2].typeBloc != 1) ||
+        (city->terrain[coordonneeX + 1][coordonneeY].typeBloc != 1) ||
+        (city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc != 1) ||
+        (city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc != 1) ||
+        (city->terrain[coordonneeX + 2][coordonneeY].typeBloc != 1) ||
+        (city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc != 1) ||
+        (city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc != 1)) {
+        switch (choix) {
+            case 'r' : {
+                city->terrain[coordonneeX][coordonneeY].typeBloc = 5;
+                city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 5;
+                city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 5;
+                city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 5;
+                city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 5;
+                city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 5;
+                city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 5;
+                city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 5;
+                city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 5;
+                break;
+            }
+            case 'c' : {
+                city->terrain[coordonneeX][coordonneeY].typeBloc = 6;
+                city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 6;
+                city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 6;
+                city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 6;
+                city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 6;
+                city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 6;
+                city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 6;
+                city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 6;
+                city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 6;
+                break;
+            }
+            case 'm' : {
+                city->terrain[coordonneeX][coordonneeY].typeBloc = 7;
+                city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 7;
+                city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 7;
+                city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 7;
+                city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 7;
+                city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 7;
+                city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 7;
+                city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 7;
+                city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 7;
+                break;
+            }
+            case 'i' : {
+                city->terrain[coordonneeX][coordonneeY].typeBloc = 8;
+                city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 8;
+                city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 8;
+                city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 8;
+                city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 8;
+                city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 8;
+                city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 8;
+                city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 8;
+                city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 8;
+                break;
+            }
+            case 'g' : {
+                city->terrain[coordonneeX][coordonneeY].typeBloc = 9;
+                city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 9;
+                city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 9;
+                city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 9;
+                city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 9;
+                city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 9;
+                city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 9;
+                city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 9;
+                city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 9;
+                break;
+            }
+            default : {
+                city->terrain[coordonneeX][coordonneeY].typeBloc = 0;
+                city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 0;
+                city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 0;
+                city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 0;
+                city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 0;
+                city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 0;
+                city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 0;
+                city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 0;
+                city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 0;
+            }
         }
-        case 'c' : {
-            city->terrain[coordonneeX][coordonneeY].typeBloc = 6;
-            city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 6;
-            city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 6;
-            city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 6;
-            city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 6;
-            city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 6;
-            city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 6;
-            city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 6;
-            city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 6;
-            break;
-        }
-        case 'm' : {
-            city->terrain[coordonneeX][coordonneeY].typeBloc = 7;
-            city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 7;
-            city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 7;
-            city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 7;
-            city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 7;
-            city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 7;
-            city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 7;
-            city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 7;
-            city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 7;
-            break;
-        }
-        case 'i' : {
-            city->terrain[coordonneeX][coordonneeY].typeBloc = 8;
-            city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 8;
-            city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 8;
-            city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 8;
-            city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 8;
-            city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 8;
-            city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 8;
-            city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 8;
-            city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 8;
-            break;
-        }
-        case 'g' : {
-            city->terrain[coordonneeX][coordonneeY].typeBloc = 9;
-            city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 9;
-            city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 9;
-            city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 9;
-            city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 9;
-            city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 9;
-            city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 9;
-            city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 9;
-            city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 9;
-            break;
-        }
-        default : {
-            city->terrain[coordonneeX][coordonneeY].typeBloc = 0;
-            city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 0;
-            city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 0;
-            city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 0;
-            city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 0;
-            city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 0;
-            city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 0;
-            city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 0;
-            city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 0;
-        }
+    } else {
+        printf("Construction impossible OBSTACLE");
     }
 
     for (int i = 0; i < LIGNES; i++) {

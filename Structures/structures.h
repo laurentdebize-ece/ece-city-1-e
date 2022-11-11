@@ -72,7 +72,7 @@ typedef struct {
 typedef struct {
     int typeBloc; // Provient du fichier .txt
     int decor;
-    bool blocPlein; // bloc vide ou plein considère si c'est un obstacle ou pas
+    bool obstacle; // bloc vide ou plein considère si c'est un obstacle ou pas
 
 }Terrain;
 
