@@ -3,9 +3,8 @@
 
 #include "../../Structures/structures.h"
 
-void detecterConstruction (City *city);
+void detecterConstructionPRINTF (City *city);
 
-void coordonneesConstructions (City *city);
 void nbConstruction (City *city);
 void nbHabitant (City *city);
 
@@ -13,6 +12,8 @@ void savoirNumeroConstruction (City *city);
 
 void getCoordonneConstruction4x6 (City *city);
 void getCoordonneConstruction3x3 (City *city);
+
+void poserConstruction (City *city, char *nomFichier);
 
 bool constructionViable(City *city, int numeroConstruction);
 

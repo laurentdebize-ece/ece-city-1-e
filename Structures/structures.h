@@ -95,7 +95,9 @@ typedef struct {
     int argent; // solde du joueur
     int nombreHabitation;
     int nombreConstruction;
-    int numeroConstruction[100];
+
+    int numeroConstruction[150];
+
     int nbHabitant;
     bool capitaliste;
 } City;

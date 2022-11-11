@@ -13,13 +13,16 @@ void initDataMap (City *city) {
     lireFichierTexte ("../txt/map.txt", city);
     //matrice(city);
     associerFichierAuxBlocs(city);
-    coordonneesConstructions(city);
-    nbConstruction(city);
-    nbHabitant(city);
 
     getCoordonneConstruction4x6 (city);
     getCoordonneConstruction3x3(city);
 
+    nbConstruction(city);
+    nbHabitant(city);
+
+    //poserConstruction(city, "../txt/map.txt");
+
+    savoirNumeroConstruction(city);
 
     //viabiliteeRoutiere(city);
 }

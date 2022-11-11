@@ -1,88 +1,44 @@
 #include "construction.h"
 
-void detecterConstruction(City *city) {
+void detecterConstructionPRINTF(City *city) {
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {
             if (city->terrain[i][j].typeBloc == 2) {
-                city->route.matriceX = i;
-                city->route.matriceY = j;
-                //printf("Il y a %s en (%d,%d) de taille %dx%d\n", city->route.nomBlock, city->route.matriceX, city->route.matriceY, city->route.tailleX, city->route.tailleY);
+                printf("Il y a %s en (%d,%d) de taille %dx%d\n", city->route.nomBlock, city->route.matriceX,
+                       city->route.matriceY, city->route.tailleX, city->route.tailleY);
             }
             if (city->terrain[i][j].typeBloc == 3) {
-                city->centrale.matriceX = i;
-                city->centrale.matriceY = j;
-                //printf("Il y a %s en (%d,%d) de taille %dx%d\n", city->centrale.nomBlock, city->centrale.matriceX, city->centrale.matriceY, city->centrale.tailleX, city->centrale.tailleY);
+                printf("Il y a %s en (%d,%d) de taille %dx%d\n", city->centrale.nomBlock, city->centrale.matriceX,
+                       city->centrale.matriceY, city->centrale.tailleX, city->centrale.tailleY);
             }
             if (city->terrain[i][j].typeBloc == 4) {
-                city->chateauEau.matriceX = i;
-                city->chateauEau.matriceY = j;
-                //printf("Il y a %s en (%d,%d) de taille %dx%d\n", city->chateauEau.nomBlock, city->chateauEau.matriceX, city->chateauEau.matriceY, city->chateauEau.tailleX, city->chateauEau.tailleY);
+                printf("Il y a %s en (%d,%d) de taille %dx%d\n", city->chateauEau.nomBlock, city->chateauEau.matriceX,
+                       city->chateauEau.matriceY, city->chateauEau.tailleX, city->chateauEau.tailleY);
             }
             if (city->terrain[i][j].typeBloc == 5) {
-                city->ruine.matriceX = i;
-                city->ruine.matriceY = j;
-                //printf("Il y a %s en (%d,%d) de taille %dx%d\n", city->ruine.nomBlock, city->ruine.matriceX, city->ruine.matriceY, city->ruine.tailleX, city->ruine.tailleY);
+                printf("Il y a %s en (%d,%d) de taille %dx%d\n", city->ruine.nomBlock, city->ruine.matriceX,
+                       city->ruine.matriceY, city->ruine.tailleX, city->ruine.tailleY);
             }
             if (city->terrain[i][j].typeBloc == 6) {
-                city->cabane.matriceX = i;
-                city->cabane.matriceY = j;
-                //printf("Il y a %s en (%d,%d) de taille %dx%d\n", city->cabane.nomBlock, city->cabane.matriceX, city->cabane.matriceY, city->cabane.tailleX, city->cabane.tailleY);
+                printf("Il y a %s en (%d,%d) de taille %dx%d\n", city->cabane.nomBlock, city->cabane.matriceX,
+                       city->cabane.matriceY, city->cabane.tailleX, city->cabane.tailleY);
             }
             if (city->terrain[i][j].typeBloc == 7) {
-                city->maison.matriceX = i;
-                city->maison.matriceY = j;
-                //printf("Il y a %s en (%d,%d) de taille %dx%d\n", city->maison.nomBlock, city->maison.matriceX, city->maison.matriceY, city->maison.tailleX, city->maison.tailleY);
+                printf("Il y a %s en (%d,%d) de taille %dx%d\n", city->maison.nomBlock, city->maison.matriceX,
+                       city->maison.matriceY, city->maison.tailleX, city->maison.tailleY);
             }
             if (city->terrain[i][j].typeBloc == 8) {
-                city->immeuble.matriceX = i;
-                city->immeuble.matriceY = j;
-                //printf("Il y a %s en (%d,%d) de taille %dx%d\n", city->immeuble.nomBlock, city->immeuble.matriceX, city->immeuble.matriceY, city->immeuble.tailleX, city->chateauEau.tailleY);
+                printf("Il y a %s en (%d,%d) de taille %dx%d\n", city->immeuble.nomBlock, city->immeuble.matriceX,
+                       city->immeuble.matriceY, city->immeuble.tailleX, city->chateauEau.tailleY);
             }
             if (city->terrain[i][j].typeBloc == 9) {
-                city->gratteCiel.matriceX = i;
-                city->gratteCiel.matriceY = j;
-                //printf("Il y a %s en (%d,%d) de taille %dx%d\n", city->gratteCiel.nomBlock, city->gratteCiel.matriceX, city->gratteCiel.matriceY, city->gratteCiel.tailleX, city->gratteCiel.tailleY);
+                printf("Il y a %s en (%d,%d) de taille %dx%d\n", city->gratteCiel.nomBlock, city->gratteCiel.matriceX,
+                       city->gratteCiel.matriceY, city->gratteCiel.tailleX, city->gratteCiel.tailleY);
             }
         }
     }
     //printf("Il y a %d centrale, %d chateau eau et %d habitations", city->centrale.numeroBatiment, city->chateauEau.numeroBatiment, city->nombreConstruction - city->centrale.numeroBatiment - city->chateauEau.numeroBatiment);
 }
-
-void coordonneesConstructions(City *city) {
-    for (int i = 0; i < LIGNES; i++) {
-        for (int j = 0; j < COLONNES; j++) {
-            if (city->terrain[i][j].typeBloc == 5) {
-                city->ruine.matriceX = i;
-                city->ruine.matriceY = j;
-            }
-            if (city->terrain[i][j].typeBloc == 6) {
-                city->cabane.matriceX = i;
-                city->cabane.matriceY = j;
-            }
-            if (city->terrain[i][j].typeBloc == 7) {
-                city->maison.matriceX = i;
-                city->maison.matriceY = j;
-            }
-            if (city->terrain[i][j].typeBloc == 8) {
-                city->immeuble.matriceX = i;
-                city->immeuble.matriceY = j;
-            }
-            if (city->terrain[i][j].typeBloc == 9) {
-                city->gratteCiel.matriceX = i;
-                city->gratteCiel.matriceY = j;
-            }
-        }
-    }
-}
-
-/*
- * if ((city->terrain[i][j].typeBloc == 3) || (city->terrain[i][j].typeBloc == 4) ||
-                (city->terrain[i][j].typeBloc == 5) || (city->terrain[i][j].typeBloc == 6) ||
-                (city->terrain[i][j].typeBloc == 7) || (city->terrain[i][j].typeBloc == 8) ||
-                (city->terrain[i][j].typeBloc == 9)) {
-                city->numeroConstruction++;
-            }
-*/
 
 void nbConstruction(City *city) {
     for (int i = 0; i < LIGNES; i++) {
@@ -145,11 +101,14 @@ void nbHabitant(City *city) {
     }
 }
 
+// --------------- A FAIRE --------------- //
 void savoirNumeroConstruction(City *city) {
     for (int i = 0; i < city->nombreConstruction; i++) {
-        //city->numeroConstruction[i] =
+        //city->numeroConstruction[i];
     }
+    //city->numeroConstruction[i];
 }
+// --------------- A FAIRE --------------- //
 
 void getCoordonneConstruction4x6(City *city) {
     for (int i = 0; i < LIGNES; i++) {
@@ -186,25 +145,133 @@ void getCoordonneConstruction3x3(City *city) {
             if (city->terrain[i][j].typeBloc == 5) {
                 city->ruine.laCoordonneX = i;
                 city->ruine.laCoordonneY = j;
+                city->ruine.matriceX = i;
+                city->ruine.matriceY = j;
             }
             if (city->terrain[i][j].typeBloc == 6) {
                 city->cabane.laCoordonneX = i;
                 city->cabane.laCoordonneY = j;
+                city->cabane.matriceX = i;
+                city->cabane.matriceY = j;
             }
             if (city->terrain[i][j].typeBloc == 7) {
                 city->maison.laCoordonneX = i;
                 city->maison.laCoordonneY = j;
+                city->maison.matriceX = i;
+                city->maison.matriceY = j;
             }
             if (city->terrain[i][j].typeBloc == 8) {
                 city->immeuble.laCoordonneX = i;
                 city->immeuble.laCoordonneY = j;
+                city->immeuble.matriceX = i;
+                city->immeuble.matriceY = j;
             }
             if (city->terrain[i][j].typeBloc == 9) {
                 city->gratteCiel.laCoordonneX = i;
                 city->gratteCiel.laCoordonneY = j;
+                city->gratteCiel.matriceX = i;
+                city->gratteCiel.matriceY = j;
             }
         }
     }
+}
+
+void poserConstruction(City *city, char *nomFichier) {
+    FILE *file = fopen(nomFichier, "w+");
+    if (!file) {
+        printf("Erreur d'écriture fichier\n");
+        exit(-1);
+    }
+    char choix;
+    int coordonneeX, coordonneeY;
+    printf("Entrez un batiment\n");
+    scanf(" %c", &choix);
+    printf("coordonnées X : \n");
+    scanf(" %d", &coordonneeX);
+    printf("coordonnées Y : \n");
+    scanf(" %d", &coordonneeY);
+
+    switch (choix) {
+        case 'r' : {
+            city->terrain[coordonneeX][coordonneeY].typeBloc = 5;
+            city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 5;
+            city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 5;
+            city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 5;
+            city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 5;
+            city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 5;
+            city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 5;
+            city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 5;
+            city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 5;
+            break;
+        }
+        case 'c' : {
+            city->terrain[coordonneeX][coordonneeY].typeBloc = 6;
+            city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 6;
+            city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 6;
+            city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 6;
+            city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 6;
+            city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 6;
+            city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 6;
+            city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 6;
+            city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 6;
+            break;
+        }
+        case 'm' : {
+            city->terrain[coordonneeX][coordonneeY].typeBloc = 7;
+            city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 7;
+            city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 7;
+            city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 7;
+            city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 7;
+            city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 7;
+            city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 7;
+            city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 7;
+            city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 7;
+            break;
+        }
+        case 'i' : {
+            city->terrain[coordonneeX][coordonneeY].typeBloc = 8;
+            city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 8;
+            city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 8;
+            city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 8;
+            city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 8;
+            city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 8;
+            city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 8;
+            city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 8;
+            city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 8;
+            break;
+        }
+        case 'g' : {
+            city->terrain[coordonneeX][coordonneeY].typeBloc = 9;
+            city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 9;
+            city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 9;
+            city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 9;
+            city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 9;
+            city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 9;
+            city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 9;
+            city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 9;
+            city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 9;
+            break;
+        }
+        default : {
+            city->terrain[coordonneeX][coordonneeY].typeBloc = 0;
+            city->terrain[coordonneeX][coordonneeY + 1].typeBloc = 0;
+            city->terrain[coordonneeX][coordonneeY + 2].typeBloc = 0;
+            city->terrain[coordonneeX + 1][coordonneeY].typeBloc = 0;
+            city->terrain[coordonneeX + 1][coordonneeY + 1].typeBloc = 0;
+            city->terrain[coordonneeX + 1][coordonneeY + 2].typeBloc = 0;
+            city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 0;
+            city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 0;
+            city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 0;
+        }
+    }
+
+    for (int i = 0; i < LIGNES; i++) {
+        for (int j = 0; j < COLONNES; j++) {
+            fprintf(file, " %d", (city->terrain[i][j].typeBloc));
+        }
+        fprintf(file, "\n");
+    }
+    fclose(file);
 }
 
 bool constructionViable(City *city, int numeroConstruction) {
@@ -217,6 +284,7 @@ bool constructionViable(City *city, int numeroConstruction) {
     }
 }
 
+// --------------- A FAIRE --------------- //
 bool viabiliteeRoutiere(City *city, int numeroConstruction) {
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {
@@ -243,7 +311,7 @@ bool viabiliteeElectrique(City *city, int numeroConstruction) {
 bool viabiliteeEau(City *city, int numeroConstruction) {
     return false;
 }
-
+// --------------- A FAIRE --------------- //
 
 
 
