@@ -62,7 +62,7 @@ typedef struct {
     int prix;
     int nbHabitant;
     int tailleX, tailleY;
-    int capacite, capaciteTotal;
+    int capacite, capaciteTotal,flot;
     int matriceX, matriceY;
     char *nomBlock;
     int numeroBatiment;
