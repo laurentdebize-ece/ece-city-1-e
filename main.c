@@ -40,11 +40,11 @@ void mainPL(City *city) {
     }*/
 
     //printf("Il y a %d contructions\n", city->nombreConstruction);
-    for (int i = 0; i < city->nombreConstruction; i++) {
+    /*for (int i = 0; i < city->nombreConstruction; i++) {
         printf("Construction n°%d est de type %d et de coordonnées (%d,%d)\n",
                city->tabConstruction[i].numeroDesConstructions + 1, city->tabConstruction[i].typeDeConstruction,
                city->tabConstruction[i].coordonneeX, city->tabConstruction[i].coordonneeY);
-    }
+    }*/
 
     // ------- FLOT CENTRALE ET EAU ------- //
     consommationEau(city);
@@ -53,7 +53,8 @@ void mainPL(City *city) {
     printf("Il y a %d centrale élecrtrique pour une capacité total de %d\n", city->centrale.numeroBatiment, city->centrale.capacite);
     printf("Il y a %d batiments qui consomme %d électricité et %d eau\n", city->nombreConstruction,
              (city->centrale.capacite - city->centrale.flot), (city->chateauEau.capacite - city->chateauEau.flot));
-    */printf("Flot électrique : %d\nFlot d'eau : %d\n", city->centrale.flot, city->chateauEau.flot);
+    */
+    //printf("Flot électrique : %d\nFlot d'eau : %d\n", city->centrale.flot, city->chateauEau.flot);
 
     /*if (viabiliteeRoute(city,) == true) {
         printf("OUI route");
@@ -69,7 +70,7 @@ void mainPL(City *city) {
            city->gratteCiel.numeroBatiment);*/
 
     // ------- VIABILITE ROUTE ------- //
-    int p = 12;
+    int p = 0;
 
     if (viabiliteeRoutiere(city, p)) {
         printf("La construction n°%d (type : %d) est viable ROUTE\n", p, city->tabConstruction[p].typeDeConstruction);
@@ -77,16 +78,24 @@ void mainPL(City *city) {
         printf("La construction n°%d (type : %d) est non viable ROUTE\n", p,
                city->tabConstruction[p].typeDeConstruction);
     }
-    p++;
+    //p++;
     if (viabiliteeRoutiere(city, p)) {
         printf("La construction n°%d (type : %d) est viable ROUTE\n", p, city->tabConstruction[p].typeDeConstruction);
     } else {
         printf("La construction n°%d (type : %d) est non viable ROUTE\n", p,
                city->tabConstruction[p].typeDeConstruction);
+    }
+
+    for (int i = city->tabConstruction[p].coordonneeX - 1;
+         i <= city->tabConstruction[p].coordonneeX + 6; i++) {
+        for (int j = city->tabConstruction[p].coordonneeY - 4;
+             j <= city->tabConstruction[p].coordonneeY + 1; j++) {
+            //printf("(%d,%d)\n", i,j);
+        }
     }
 
     // ------- VIABILITE ELECTRIQUE ------- //
-    printf("\n");
+    /*printf("\n");
     p--;
 
     if (viabiliteeElectrique(city, p)) {
@@ -119,7 +128,7 @@ void mainPL(City *city) {
         printf("La construction n°%d (type : %d) est viable EAU\n", p, city->tabConstruction[p].typeDeConstruction);
     } else {
         printf("La construction n°%d (type : %d) est non viable EAU\n", p, city->tabConstruction[p].typeDeConstruction);
-    }
+    }*/
 
     // ------- Trouver nbHabitant dans la ville ------- //
     //printf("Il y a %d habitations\n", city->nombreHabitation);

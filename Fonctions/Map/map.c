@@ -28,6 +28,7 @@ void initDataMap(City *city) {
     //viabiliteeRoutiere(city);
 }
 
+// ---------- A ENLEVER ---------- //
 void associerFichierAuxBlocs(City *city) {
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {
