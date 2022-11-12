@@ -58,12 +58,14 @@ void initialisationVille(City *city) {
     //---------------- Autre ----------------//
     city->centrale.prix = 100000;
     city->centrale.capacite = 5000;
+    city->centrale.capaciteTotal = 0;
     city->centrale.tailleX = 4;
     city->centrale.tailleY = 6;
     city->centrale.numeroBatiment = 0;
 
     city->chateauEau.prix = 100000;
     city->chateauEau.capacite = 5000;
+    city->chateauEau.capaciteTotal = 0;
     city->chateauEau.tailleX = 4;
     city->chateauEau.tailleY = 6;
     city->chateauEau.numeroBatiment = 0;

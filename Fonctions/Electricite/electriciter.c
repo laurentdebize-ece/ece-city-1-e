@@ -1,8 +1,11 @@
 #include "electriciter.h"
 
-
 void capaciteTotalElectriciter(City* city){
     city->centrale.capaciteTotal = city->centrale.numeroBatiment * city->centrale.capacite;
+}
+
+void consommationElectrique (City *city) {
+    city->centrale.flot = city->centrale.capacite - city->nbHabitant;
 }
 
 void alimenteElectricite(City* city){

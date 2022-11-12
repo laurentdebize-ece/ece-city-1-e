@@ -88,7 +88,6 @@ void nbConstruction(City *city) {
                               city->cabane.numeroBatiment + city->maison.numeroBatiment +
                               city->immeuble.numeroBatiment + city->gratteCiel.numeroBatiment);
 }
-
 void nbHabitant(City *city) {
     if (city->cabane.numeroBatiment != 0) {
         city->nbHabitant += city->cabane.nbHabitant * city->cabane.numeroBatiment;
@@ -104,7 +103,6 @@ void nbHabitant(City *city) {
     }
 }
 
-// --------------- A FAIRE --------------- //
 void savoirIndiceConstruction(City *city) {
     for (int i = 0; i < city->nombreConstruction; i++) {
         city->tabConstruction[i].numeroDesConstructions = i;
@@ -112,44 +110,7 @@ void savoirIndiceConstruction(City *city) {
         //city->tabConstruction[i].coordonneeX = city->centrale.laCoordonneX;
         //city->tabConstruction[i].coordonneeY = city->centrale.laCoordonneY;
     }
-    /*for (int j = 0 ; j < city->chateauEau.numeroBatiment ; j++) {
-        city->tabConstruction[i].numeroDesConstructions = i;
-        city->tabConstruction[i].typeDeConstruction = 4;
-        city->tabConstruction[i].coordonneeX = city->chateauEau.laCoordonneX;
-        city->tabConstruction[i].coordonneeY = city->chateauEau.laCoordonneY;
-    }
-    for (int j = 0 ; j < city->ruine.numeroBatiment ; j++) {
-        city->tabConstruction[i].numeroDesConstructions = i;
-        city->tabConstruction[i].typeDeConstruction = 5;
-        city->tabConstruction[i].coordonneeX = city->ruine.laCoordonneX;
-        city->tabConstruction[i].coordonneeY = city->ruine.laCoordonneY;
-    }
-    for (int j = 0 ; j < city->cabane.numeroBatiment ; j++) {
-        city->tabConstruction[i].numeroDesConstructions = i;
-        city->tabConstruction[i].typeDeConstruction = 6;
-        city->tabConstruction[i].coordonneeX = city->cabane.laCoordonneX;
-        city->tabConstruction[i].coordonneeY = city->cabane.laCoordonneY;
-    }
-    for (int j = 0 ; j < city->maison.numeroBatiment ; j++) {
-        city->tabConstruction[i].numeroDesConstructions = i;
-        city->tabConstruction[i].typeDeConstruction = 7;
-        city->tabConstruction[i].coordonneeX = city->maison.laCoordonneX;
-        city->tabConstruction[i].coordonneeY = city->maison.laCoordonneY;
-    }
-    for (int j = 0 ; j < city->immeuble.numeroBatiment ; j++) {
-        city->tabConstruction[i].numeroDesConstructions = i;
-        city->tabConstruction[i].typeDeConstruction = 8;
-        city->tabConstruction[i].coordonneeX = city->immeuble.laCoordonneX;
-        city->tabConstruction[i].coordonneeY = city->immeuble.laCoordonneY;
-    }
-    for (int j = 0 ; j < city->gratteCiel.numeroBatiment ; j++) {
-        city->tabConstruction[i].numeroDesConstructions = i;
-        city->tabConstruction[i].typeDeConstruction = 9;
-        city->tabConstruction[i].coordonneeX = city->gratteCiel.laCoordonneX;
-        city->tabConstruction[i].coordonneeY = city->gratteCiel.laCoordonneY;
-    }*/
 }
-// --------------- A FAIRE --------------- //
 
 void getCoordonneConstruction4x6(City *city) {
     int nbConstru = 0;
@@ -218,7 +179,7 @@ void getCoordonneConstruction4x6(City *city) {
                     city->tabConstruction[nbConstru].typeDeConstruction = 6;
                     nbConstru++;
                 }
-                }
+            }
             if (city->terrain[i][j].typeBloc == 7) {
                 if ((city->terrain[i][(j + 2)].typeBloc == 7) && (city->terrain[i + 2][j].typeBloc == 7) &&
                     (city->terrain[i - 1][j].typeBloc != 7) && (city->terrain[i][j - 1].typeBloc != 7)) {
@@ -261,7 +222,7 @@ void getCoordonneConstruction4x6(City *city) {
         }
     }
 }
-    void getCoordonneConstruction3x3(City *city) {
+void getCoordonneConstruction3x3(City *city) {
         for (int i = 0; i < LIGNES; i++) {
             for (int j = 0; j < COLONNES; j++) {
                 if (city->terrain[i][j].typeBloc == 5) {
@@ -439,13 +400,65 @@ bool viabiliteeRoutiere(City *city, int numeroConstruction) {
 }
 
 bool viabiliteeElectrique(City *city, int numeroConstruction) {
+    consommationElectrique(city);
+    if (city->tabConstruction[numeroConstruction].typeDeConstruction == 5) {
+        if ((city->centrale.flot - city->ruine.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    if (city->tabConstruction[numeroConstruction].typeDeConstruction == 6) {
+        if ((city->centrale.flot - city->cabane.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    if (city->tabConstruction[numeroConstruction].typeDeConstruction == 7) {
+        if ((city->centrale.flot - city->maison.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    if (city->tabConstruction[numeroConstruction].typeDeConstruction == 8) {
+        if ((city->centrale.flot - city->immeuble.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    if (city->tabConstruction[numeroConstruction].typeDeConstruction == 9) {
+        if ((city->centrale.flot - city->gratteCiel.nbHabitant) >= 0) {
+            return true;
+        }
+    }
     return false;
 }
 
 bool viabiliteeEau(City *city, int numeroConstruction) {
+    consommationEau(city);
+    if (city->tabConstruction[numeroConstruction].typeDeConstruction == 5) {
+        if ((city->chateauEau.flot - city->ruine.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    if (city->tabConstruction[numeroConstruction].typeDeConstruction == 6) {
+        if ((city->chateauEau.flot - city->cabane.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    if (city->tabConstruction[numeroConstruction].typeDeConstruction == 7) {
+        if ((city->chateauEau.flot - city->maison.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    if (city->tabConstruction[numeroConstruction].typeDeConstruction == 8) {
+        if ((city->chateauEau.flot - city->immeuble.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    if (city->tabConstruction[numeroConstruction].typeDeConstruction == 9) {
+        if ((city->chateauEau.flot - city->gratteCiel.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    return false;
     return false;
 }
-// --------------- A FAIRE --------------- //
 
 
 

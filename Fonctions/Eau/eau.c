@@ -3,6 +3,10 @@ void capaciteTotalEau(City* city){
     city->chateauEau.capaciteTotal = city->chateauEau.numeroBatiment * city->chateauEau.capacite;
 }
 
+void consommationEau (City *city) {
+    city->chateauEau.flot = city->chateauEau.capacite - city->nbHabitant;
+}
+
 void alimenteEau(City* city){
     nbConstruction(city);
     capaciteTotalEau(city);

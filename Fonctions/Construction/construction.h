@@ -2,6 +2,8 @@
 #define ECE_CITY_1_E_CONSTRUCTION_H
 
 #include "../../Structures/structures.h"
+#include "../Eau/eau.h"
+#include "../Electricite/electriciter.h"
 
 void detecterConstructionPRINTF (City *city);
 

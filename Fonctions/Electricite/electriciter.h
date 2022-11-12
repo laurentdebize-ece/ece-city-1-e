@@ -4,6 +4,9 @@
 #include "../Construction/construction.h"
 
 void capaciteTotalElectriciter(City* city);
+
+void consommationElectrique (City *city);
+
 void alimenteElectricite(City* city);
 
 
