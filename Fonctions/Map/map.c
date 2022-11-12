@@ -1,6 +1,6 @@
 #include "map.h"
 
-void matrice (City *city) {
+void matrice(City *city) {
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {
             printf("%d ", city->terrain[i][j].typeBloc);
@@ -9,12 +9,12 @@ void matrice (City *city) {
     }
 }
 
-void initDataMap (City *city) {
-    lireFichierTexte ("../txt/map.txt", city);
+void initDataMap(City *city) {
+    lireFichierTexte("../txt/map.txt", city);
     //matrice(city);
     associerFichierAuxBlocs(city);
 
-    getCoordonneConstruction4x6 (city);
+    getCoordonneConstruction4x6(city);
     //getCoordonneConstruction3x3(city);
 
     nbConstruction(city);
@@ -28,7 +28,7 @@ void initDataMap (City *city) {
     //viabiliteeRoutiere(city);
 }
 
-void associerFichierAuxBlocs (City* city) {
+void associerFichierAuxBlocs(City *city) {
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {
             if (city->terrain[i][j].typeBloc == 0) { //Herbe

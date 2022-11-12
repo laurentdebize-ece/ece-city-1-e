@@ -88,6 +88,7 @@ void nbConstruction(City *city) {
                               city->cabane.numeroBatiment + city->maison.numeroBatiment +
                               city->immeuble.numeroBatiment + city->gratteCiel.numeroBatiment);
 }
+
 void nbHabitant(City *city) {
     if (city->cabane.numeroBatiment != 0) {
         city->nbHabitant += city->cabane.nbHabitant * city->cabane.numeroBatiment;
@@ -130,7 +131,7 @@ void getCoordonneConstruction4x6(City *city) {
                     city->centrale.laCoordonneX = i;
                     city->centrale.laCoordonneY = j + 3;
                     city->tabConstruction[nbConstru].coordonneeX = i;
-                    city->tabConstruction[nbConstru].coordonneeY = j;
+                    city->tabConstruction[nbConstru].coordonneeY = j + 3;
                     city->tabConstruction[nbConstru].typeDeConstruction = 3;
                     nbConstru++;
                 }
@@ -149,7 +150,7 @@ void getCoordonneConstruction4x6(City *city) {
                     city->chateauEau.laCoordonneX = i;
                     city->chateauEau.laCoordonneY = j + 3;
                     city->tabConstruction[nbConstru].coordonneeX = i;
-                    city->tabConstruction[nbConstru].coordonneeY = j;
+                    city->tabConstruction[nbConstru].coordonneeY = j + 3;
                     city->tabConstruction[nbConstru].typeDeConstruction = 4;
                     nbConstru++;
                 }
@@ -222,42 +223,43 @@ void getCoordonneConstruction4x6(City *city) {
         }
     }
 }
+
 void getCoordonneConstruction3x3(City *city) {
-        for (int i = 0; i < LIGNES; i++) {
-            for (int j = 0; j < COLONNES; j++) {
-                if (city->terrain[i][j].typeBloc == 5) {
-                    city->ruine.laCoordonneX = i;
-                    city->ruine.laCoordonneY = j;
-                    city->ruine.matriceX = i;
-                    city->ruine.matriceY = j;
-                }
-                if (city->terrain[i][j].typeBloc == 6) {
-                    city->cabane.laCoordonneX = i;
-                    city->cabane.laCoordonneY = j;
-                    city->cabane.matriceX = i;
-                    city->cabane.matriceY = j;
-                }
-                if (city->terrain[i][j].typeBloc == 7) {
-                    city->maison.laCoordonneX = i;
-                    city->maison.laCoordonneY = j;
-                    city->maison.matriceX = i;
-                    city->maison.matriceY = j;
-                }
-                if (city->terrain[i][j].typeBloc == 8) {
-                    city->immeuble.laCoordonneX = i;
-                    city->immeuble.laCoordonneY = j;
-                    city->immeuble.matriceX = i;
-                    city->immeuble.matriceY = j;
-                }
-                if (city->terrain[i][j].typeBloc == 9) {
-                    city->gratteCiel.laCoordonneX = i;
-                    city->gratteCiel.laCoordonneY = j;
-                    city->gratteCiel.matriceX = i;
-                    city->gratteCiel.matriceY = j;
-                }
+    for (int i = 0; i < LIGNES; i++) {
+        for (int j = 0; j < COLONNES; j++) {
+            if (city->terrain[i][j].typeBloc == 5) {
+                city->ruine.laCoordonneX = i;
+                city->ruine.laCoordonneY = j;
+                city->ruine.matriceX = i;
+                city->ruine.matriceY = j;
+            }
+            if (city->terrain[i][j].typeBloc == 6) {
+                city->cabane.laCoordonneX = i;
+                city->cabane.laCoordonneY = j;
+                city->cabane.matriceX = i;
+                city->cabane.matriceY = j;
+            }
+            if (city->terrain[i][j].typeBloc == 7) {
+                city->maison.laCoordonneX = i;
+                city->maison.laCoordonneY = j;
+                city->maison.matriceX = i;
+                city->maison.matriceY = j;
+            }
+            if (city->terrain[i][j].typeBloc == 8) {
+                city->immeuble.laCoordonneX = i;
+                city->immeuble.laCoordonneY = j;
+                city->immeuble.matriceX = i;
+                city->immeuble.matriceY = j;
+            }
+            if (city->terrain[i][j].typeBloc == 9) {
+                city->gratteCiel.laCoordonneX = i;
+                city->gratteCiel.laCoordonneY = j;
+                city->gratteCiel.matriceX = i;
+                city->gratteCiel.matriceY = j;
             }
         }
     }
+}
 
 void poserConstruction(City *city, char *nomFichier) {
     FILE *file = fopen(nomFichier, "w+");
@@ -381,17 +383,51 @@ bool constructionViable(City *city, int numeroConstruction) {
 
 // --------------- A FAIRE --------------- //
 bool viabiliteeRoutiere(City *city, int numeroConstruction) {
-    for (int i = 0; i < LIGNES; i++) {
-        for (int j = 0; j < COLONNES; j++) {
-            // si position numeroConstruction de -1 jusqu'a +1 en i pareil en j
-            // si il y a une route alors OUI
-            if ((city->terrain[i][j].typeBloc == 3) || (city->terrain[i][j].typeBloc == 4) ||
-                (city->terrain[i][j].typeBloc == 5) || (city->terrain[i][j].typeBloc == 6) ||
-                (city->terrain[i][j].typeBloc == 7) || (city->terrain[i][j].typeBloc == 8) ||
-                (city->terrain[i][j].typeBloc == 9)) {
-                if ((city->terrain[i - 1][j - 1].typeBloc == 2) ||
-                    (city->terrain[i + 1][j + 1].typeBloc == 2)) {
+    if (city->tabConstruction[numeroConstruction].typeDeConstruction == 2) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (city->terrain[i][j].typeBloc == 2) {
+                    if ((i == 0 && j == 0) || (i == 0 && j == 2) || (i == 2 && j == 0) || (i == 2 && j == 2)) {
+                        return false;
+                    }
                     return true;
+                }
+            }
+        }
+    }
+    if ((city->tabConstruction[numeroConstruction].typeDeConstruction == 3) ||
+        (city->tabConstruction[numeroConstruction].typeDeConstruction == 4)) {
+        for (int i = city->tabConstruction[numeroConstruction].coordonneeX - 1;
+             i < city->tabConstruction[numeroConstruction].coordonneeX + 6; i++) {
+            for (int j = city->tabConstruction[numeroConstruction].coordonneeY - 1;
+                 j < city->tabConstruction[numeroConstruction].coordonneeY + 5; j++) {
+                if (city->terrain[i][j].typeBloc == 2) {
+                    return true;
+                }
+            }
+        }
+    }
+    if ((city->tabConstruction[numeroConstruction].typeDeConstruction == 5) ||
+        (city->tabConstruction[numeroConstruction].typeDeConstruction == 6) ||
+        (city->tabConstruction[numeroConstruction].typeDeConstruction == 7) ||
+        (city->tabConstruction[numeroConstruction].typeDeConstruction == 8) ||
+        (city->tabConstruction[numeroConstruction].typeDeConstruction == 9)) {
+        for (int i = city->tabConstruction[numeroConstruction].coordonneeX - 1;
+             i <= city->tabConstruction[numeroConstruction].coordonneeX + 3; i++) {
+            for (int j = city->tabConstruction[numeroConstruction].coordonneeY - 1;
+                 j <= city->tabConstruction[numeroConstruction].coordonneeY + 3; j++) {
+                if (city->terrain[i][j].typeBloc == 2) {
+                    if ((i != city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
+                         j != city->tabConstruction[numeroConstruction].coordonneeY - 1) ||
+                        (i != city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
+                         j != city->tabConstruction[numeroConstruction].coordonneeY + 3) ||
+                        (i != city->tabConstruction[numeroConstruction].coordonneeX + 3 &&
+                         j != city->tabConstruction[numeroConstruction].coordonneeY - 1) ||
+                        (i != city->tabConstruction[numeroConstruction].coordonneeX + 3 &&
+                         j != city->tabConstruction[numeroConstruction].coordonneeY + 3)) {
+                        return true;
+                    }
+                    return false;
                 }
             }
         }
