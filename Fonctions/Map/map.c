@@ -24,8 +24,6 @@ void initDataMap(City *city) {
     //poserConstruction(city, "../txt/map.txt");
 
     savoirIndiceConstruction(city);
-
-    //viabiliteeRoutiere(city);
 }
 
 // ---------- A ENLEVER ---------- //
