@@ -4,6 +4,7 @@
 #include "Fonctions/Initialisation/initialisation.h"
 #include "Fonctions/Electricite/electriciter.h"
 #include "Fonctions/Eau/eau.h"
+#include "Fonctions/Sauvegarde/sauvegarde.h"
 
 void mainAurelien(City *city) {
     alimenteElectricite(city);
@@ -26,6 +27,7 @@ void mainTrystan(City *city) {
 void mainPL(City *city) {
     initialisationVille(city);
     initDataMap(city);
+    //sauvegarderPartie(city, "../txt/map.txt");
     for (int i = 0; i < city->nombreConstruction; i++) {
         printf("La construction n°%d est de type %d, à pour coordonnées (%d,%d)", i,
                city->tabConstruction[i].typeDeConstruction, city->tabConstruction[i].coordonneeX,

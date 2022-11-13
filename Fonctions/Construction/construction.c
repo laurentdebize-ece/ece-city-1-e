@@ -371,7 +371,7 @@ void poserConstruction(City *city, char *nomFichier) {
             }
         }
     } else {
-        printf("Construction impossible OBSTACLE");
+        printf("Construction impossible car OBSTACLE");
     }
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {
