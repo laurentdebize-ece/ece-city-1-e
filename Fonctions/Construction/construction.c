@@ -90,10 +90,8 @@ void nbConstruction(City *city) {
     city->maison.numeroBatiment = city->maison.numeroBatiment / 9;
     city->immeuble.numeroBatiment = city->immeuble.numeroBatiment / 9;
     city->gratteCiel.numeroBatiment = city->gratteCiel.numeroBatiment / 9;
-
     city->centrale.capacite = city->centrale.numeroBatiment * city->centrale.capacite;
     city->chateauEau.capacite = city->chateauEau.numeroBatiment * city->chateauEau.capacite;
-
     city->nombreConstruction = (city->centrale.numeroBatiment +
                                 city->chateauEau.numeroBatiment + city->ruine.numeroBatiment +
                                 city->cabane.numeroBatiment + city->maison.numeroBatiment +
@@ -102,7 +100,6 @@ void nbConstruction(City *city) {
                               city->cabane.numeroBatiment + city->maison.numeroBatiment +
                               city->immeuble.numeroBatiment + city->gratteCiel.numeroBatiment);
 }
-
 void nbHabitant(City *city) {
     if (city->cabane.numeroBatiment != 0) {
         city->nbHabitant += city->cabane.nbHabitant * city->cabane.numeroBatiment;
@@ -238,7 +235,6 @@ void getCoordonneConstruction4x6(City *city) {
         }
     }
 }
-
 void getCoordonneConstruction3x3(City *city) {
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {
@@ -290,7 +286,6 @@ void poserConstruction(City *city, char *nomFichier) {
     scanf(" %d", &coordonneeX);
     printf("coordonnées Y : \n");
     scanf(" %d", &coordonneeY);
-
     if ((city->terrain[coordonneeX][coordonneeY].typeBloc != 1) ||
         (city->terrain[coordonneeX][coordonneeY + 1].typeBloc != 1) ||
         (city->terrain[coordonneeX][coordonneeY + 2].typeBloc != 1) ||
@@ -376,7 +371,6 @@ void poserConstruction(City *city, char *nomFichier) {
     } else {
         printf("Construction impossible OBSTACLE");
     }
-
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {
             fprintf(file, " %d", (city->terrain[i][j].typeBloc));
@@ -395,7 +389,6 @@ bool constructionViable(City *city, int numeroConstruction) {
         return false;
     }
 }
-
 // --------------- A FAIRE --------------- //
 bool viabiliteeRoutiere(City *city, int numeroConstruction) {
     if ((city->tabConstruction[numeroConstruction].typeDeConstruction == 3) ||
@@ -406,16 +399,20 @@ bool viabiliteeRoutiere(City *city, int numeroConstruction) {
                 for (int j = city->tabConstruction[numeroConstruction].coordonneeY - 1;
                      j <= city->tabConstruction[numeroConstruction].coordonneeY + 6; j++) {
                     if (city->terrain[i][j].typeBloc == 2) {
-                        if (city->terrain[city->tabConstruction[numeroConstruction].coordonneeX -1][city->tabConstruction[numeroConstruction].coordonneeY-1].typeBloc != 2&&
-                                city->terrain[city->tabConstruction[numeroConstruction].coordonneeX -1][city->tabConstruction[numeroConstruction].coordonneeY+6].typeBloc != 2&&
-                                city->terrain[city->tabConstruction[numeroConstruction].coordonneeX +4][city->tabConstruction[numeroConstruction].coordonneeY-1].typeBloc != 2&&
-                                city->terrain[city->tabConstruction[numeroConstruction].coordonneeX +4][city->tabConstruction[numeroConstruction].coordonneeY+6].typeBloc != 2) {
+                        if ((i != city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
+                             j != city->tabConstruction[numeroConstruction].coordonneeY - 1) ||
+                            (i != city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
+                             j != city->tabConstruction[numeroConstruction].coordonneeY + 6) ||
+                            (i != city->tabConstruction[numeroConstruction].coordonneeX + 4 &&
+                             j != city->tabConstruction[numeroConstruction].coordonneeY - 1) ||
+                            (i != city->tabConstruction[numeroConstruction].coordonneeX + 4 &&
+                             j != city->tabConstruction[numeroConstruction].coordonneeY + 6)) {
                             return true;
                         }
+                        return false;
                     }
                 }
             }
-            return false;
         }
         if (!city->tabConstruction[numeroConstruction].horizontale) {
             for (int i = city->tabConstruction[numeroConstruction].coordonneeX - 1;
@@ -424,7 +421,7 @@ bool viabiliteeRoutiere(City *city, int numeroConstruction) {
                      j <= city->tabConstruction[numeroConstruction].coordonneeY + 1; j++) {
                     if (city->terrain[i][j].typeBloc == 2) {
                         if ((i != city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
-                             j != city->tabConstruction[numeroConstruction].coordonneeY - 1) ||
+                             j != city->tabConstruction[numeroConstruction].coordonneeY - 4) ||
                             (i != city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
                              j != city->tabConstruction[numeroConstruction].coordonneeY + 1) ||
                             (i != city->tabConstruction[numeroConstruction].coordonneeX + 6 &&
@@ -433,10 +430,10 @@ bool viabiliteeRoutiere(City *city, int numeroConstruction) {
                              j != city->tabConstruction[numeroConstruction].coordonneeY + 1)) {
                             return true;
                         }
+                        return false;
                     }
                 }
             }
-            return false;
         }
         /*for (int a = 0; a < LIGNES; a++) {
             for (int b = 0; b < COLONNES; b++) {
@@ -579,22 +576,3 @@ bool viabiliteeEau(City *city, int numeroConstruction) {
     return false;
     return false;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

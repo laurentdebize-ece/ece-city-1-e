@@ -80,6 +80,36 @@ void mainPL(City *city) {
         printf("La construction n°%d (type : %d) est non viable ROUTE\n", p,
                city->tabConstruction[p].typeDeConstruction);
     }
+    p++;
+    if (viabiliteeRoutiere(city, p)) {
+        printf("La construction n°%d (type : %d) est viable ROUTE\n", p, city->tabConstruction[p].typeDeConstruction);
+    } else {
+        printf("La construction n°%d (type : %d) est non viable ROUTE\n", p,
+               city->tabConstruction[p].typeDeConstruction);
+    }
+
+    p++;
+    if (viabiliteeRoutiere(city, p)) {
+        printf("La construction n°%d (type : %d) est viable ROUTE\n", p, city->tabConstruction[p].typeDeConstruction);
+    } else {
+        printf("La construction n°%d (type : %d) est non viable ROUTE\n", p,
+               city->tabConstruction[p].typeDeConstruction);
+    }
+
+    p = 0;
+
+    for (int i = city->tabConstruction[p].coordonneeX - 1;
+         i <= city->tabConstruction[p].coordonneeX + 4; i++) {
+        for (int j = city->tabConstruction[p].coordonneeY - 1;
+             j <= city->tabConstruction[p].coordonneeY + 6; j++) {
+            if ((i == city->tabConstruction[p].coordonneeX - 1 && j == city->tabConstruction[p].coordonneeY - 1) ||
+                (i == city->tabConstruction[p].coordonneeX - 1 && j == city->tabConstruction[p].coordonneeY + 6) ||
+                (i == city->tabConstruction[p].coordonneeX + 4 && j == city->tabConstruction[p].coordonneeY - 1) ||
+                (i == city->tabConstruction[p].coordonneeX + 4 && j == city->tabConstruction[p].coordonneeY + 6)) {
+                printf("(%d,%d)\n", i, j);
+            }
+        }
+    }
 
     p = 0;
 
