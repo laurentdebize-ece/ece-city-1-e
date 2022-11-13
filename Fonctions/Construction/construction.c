@@ -383,13 +383,12 @@ void poserConstruction(City *city, char *nomFichier) {
 }
 
 bool constructionViable(City *city, int numeroConstruction) {
-    if ((viabiliteeRoutiere(city, numeroConstruction) == true) &&
-        (viabiliteeElectrique(city, numeroConstruction) == true) &&
-        (viabiliteeEau(city, numeroConstruction) == true)) {
+    if (viabiliteeRoutiere(city, numeroConstruction) &&
+        viabiliteeElectrique(city, numeroConstruction) &&
+        viabiliteeEau(city, numeroConstruction)) {
         return true;
-    } else {
-        return false;
     }
+    return false;
 }
 // --------------- A FAIRE --------------- //
 bool viabiliteeRoutiere(City *city, int numeroConstruction) {
@@ -402,13 +401,13 @@ bool viabiliteeRoutiere(City *city, int numeroConstruction) {
                      j <= city->tabConstruction[numeroConstruction].coordonneeY + 6; j++) {
                     if (city->terrain[i][j].typeBloc == 2) {
                         if (!(i == city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
-                             j == city->tabConstruction[numeroConstruction].coordonneeY - 1) &&
+                              j == city->tabConstruction[numeroConstruction].coordonneeY - 1) &&
                             !(i == city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
-                             j == city->tabConstruction[numeroConstruction].coordonneeY + 6) &&
+                              j == city->tabConstruction[numeroConstruction].coordonneeY + 6) &&
                             !(i == city->tabConstruction[numeroConstruction].coordonneeX + 4 &&
-                             j == city->tabConstruction[numeroConstruction].coordonneeY - 1) &&
+                              j == city->tabConstruction[numeroConstruction].coordonneeY - 1) &&
                             !(i == city->tabConstruction[numeroConstruction].coordonneeX + 4 &&
-                             j == city->tabConstruction[numeroConstruction].coordonneeY + 6)) {
+                              j == city->tabConstruction[numeroConstruction].coordonneeY + 6)) {
                             return true;
                         }
                     }
@@ -422,13 +421,13 @@ bool viabiliteeRoutiere(City *city, int numeroConstruction) {
                      j <= city->tabConstruction[numeroConstruction].coordonneeY + 1; j++) {
                     if (city->terrain[i][j].typeBloc == 2) {
                         if (!(i == city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
-                             j == city->tabConstruction[numeroConstruction].coordonneeY - 4) &&
+                              j == city->tabConstruction[numeroConstruction].coordonneeY - 4) &&
                             !(i == city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
-                             j == city->tabConstruction[numeroConstruction].coordonneeY + 1) &&
+                              j == city->tabConstruction[numeroConstruction].coordonneeY + 1) &&
                             !(i == city->tabConstruction[numeroConstruction].coordonneeX + 6 &&
-                             j == city->tabConstruction[numeroConstruction].coordonneeY - 4) &&
+                              j == city->tabConstruction[numeroConstruction].coordonneeY - 4) &&
                             !(i == city->tabConstruction[numeroConstruction].coordonneeX + 6 &&
-                             j == city->tabConstruction[numeroConstruction].coordonneeY + 1)) {
+                              j == city->tabConstruction[numeroConstruction].coordonneeY + 1)) {
                             return true;
                         }
                     }

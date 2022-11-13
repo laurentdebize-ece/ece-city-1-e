@@ -27,7 +27,9 @@ void mainPL(City *city) {
     initialisationVille(city);
     initDataMap(city);
     for (int i = 0; i < city->nombreConstruction; i++) {
-        printf("La construction n°%d est de type %d, à pour coordonnées (%d,%d)", i, city->tabConstruction[i].typeDeConstruction, city->tabConstruction[i].coordonneeX, city->tabConstruction[i].coordonneeY);
+        printf("La construction n°%d est de type %d, à pour coordonnées (%d,%d)", i,
+               city->tabConstruction[i].typeDeConstruction, city->tabConstruction[i].coordonneeX,
+               city->tabConstruction[i].coordonneeY);
         if (viabiliteeRoutiere(city, i)) {
             printf("\t\tVIABLE ROUTE");
         } else if (!viabiliteeRoutiere(city, i)) {
