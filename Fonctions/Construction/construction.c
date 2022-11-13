@@ -406,20 +406,16 @@ bool viabiliteeRoutiere(City *city, int numeroConstruction) {
                 for (int j = city->tabConstruction[numeroConstruction].coordonneeY - 1;
                      j <= city->tabConstruction[numeroConstruction].coordonneeY + 6; j++) {
                     if (city->terrain[i][j].typeBloc == 2) {
-                        if ((i != city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
-                             j != city->tabConstruction[numeroConstruction].coordonneeY - 1) ||
-                            (i != city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
-                             j != city->tabConstruction[numeroConstruction].coordonneeY + 6) ||
-                            (i != city->tabConstruction[numeroConstruction].coordonneeX + 4 &&
-                             j != city->tabConstruction[numeroConstruction].coordonneeY - 1) ||
-                            (i != city->tabConstruction[numeroConstruction].coordonneeX + 4 &&
-                             j != city->tabConstruction[numeroConstruction].coordonneeY + 6)) {
+                        if (city->terrain[city->tabConstruction[numeroConstruction].coordonneeX -1][city->tabConstruction[numeroConstruction].coordonneeY-1].typeBloc != 2&&
+                                city->terrain[city->tabConstruction[numeroConstruction].coordonneeX -1][city->tabConstruction[numeroConstruction].coordonneeY+6].typeBloc != 2&&
+                                city->terrain[city->tabConstruction[numeroConstruction].coordonneeX +4][city->tabConstruction[numeroConstruction].coordonneeY-1].typeBloc != 2&&
+                                city->terrain[city->tabConstruction[numeroConstruction].coordonneeX +4][city->tabConstruction[numeroConstruction].coordonneeY+6].typeBloc != 2) {
                             return true;
                         }
-                        return false;
                     }
                 }
             }
+            return false;
         }
         if (!city->tabConstruction[numeroConstruction].horizontale) {
             for (int i = city->tabConstruction[numeroConstruction].coordonneeX - 1;
@@ -428,7 +424,7 @@ bool viabiliteeRoutiere(City *city, int numeroConstruction) {
                      j <= city->tabConstruction[numeroConstruction].coordonneeY + 1; j++) {
                     if (city->terrain[i][j].typeBloc == 2) {
                         if ((i != city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
-                             j != city->tabConstruction[numeroConstruction].coordonneeY - 4) ||
+                             j != city->tabConstruction[numeroConstruction].coordonneeY - 1) ||
                             (i != city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
                              j != city->tabConstruction[numeroConstruction].coordonneeY + 1) ||
                             (i != city->tabConstruction[numeroConstruction].coordonneeX + 6 &&
@@ -437,10 +433,10 @@ bool viabiliteeRoutiere(City *city, int numeroConstruction) {
                              j != city->tabConstruction[numeroConstruction].coordonneeY + 1)) {
                             return true;
                         }
-                        return false;
                     }
                 }
             }
+            return false;
         }
         /*for (int a = 0; a < LIGNES; a++) {
             for (int b = 0; b < COLONNES; b++) {

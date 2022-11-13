@@ -83,7 +83,7 @@ void mainPL(City *city) {
 
     p = 0;
 
-    printf("n°%d coordonnées(%d,%d)\n", p, city->tabConstruction[p].coordonneeX, city->tabConstruction[p].coordonneeY);
+    /*printf("n°%d coordonnées(%d,%d)\n", p, city->tabConstruction[p].coordonneeX, city->tabConstruction[p].coordonneeY);
 
     printf("coordonnée X MIN %d\n", city->tabConstruction[p].coordonneeX - 1);
     printf("coordonnée Y MIN %d\n", city->tabConstruction[p].coordonneeY - 1);
