@@ -106,12 +106,17 @@ void mainPL(City *city) {
                 (i == city->tabConstruction[p].coordonneeX - 1 && j == city->tabConstruction[p].coordonneeY + 6) ||
                 (i == city->tabConstruction[p].coordonneeX + 4 && j == city->tabConstruction[p].coordonneeY - 1) ||
                 (i == city->tabConstruction[p].coordonneeX + 4 && j == city->tabConstruction[p].coordonneeY + 6)) {
-                printf("(%d,%d)\n", i, j);
+            } else {
+                //printf("(%d,%d)\n", i, j);
             }
         }
     }
-
     p = 0;
+    printf("(%d,%d)\n", city->tabConstruction[p].coordonneeX - 1, city->tabConstruction[p].coordonneeY - 1);
+    printf("(%d,%d)\n", city->tabConstruction[p].coordonneeX - 1, city->tabConstruction[p].coordonneeY + 6);
+    printf("(%d,%d)\n", city->tabConstruction[p].coordonneeX + 4, city->tabConstruction[p].coordonneeY - 1);
+    printf("(%d,%d)\n", city->tabConstruction[p].coordonneeX + 4, city->tabConstruction[p].coordonneeY + 6);
+
 
     /*printf("n°%d coordonnées(%d,%d)\n", p, city->tabConstruction[p].coordonneeX, city->tabConstruction[p].coordonneeY);
 
