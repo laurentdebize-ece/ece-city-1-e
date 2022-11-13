@@ -100,7 +100,6 @@ void nbConstruction(City *city) {
                               city->cabane.numeroBatiment + city->maison.numeroBatiment +
                               city->immeuble.numeroBatiment + city->gratteCiel.numeroBatiment);
 }
-
 void nbHabitant(City *city) {
     if (city->cabane.numeroBatiment != 0) {
         city->nbHabitant += city->cabane.nbHabitant * city->cabane.numeroBatiment;
@@ -236,7 +235,6 @@ void getCoordonneConstruction4x6(City *city) {
         }
     }
 }
-
 void getCoordonneConstruction3x3(City *city) {
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {
@@ -441,24 +439,21 @@ bool viabiliteeRoutiere(City *city, int numeroConstruction) {
         (city->tabConstruction[numeroConstruction].typeDeConstruction == 7) ||
         (city->tabConstruction[numeroConstruction].typeDeConstruction == 8) ||
         (city->tabConstruction[numeroConstruction].typeDeConstruction == 9)) {
-        for (
-                int i = city->tabConstruction[numeroConstruction].coordonneeX - 1;
+        for (int i = city->tabConstruction[numeroConstruction].coordonneeX - 1;
                 i <= city->tabConstruction[numeroConstruction].coordonneeX + 3; i++) {
-            for (
-                    int j = city->tabConstruction[numeroConstruction].coordonneeY - 1;
+            for (int j = city->tabConstruction[numeroConstruction].coordonneeY - 1;
                     j <= city->tabConstruction[numeroConstruction].coordonneeY + 3; j++) {
                 if (city->terrain[i][j].typeBloc == 2) {
-                    if ((i != city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
-                         j != city->tabConstruction[numeroConstruction].coordonneeY - 1) ||
-                        (i != city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
-                         j != city->tabConstruction[numeroConstruction].coordonneeY + 3) ||
-                        (i != city->tabConstruction[numeroConstruction].coordonneeX + 3 &&
-                         j != city->tabConstruction[numeroConstruction].coordonneeY - 1) ||
-                        (i != city->tabConstruction[numeroConstruction].coordonneeX + 3 &&
-                         j != city->tabConstruction[numeroConstruction].coordonneeY + 3)) {
+                    if (!(i == city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
+                         j == city->tabConstruction[numeroConstruction].coordonneeY - 1) &&
+                        !(i == city->tabConstruction[numeroConstruction].coordonneeX - 1 &&
+                         j == city->tabConstruction[numeroConstruction].coordonneeY + 3) &&
+                        !(i == city->tabConstruction[numeroConstruction].coordonneeX + 3 &&
+                         j == city->tabConstruction[numeroConstruction].coordonneeY - 1) &&
+                        !(i == city->tabConstruction[numeroConstruction].coordonneeX + 3 &&
+                         j == city->tabConstruction[numeroConstruction].coordonneeY + 3)) {
                         return true;
                     }
-                    return false;
                 }
             }
         }
