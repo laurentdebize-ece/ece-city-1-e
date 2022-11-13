@@ -81,6 +81,7 @@ typedef struct {
     int numeroDesConstructions;
     int typeDeConstruction; // route ruine...
     int coordonneeX, coordonneeY;
+    bool horizontale;
 } Construction;
 
 typedef struct {
