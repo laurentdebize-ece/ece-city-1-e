@@ -49,7 +49,11 @@ void mainPL(City *city) {
         }
         printf("\n");
     }
+    for (int i = 0; i < city->nombreConstruction; i++) {
+        parcoursRoute(city, i);
+    }
 }
+
 
 int main() {
     City city = {0};
