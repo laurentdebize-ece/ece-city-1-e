@@ -8,7 +8,6 @@
 
 void matrice (City *city);
 void initDataMap (City *city);
-
 void associerFichierAuxBlocs (City *city);
 
 #endif

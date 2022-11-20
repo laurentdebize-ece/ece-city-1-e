@@ -178,6 +178,7 @@ void getCoordonneConstruction4x6(City *city) {
                     city->tabConstruction[nbConstru].coordonneeY = j;
                     city->tabConstruction[nbConstru].typeDeConstruction = 5;
                     nbConstru++;
+
                 }
             }
             if (city->terrain[i][j].typeBloc == 6) {
