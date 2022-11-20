@@ -389,7 +389,7 @@ void parcoursRoute(City *city, int numeroConstructionInitial) {
              i <= city->tabConstruction[numeroConstructionInitial].coordonneeX + 3; i++) {
             for (int j = city->tabConstruction[numeroConstructionInitial].coordonneeY - 1;
                  j <= city->tabConstruction[numeroConstructionInitial].coordonneeY + 3; j++) {
-                
+
             }
         }
     }
