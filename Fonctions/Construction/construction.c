@@ -453,6 +453,7 @@ bool viabiliteeRoutiere(City *city, int numeroConstruction) {
                         !(i == city->tabConstruction[numeroConstruction].coordonneeX + 3 &&
                          j == city->tabConstruction[numeroConstruction].coordonneeY + 3)) {
 
+
                         return true;
                     }
                 }
