@@ -178,7 +178,6 @@ void getCoordonneConstruction4x6(City *city) {
                     city->tabConstruction[nbConstru].coordonneeY = j;
                     city->tabConstruction[nbConstru].typeDeConstruction = 5;
                     nbConstru++;
-
                 }
             }
             if (city->terrain[i][j].typeBloc == 6) {
@@ -453,6 +452,7 @@ bool viabiliteeRoutiere(City *city, int numeroConstruction) {
                          j == city->tabConstruction[numeroConstruction].coordonneeY - 1) &&
                         !(i == city->tabConstruction[numeroConstruction].coordonneeX + 3 &&
                          j == city->tabConstruction[numeroConstruction].coordonneeY + 3)) {
+
                         return true;
                     }
                 }
