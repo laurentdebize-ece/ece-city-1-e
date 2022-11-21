@@ -81,11 +81,21 @@ void initialisationVille(City *city) {
     city->route.numeroBatiment = 0;
 
     for (int i = 0; i < 150; i++) {
-        city->tabConstruction[i].numeroDesConstructions = 0;
-        city->tabConstruction[i].typeDeConstruction = 0;
     }
 
     city->nombreConstruction = 0;
+
+    for (int i = 0 ; i < MAX_BATIMENT ; i++) {
+
+        city->tabConstruction[i].numeroDesConstructions = 0;
+        city->tabConstruction[i].typeDeConstruction = 0;
+
+        city->tabConstruction[i].source = 0;
+        city->tabConstruction[i].destination = 0;
+        city->tabConstruction[i].longueur = 0;
+        city->tabConstruction[i].indiceParcours = 0;
+        city->tabConstruction[i].plusCourt = false;
+    }
 
 
 

@@ -88,15 +88,13 @@ typedef struct {
     int typeDeConstruction; // route ruine...
     int coordonneeX, coordonneeY;
     bool horizontale;
-} Construction;
 
-typedef struct {
-    int source;
-    int destination;
-    int longueur;
-    bool plusCourt;
-    int indiceParcours;
-} Parcours;
+    int source;             // Numero de la construction de départ
+    int destination;        // type de la construction d'arrivé
+    int longueur;           // taille du chemin
+    bool plusCourt;         // C'est le plus court ?
+    int indiceParcours;     //pour reconnaitre chaque parcours effectué
+} Construction;
 
 typedef struct {
     Batiment ruine;
@@ -110,9 +108,6 @@ typedef struct {
 
     Pages page;
 
-    Parcours tabParcoursConstruction[MAX_BATIMENT];
-    Parcours tabParcoursLongueur[MAX_BATIMENT];
-
     Terrain terrain[LIGNES][COLONNES];
     int cycle;  // 15 secondes
     int argent; // solde du joueur
@@ -120,6 +115,7 @@ typedef struct {
     int nombreConstruction;
 
     Construction tabConstruction[MAX_BATIMENT];
+    Construction tabParcoursLongueur[MAX_BATIMENT];
 
     int nbHabitant;
     bool capitaliste;
