@@ -6,6 +6,7 @@
 #include "Fonctions/Eau/eau.h"
 #include "Fonctions/Sauvegarde/sauvegarde.h"
 
+
 void mainAurelien(City *city) {
     alimenteElectricite(city);
 }
