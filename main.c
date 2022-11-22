@@ -5,6 +5,7 @@
 #include "Fonctions/Electricite/electriciter.h"
 #include "Fonctions/Eau/eau.h"
 #include "Fonctions/Sauvegarde/sauvegarde.h"
+#include "Fonctions/Graphique/affichage.h"
 
 
 void mainAurelien(City *city) {
@@ -14,11 +15,7 @@ void mainAurelien(City *city) {
 void mainNino(City *city) {
     initialisationVille(city);
     initDataMap(city);
-    for (int i = 0; i < city->nombreConstruction; i++) {
-        printf("Construction n°%d est de type %d et de coordonnées (%d,%d)\n",
-               city->tabConstruction[i].numeroDesConstructions + 1, city->tabConstruction[i].typeDeConstruction,
-               city->tabConstruction[i].coordonneeX, city->tabConstruction[i].coordonneeY);
-    }
+    affichage();
 }
 
 void mainTrystan(City *city) {
@@ -58,9 +55,9 @@ void mainPL(City *city) {
 
 int main() {
     City city = {0};
-    mainPL(&city);
+    //mainPL(&city);
     //mainAurelien(&city);
-    //mainNino(&city);
+    mainNino(&city);
     //mainTrystan(&city);
     return 0;
 }
