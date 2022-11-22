@@ -10,6 +10,8 @@
 #define COLONNES 45 //case X
 #define LIGNES 35 //case Y
 
+#define MAX_BATIMENT LIGNES*COLONNES
+
 
 typedef struct {
     bool boolMenuPrincipal; //permet de rester dans la boucle de cette page
@@ -60,12 +62,16 @@ typedef struct {
 
 typedef struct {
     int prix;
+    int type;
     int nbHabitant;
     int tailleX, tailleY;
     int capacite, capaciteTotal, flot;
     int matriceX, matriceY;
     char *nomBlock;
     int numeroBatiment;
+    // UN TABLEAU QUI DIS QUELLES BATIMENT EST RELIER A QUEL BATIMENT
+
+    // UN TABLEAU QUI DIT LA DISTANCE ENTRE LES BATIMENTS DIT DANS LE TAB PRECEDENT
     int laCoordonneX, laCoordonneY; // Permet de lire la coordonnée en 6 fois 4 si elle est posée en 4 fois 6
 } Batiment;
 
@@ -82,6 +88,12 @@ typedef struct {
     int typeDeConstruction; // route ruine...
     int coordonneeX, coordonneeY;
     bool horizontale;
+
+    int source;             // Numero de la construction de départ
+    int destination;        // type de la construction d'arrivé
+    int longueur;           // taille du chemin
+    bool plusCourt;         // C'est le plus court ?
+    int indiceParcours;     //pour reconnaitre chaque parcours effectué
 } Construction;
 
 typedef struct {
@@ -102,7 +114,8 @@ typedef struct {
     int nombreHabitation;
     int nombreConstruction;
 
-    Construction tabConstruction[150];
+    Construction tabConstruction[MAX_BATIMENT];
+    Construction tabParcoursLongueur[MAX_BATIMENT];
 
     int nbHabitant;
     bool capitaliste;

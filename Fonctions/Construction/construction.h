@@ -19,6 +19,8 @@ void getCoordonneConstruction3x3(City *city);
 
 void poserConstruction(City *city, char *nomFichier);
 
+void parcoursRoute (City *city, int numeroConstructionInitial);
+
 bool constructionViable(City *city, int numeroConstruction);
 
 bool viabiliteeRoutiere(City *city, int numeroConstruction);
