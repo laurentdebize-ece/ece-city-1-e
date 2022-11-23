@@ -173,6 +173,27 @@ void unloadTexture(City *city) {
 
 }
 
+void changerNiveau(City *city) {
+    if ((city->mouseX > 963 && city->mouseX < 1028 && city->mouseY > 169 && city->mouseY < 231) &&
+        IsMouseButtonDown(0)) {
+        city->page.pageJeux.pageJeu = true;
+        city->page.pageReseauEau.pageEau = false;
+        city->page.pageReseauElec.pageElectricite = false;
+    }
+    if ((city->mouseX > 1042 && city->mouseX < 1107 && city->mouseY > 169 && city->mouseY < 231) &&
+        IsMouseButtonDown(0)) {
+        city->page.pageJeux.pageJeu = false;
+        city->page.pageReseauEau.pageEau = true;
+        city->page.pageReseauElec.pageElectricite = false;
+    }
+    if ((city->mouseX > 1120 && city->mouseX < 1185 && city->mouseY > 169 && city->mouseY < 231) &&
+        IsMouseButtonDown(0)) {
+        city->page.pageJeux.pageJeu = false;
+        city->page.pageReseauEau.pageEau = false;
+        city->page.pageReseauElec.pageElectricite = true;
+    }
+}
+
 void initAffichage(City *city) {
     InitWindow(LARGEUR_ECRAN, HAUTEUR_ECRAN, "ECE-City");
     SetWindowState(FLAG_WINDOW_RESIZABLE);
@@ -181,8 +202,8 @@ void initAffichage(City *city) {
 
     SetTargetFPS(1080);
     while (!WindowShouldClose()) {
-        GetMouseX();
-        GetMouseY();
+        city->mouseX = GetMouseX();
+        city->mouseY = GetMouseY();
         BeginDrawing();
         DrawTexture(city->tabBitmapTexture[PageMap], 0, 0, WHITE);
 
@@ -215,7 +236,11 @@ void initAffichage(City *city) {
         DrawTexture(city->tabBitmapTexture[Building2], 560, 200, WHITE);
         DrawTexture(city->tabBitmapTexture[Building3], 620, 200, WHITE);
 
-        IsMouseButtonDown(0);
+        changerNiveau(city);
+
+        if (city->page.pageReseauElec.pageElectricite) {
+            DrawRectangle(0, 99, 900, 800, WHITE);
+        }
 
         EndDrawing();
     }

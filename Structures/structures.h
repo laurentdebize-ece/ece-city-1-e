@@ -28,11 +28,11 @@ typedef struct {
 } PageMenuPrincipale;
 
 typedef struct {
-
+    bool pageElectricite;
 } PageReseauElec;
 
 typedef struct {
-
+    bool pageEau;
 } PageReseauEau;
 
 typedef struct {
@@ -40,7 +40,7 @@ typedef struct {
 } PageAide;
 
 typedef struct {
-
+    bool pageJeu;
 } PageJeux;
 
 typedef struct {
@@ -124,6 +124,8 @@ typedef struct {
 
     int nbHabitant;
     bool capitaliste;
+
+    int mouseX, mouseY;
 } City;
 
 #endif
