@@ -6,6 +6,6 @@
 #define LARGEUR_ECRAN 1100
 #define HAUTEUR_ECRAN 800
 
-void affichage();
+void affichage(City* city);
 
 #endif
