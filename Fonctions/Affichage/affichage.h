@@ -3,7 +3,7 @@
 #include "../../Structures/structures.h"
 #include "raylib.h"
 
-#define LARGEUR_ECRAN 1100
+#define LARGEUR_ECRAN 1200
 #define HAUTEUR_ECRAN 800
 
 void dessinerGrille();
