@@ -6,6 +6,11 @@
 #define LARGEUR_ECRAN 1100
 #define HAUTEUR_ECRAN 800
 
+void dessinerGrille();
+
+void initBitmap(City *city);
+void unloadTexture(City *city);
+
 void affichage(City *city);
 
 #endif
