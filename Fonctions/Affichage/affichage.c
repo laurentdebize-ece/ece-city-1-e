@@ -160,9 +160,8 @@ void affichage(City *city) {
 
     SetTargetFPS(1080);
     while (!WindowShouldClose()) {
-    ClearBackground(RAYWHITE);
+        ClearBackground(RAYWHITE);
         BeginDrawing();
-
 
         for (int i = 0; i < LIGNES; i++) {
             for (int j = 0; j < COLONNES; j++) {
