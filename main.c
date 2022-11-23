@@ -5,7 +5,7 @@
 #include "Fonctions/Electricite/electriciter.h"
 #include "Fonctions/Eau/eau.h"
 #include "Fonctions/Sauvegarde/sauvegarde.h"
-#include "Fonctions/Graphique/affichage.h"
+#include "Fonctions/Affichage/affichage.h"
 
 
 void mainAurelien(City *city) {
