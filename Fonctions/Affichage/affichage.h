@@ -12,5 +12,6 @@ void initBitmap(City *city);
 void unloadTexture(City *city);
 
 void initAffichage(City *city);
+void affichageBoucle(City *city);
 
 #endif
