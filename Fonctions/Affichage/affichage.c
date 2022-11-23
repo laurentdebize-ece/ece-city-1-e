@@ -49,7 +49,9 @@ void initBitmap(City *city) {
     city->tabBitmapImage[Building2] = LoadImage("../Images/Construction/Building2.png");
     city->tabBitmapImage[Building3] = LoadImage("../Images/Construction/Building3.png");
 
-    city->tabBitmapImage[ImagePageMenuPrincipale] = LoadImage("../Images/imageAccueilRedim.png");
+    city->tabBitmapImage[PageMenuPrincip] = LoadImage("../Images/Construction/imageChoixRedim.png");
+    city->tabBitmapImage[PageChoixMode] = LoadImage("../Images/Construction/imageChoixModeRedim.png");
+    city->tabBitmapImage[PageMap] = LoadImage("../Images/Construction/imageMapRedim.png");
 
 
 
@@ -89,7 +91,9 @@ void initBitmap(City *city) {
     city->tabBitmapTexture[Building2] = LoadTextureFromImage(city->tabBitmapImage[Building2]);
     city->tabBitmapTexture[Building3] = LoadTextureFromImage(city->tabBitmapImage[Building3]);
 
-    city->tabBitmapTexture[ImagePageMenuPrincipale] = LoadTextureFromImage(city->tabBitmapImage[ImagePageMenuPrincipale]);
+    city->tabBitmapTexture[PageMenuPrincip] = LoadTextureFromImage(city->tabBitmapImage[PageMenuPrincip]);
+    city->tabBitmapTexture[PageChoixMode] = LoadTextureFromImage(city->tabBitmapImage[PageChoixMode]);
+    city->tabBitmapTexture[PageMap] = LoadTextureFromImage(city->tabBitmapImage[PageMap]);
 
     //UNLOAD IMAGE
     UnloadImage(city->tabBitmapImage[DecorHerbeImage]);
@@ -122,7 +126,9 @@ void initBitmap(City *city) {
     UnloadImage(city->tabBitmapImage[Building2]);
     UnloadImage(city->tabBitmapImage[Building3]);
 
-    UnloadImage(city->tabBitmapImage[ImagePageMenuPrincipale]);
+    UnloadImage(city->tabBitmapImage[PageMenuPrincip]);
+    UnloadImage(city->tabBitmapImage[PageChoixMode]);
+    UnloadImage(city->tabBitmapImage[PageMap]);
 
 }
 
@@ -157,7 +163,10 @@ void unloadTexture(City *city) {
     UnloadTexture(city->tabBitmapTexture[Building2]);
     UnloadTexture(city->tabBitmapTexture[Building3]);
 
-    UnloadTexture(city->tabBitmapTexture[ImagePageMenuPrincipale]);
+    UnloadTexture(city->tabBitmapTexture[PageMenuPrincip]);
+    UnloadTexture(city->tabBitmapTexture[PageChoixMode]);
+    UnloadTexture(city->tabBitmapTexture[PageMap]);
+
 }
 
 void affichage(City *city) {
@@ -198,10 +207,9 @@ void affichage(City *city) {
         DrawTexture(city->tabBitmapTexture[Building2], 560, 200, WHITE);
         DrawTexture(city->tabBitmapTexture[Building3], 620, 200, WHITE);
 
-
-        DrawTexture(city->tabBitmapTexture[ImagePageMenuPrincipale], 0, 0, WHITE);
-
-
+        DrawTexture(city->tabBitmapTexture[PageMenuPrincip], 0, 0, WHITE);
+        DrawTexture(city->tabBitmapTexture[PageChoixMode], 0, 0, WHITE);
+        DrawTexture(city->tabBitmapTexture[PageMap], 0, 0, WHITE);
 
         EndDrawing();
     }
