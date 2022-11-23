@@ -166,11 +166,11 @@ void affichage(City *city) {
         for (int i = 0; i < LIGNES; i++) {
             for (int j = 0; j < COLONNES; j++) {
                 DrawTexture(city->tabBitmapTexture[DecorHerbeImage], j * 20, i * 20 + 100, WHITE);
-                if (i == 0 || i == LIGNES - 1 || j == 0 || j == COLONNES - 1) {
-                    DrawTexture(city->tabBitmapTexture[DecorObstacleCaillouImage], j * 20, i * 20 + 100, WHITE);
+                if ( i == 0 || i == LIGNES - 1 || j == 0 || j == COLONNES - 1) {
+                    DrawTexture(city->tabBitmapTexture[DecorObstacleCaillouImage], j * 20, i * 20 + 100 , WHITE);
                     city->terrain[i][j].obstacle = true;
                 }
-                if (i == 17 && j == 0) {
+                if ( i == 17 && j == 0) {
                     DrawTexture(city->tabBitmapTexture[Route], j * 20, i * 20 + 100, BLACK);
                     city->terrain[i][j].obstacle = true;
                 }
