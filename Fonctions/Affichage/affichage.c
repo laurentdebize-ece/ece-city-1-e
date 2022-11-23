@@ -15,13 +15,15 @@ void dessinerGrille () {
     }
 }
 
+//CheckCollisionPointRec();
+
 void affichage(City* city){
     InitWindow(LARGEUR_ECRAN, HAUTEUR_ECRAN, "ECE-City");
     SetWindowState(FLAG_WINDOW_RESIZABLE);
 
-    Image DecorHerbeImage = LoadImage("../Images/land_1.png");
-    Image DecorObstacleImage = LoadImage("../Images/stones_1.png");
-    Image DecorRouteImage = LoadImage("../Images/Route_Croisement_Gauche.png");
+    Image DecorHerbeImage = LoadImage("../Images/Decor/land_1.png");
+    Image DecorObstacleImage = LoadImage("../Images/Bordure/stones_1.png");
+    Image DecorRouteImage = LoadImage("../Images/Route/Route_Croisement_Gauche.png");
     Texture2D DecorHerbeTexture = LoadTextureFromImage(DecorHerbeImage);
     Texture2D DecorObstacleTexture = LoadTextureFromImage(DecorObstacleImage);
     Texture2D DecorRouteTexture = LoadTextureFromImage(DecorRouteImage);
@@ -36,14 +38,11 @@ void affichage(City* city){
 
         for (int i = 0; i < LIGNES; i++) {
             for (int j = 0; j < COLONNES; j++) {
-
-                if(city->terrain[i][j].typeBloc==0) {
-                    DrawTexture(DecorHerbeTexture, j * 20, i * 20 + 100, WHITE);
-                }
-                if (city->terrain[i][j].typeBloc==1){
+                DrawTexture(DecorHerbeTexture, j*20, i*20+100, WHITE);
+                if (i == 0 || i == LIGNES-1 || j == 0 || j == COLONNES-1){
                     DrawTexture(DecorObstacleTexture, j*20, i*20+100, WHITE);
                 }
-                if (city->terrain[i][j].typeBloc==2) {
+                if (i == 17 && j == 0) {
                     DrawTexture(DecorRouteTexture, j*20, i*20+100, WHITE);
                 }
             }
@@ -57,4 +56,10 @@ void affichage(City* city){
     UnloadTexture(DecorRouteTexture);
 
     CloseWindow();
+    for (int i = 0; i < LIGNES; i++) {
+        for (int j = 0; j < COLONNES; j++) {
+            printf("%d ", city->terrain[i][j].typeBloc);
+        }
+        printf("\n");
+    }
 }
