@@ -1,4 +1,24 @@
 #include "affichage.h"
+/*
+int savoirAffichageRoute(City* city, int i, int j){
+    bool haut = false,bas = false,gauche= false ,droite = false;
+    if(city->terrain[i][j-1].typeBloc==1){
+        gauche = true;
+    }
+    if(city->terrain[i][j+1].typeBloc==1){
+        droite = true;
+    }
+    if(city->terrain[i-1][j].typeBloc==1){
+        haut = true;
+    }
+    if(city->terrain[i+1][j].typeBloc==1){
+        bas = true;
+    }
+    if(bas&&droite&&!gauche&&!haut){ //Anglet bas droit
+        return 0;
+    }
+    return 1;
+}*/
 
 void dessinerGrille() {
     int traitX = 0, traitY = 100;
@@ -245,5 +265,80 @@ void initAffichage(City *city) {
         EndDrawing();
     }
     unloadTexture(city);
-    //CloseWindow();
+    CloseWindow();
+}
+
+void affichageBoucle(City *city) {
+    int nbConstru =0;
+    InitWindow(LARGEUR_ECRAN, HAUTEUR_ECRAN, "ECE-City");
+    SetWindowState(FLAG_WINDOW_RESIZABLE);
+
+    initBitmap(city);
+
+    SetTargetFPS(1080);
+    while (!WindowShouldClose()) {
+        ClearBackground(RAYWHITE);
+        BeginDrawing();
+        dessinerGrille();
+        for (int i = 0; i < LIGNES; i++) {
+            for (int j = 0; j < COLONNES; j++) {
+                DrawTexture(city->tabBitmapTexture[DecorHerbeImage], j * 20, i * 20 + 100, WHITE);
+            }
+        }
+
+        for (int i = 0; i < LIGNES; i++) {
+            for (int j = 0; j < COLONNES; j++) {
+                if (city->terrain[i][j].typeBloc==1) {
+                    DrawTexture(city->tabBitmapTexture[DecorObstacleCaillouImage], j * 20, i * 20 + 100, WHITE);
+                    city->terrain[i][j].obstacle = true;
+                }
+                if (city->terrain[i][j].typeBloc==2) {
+                    //if(savoirAffichageRoute(city,i,j)==0){
+                        DrawTexture(city->tabBitmapTexture[Route_Angle_Droite_Bas],j*20,i*20+100,BLACK);
+                        printf("o");
+                    //}
+                    //else {
+                        DrawTexture(city->tabBitmapTexture[Route], j * 20, i * 20 + 100, BLACK);
+                        city->terrain[i][j].obstacle = true;
+                    //}
+                }
+                if (city->terrain[i][j].typeBloc==3 &&  city->terrain[i-1][j].typeBloc!=3 && city->terrain[i][j-1].typeBloc!=3) {
+                    DrawTexture(city->tabBitmapTexture[House2], j * 20, i * 20 + 100, WHITE);
+                    nbConstru++;
+                }
+                if (city->terrain[i][j].typeBloc==4 &&  city->terrain[i-1][j].typeBloc!=4 && city->terrain[i][j-1].typeBloc!=4) {
+                    DrawTexture(city->tabBitmapTexture[House3], j * 20, i * 20 + 100, WHITE);
+                    nbConstru++;
+                }
+                if (city->terrain[i][j].typeBloc==5 &&  city->terrain[i-1][j].typeBloc!=5 && city->terrain[i][j-1].typeBloc!=5) {
+                    DrawTexture(city->tabBitmapTexture[House1],  j * 20,  i * 20 + 100, WHITE);
+                    city->terrain[i][j].obstacle = true;
+                }
+                if (city->terrain[i][j].typeBloc==6 &&  city->terrain[i-1][j].typeBloc!=6 && city->terrain[i][j-1].typeBloc!=6) {
+                    DrawTexture(city->tabBitmapTexture[Immeuble2], j * 20, i * 20 + 100, WHITE);
+                    nbConstru++;
+                    city->terrain[i][j].obstacle = true;
+                }
+                if (city->terrain[i][j].typeBloc==7 &&  city->terrain[i-1][j].typeBloc!=7 && city->terrain[i][j-1].typeBloc!=7) {
+                    DrawTexture(city->tabBitmapTexture[Building3], j * 20, i * 20 + 100, WHITE);
+                    nbConstru++;
+                    city->terrain[i][j].obstacle = true;
+                }
+                if (city->terrain[i][j].typeBloc==8 &&  city->terrain[i-1][j].typeBloc!=8 && city->terrain[i][j-1].typeBloc!=8) {
+                    DrawTexture(city->tabBitmapTexture[Building2], j * 20, i * 20 + 100, WHITE);
+                    nbConstru++;
+                    city->terrain[i][j].obstacle = true;
+                }
+                if (city->terrain[i][j].typeBloc==9 &&  city->terrain[i-1][j].typeBloc!=9 && city->terrain[i][j-1].typeBloc!=9) {
+                    DrawTexture(city->tabBitmapTexture[Building1], j * 20, i * 20 + 100, WHITE);
+                    nbConstru++;
+                    city->terrain[i][j].obstacle = true;
+                }
+            }
+        }
+
+        EndDrawing();
+    }
+    unloadTexture(city);
+    CloseWindow();
 }
