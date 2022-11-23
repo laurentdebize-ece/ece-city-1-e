@@ -80,12 +80,14 @@ void initialisationVille(City *city) {
     city->route.tailleY = 1;
     city->route.numeroBatiment = 0;
 
+    city->page.pageJeux.pageJeu = true;
+
     for (int i = 0; i < 150; i++) {
     }
 
     city->nombreConstruction = 0;
 
-    for (int i = 0 ; i < MAX_BATIMENT ; i++) {
+    for (int i = 0; i < MAX_BATIMENT; i++) {
 
         city->tabConstruction[i].numeroDesConstructions = 0;
         city->tabConstruction[i].typeDeConstruction = 0;

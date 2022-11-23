@@ -69,10 +69,11 @@ void initBitmap(City *city) {
     city->tabBitmapImage[Building2] = LoadImage("../Images/Construction/Building2.png");
     city->tabBitmapImage[Building3] = LoadImage("../Images/Construction/Building3.png");
 
-    city->tabBitmapImage[PageChargementImage] = LoadImage("../Images/imageAccueilRedim.png");
-    city->tabBitmapImage[PageMenuPrincip] = LoadImage("../Images/imageChoixRedim.png");
-    city->tabBitmapImage[PageChoixMode] = LoadImage("../Images/imageChoixModeRedim.png");
-    city->tabBitmapImage[PageMap] = LoadImage("../Images/imageMapRedim.png");
+    city->tabBitmapImage[PageChargementImage] = LoadImage("../Images/Pages/imageAccueilRedim.png");
+    city->tabBitmapImage[PageMenuPrincip] = LoadImage("../Images/Pages/imageChoixRedim.png");
+    city->tabBitmapImage[PageChoixMode] = LoadImage("../Images/Pages/imageChoixModeRedim.png");
+    city->tabBitmapImage[PageMap] = LoadImage("../Images/Pages/imageMapRedim.png");
+    city->tabBitmapImage[PagePrincipaleToolBox] = LoadImage("../Images/Pages/ToolBox.png");
 
 
 
@@ -116,6 +117,7 @@ void initBitmap(City *city) {
     city->tabBitmapTexture[PageMenuPrincip] = LoadTextureFromImage(city->tabBitmapImage[PageMenuPrincip]);
     city->tabBitmapTexture[PageChoixMode] = LoadTextureFromImage(city->tabBitmapImage[PageChoixMode]);
     city->tabBitmapTexture[PageMap] = LoadTextureFromImage(city->tabBitmapImage[PageMap]);
+    city->tabBitmapTexture[PagePrincipaleToolBox] = LoadTextureFromImage(city->tabBitmapImage[PagePrincipaleToolBox]);
 
     //UNLOAD IMAGE
     UnloadImage(city->tabBitmapImage[DecorHerbeImage]);
@@ -152,6 +154,7 @@ void initBitmap(City *city) {
     UnloadImage(city->tabBitmapImage[PageMenuPrincip]);
     UnloadImage(city->tabBitmapImage[PageChoixMode]);
     UnloadImage(city->tabBitmapImage[PageMap]);
+    UnloadImage(city->tabBitmapImage[PagePrincipaleToolBox]);
 
 }
 
@@ -190,27 +193,38 @@ void unloadTexture(City *city) {
     UnloadTexture(city->tabBitmapTexture[PageMenuPrincip]);
     UnloadTexture(city->tabBitmapTexture[PageChoixMode]);
     UnloadTexture(city->tabBitmapTexture[PageMap]);
+    UnloadTexture(city->tabBitmapTexture[PagePrincipaleToolBox]);
 
 }
 
-void changerNiveau(City *city) {
+void gestionCliqueSouris(City *city) {
     if ((city->mouseX > 963 && city->mouseX < 1028 && city->mouseY > 169 && city->mouseY < 231) &&
         IsMouseButtonDown(0)) {
         city->page.pageJeux.pageJeu = true;
+        city->page.pageJeux.toolBox = false;
         city->page.pageReseauEau.pageEau = false;
         city->page.pageReseauElec.pageElectricite = false;
     }
     if ((city->mouseX > 1042 && city->mouseX < 1107 && city->mouseY > 169 && city->mouseY < 231) &&
         IsMouseButtonDown(0)) {
         city->page.pageJeux.pageJeu = false;
+        city->page.pageJeux.toolBox = false;
         city->page.pageReseauEau.pageEau = true;
         city->page.pageReseauElec.pageElectricite = false;
     }
     if ((city->mouseX > 1120 && city->mouseX < 1185 && city->mouseY > 169 && city->mouseY < 231) &&
         IsMouseButtonDown(0)) {
         city->page.pageJeux.pageJeu = false;
+        city->page.pageJeux.toolBox = false;
         city->page.pageReseauEau.pageEau = false;
         city->page.pageReseauElec.pageElectricite = true;
+    }
+    if ((city->mouseX > 952 && city->mouseX < 1194 && city->mouseY > 242 && city->mouseY < 413) &&
+        IsMouseButtonDown(0)) {
+        city->page.pageJeux.pageJeu = false;
+        city->page.pageJeux.toolBox = true;
+        city->page.pageReseauEau.pageEau = false;
+        city->page.pageReseauElec.pageElectricite = false;
     }
 }
 
@@ -225,7 +239,7 @@ void initAffichage(City *city) {
         city->mouseX = GetMouseX();
         city->mouseY = GetMouseY();
         BeginDrawing();
-        DrawTexture(city->tabBitmapTexture[PageMap], 0, 0, WHITE);
+        DrawTexture(city->tabBitmapTexture[PagePrincipaleToolBox], 0, 0, WHITE);
 
         for (int i = 0; i < LIGNES; i++) {
             for (int j = 0; j < COLONNES; j++) {
@@ -256,7 +270,11 @@ void initAffichage(City *city) {
         DrawTexture(city->tabBitmapTexture[Building2], 560, 200, WHITE);
         DrawTexture(city->tabBitmapTexture[Building3], 620, 200, WHITE);
 
-        changerNiveau(city);
+        gestionCliqueSouris(city);
+
+        if (city->page.pageJeux.toolBox) {
+            DrawTexture(city->tabBitmapTexture[PagePrincipaleToolBox], 0, 0, WHITE);
+        }
 
         if (city->page.pageReseauElec.pageElectricite) {
             DrawRectangle(0, 99, 900, 800, WHITE);
@@ -278,24 +296,44 @@ void affichageBoucle(City *city) {
     SetTargetFPS(1080);
     while (!WindowShouldClose()) {
         ClearBackground(RAYWHITE);
+        gestionCliqueSouris(city);
+        city->mouseX = GetMouseX();
+        city->mouseY = GetMouseY();
         BeginDrawing();
-        dessinerGrille();
+        DrawTexture(city->tabBitmapTexture[PageMap], 0, 0, WHITE);
         for (int i = 0; i < LIGNES; i++) {
             for (int j = 0; j < COLONNES; j++) {
                 DrawTexture(city->tabBitmapTexture[DecorHerbeImage], j * 20, i * 20 + 100, WHITE);
             }
         }
+        dessinerGrille();
+
+        if (city->page.pageJeux.toolBox) {
+            DrawTexture(city->tabBitmapTexture[PagePrincipaleToolBox], 0, 0, WHITE);
+        }
+
+        if (city->page.pageReseauElec.pageElectricite) {
+            DrawRectangle(0, 99, 900, 800, WHITE);
+        }
+
+        if (city->page.pageJeux.pageJeu) {
+
+        } else if (city->page.pageReseauEau.pageEau) {
+
+        } else if (city->page.pageReseauElec.pageElectricite) {
+
+        }
 
         for (int i = 0; i < LIGNES; i++) {
             for (int j = 0; j < COLONNES; j++) {
-                if (city->terrain[i][j].typeBloc==1) {
+                if (city->terrain[i][j].typeBloc == 1) {
                     DrawTexture(city->tabBitmapTexture[DecorObstacleCaillouImage], j * 20, i * 20 + 100, WHITE);
                     city->terrain[i][j].obstacle = true;
                 }
-                if (city->terrain[i][j].typeBloc==2) {
+                if (city->terrain[i][j].typeBloc == 2) {
                     //if(savoirAffichageRoute(city,i,j)==0){
                         DrawTexture(city->tabBitmapTexture[Route_Angle_Droite_Bas],j*20,i*20+100,BLACK);
-                        printf("o");
+                    //printf("o");
                     //}
                     //else {
                         DrawTexture(city->tabBitmapTexture[Route], j * 20, i * 20 + 100, BLACK);
@@ -329,12 +367,16 @@ void affichageBoucle(City *city) {
                     nbConstru++;
                     city->terrain[i][j].obstacle = true;
                 }
-                if (city->terrain[i][j].typeBloc==9 &&  city->terrain[i-1][j].typeBloc!=9 && city->terrain[i][j-1].typeBloc!=9) {
+                if (city->terrain[i][j].typeBloc == 9 && city->terrain[i - 1][j].typeBloc != 9 &&
+                    city->terrain[i][j - 1].typeBloc != 9) {
                     DrawTexture(city->tabBitmapTexture[Building1], j * 20, i * 20 + 100, WHITE);
                     nbConstru++;
                     city->terrain[i][j].obstacle = true;
                 }
             }
+        }
+        if (city->page.pageReseauElec.pageElectricite) {
+            DrawRectangle(0, 99, 900, 800, WHITE);
         }
 
         EndDrawing();
