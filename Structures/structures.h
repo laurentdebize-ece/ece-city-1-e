@@ -12,7 +12,7 @@
 
 #define MAX_BATIMENT LIGNES*COLONNES
 
-enum BITMAP {Ruine, Cabanne1, House1, House2, House3, House4, House5, House6, Immeuble1, Immeuble2, Building1, Building2, Building3, DecorHerbeImage, Route, DecorObstacleCaillouImage, Route_Verticale, Route_Horizontale, Route_Angle_Droite_Bas, Route_Angle_Droite_Haut, Route_Angle_Gauche_Bas, Route_Angle_Gauche_Haut, Route_Croisement_Bas, Route_Croisement_Droite, Route_Croisement_Gauche, Route_Croisement_Haut, Route_Carrefour, NB_BITMAP};
+enum BITMAP {ImagePageMenuPrincipale, Ruine, Cabanne1, House1, House2, House3, House4, House5, House6, Immeuble1, Immeuble2, Building1, Building2, Building3, DecorHerbeImage, Route, DecorObstacleCaillouImage, Route_Verticale, Route_Horizontale, Route_Angle_Droite_Bas, Route_Angle_Droite_Haut, Route_Angle_Gauche_Bas, Route_Angle_Gauche_Haut, Route_Croisement_Bas, Route_Croisement_Droite, Route_Croisement_Gauche, Route_Croisement_Haut, Route_Carrefour, NB_BITMAP};
 
 typedef struct {
     bool boolMenuPrincipal; //permet de rester dans la boucle de cette page

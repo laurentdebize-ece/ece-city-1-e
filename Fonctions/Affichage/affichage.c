@@ -49,6 +49,8 @@ void initBitmap(City *city) {
     city->tabBitmapImage[Building2] = LoadImage("../Images/Construction/Building2.png");
     city->tabBitmapImage[Building3] = LoadImage("../Images/Construction/Building3.png");
 
+    city->tabBitmapImage[ImagePageMenuPrincipale] = LoadImage("../Images/imageAccueilRedim.png");
+
 
 
     // TEXTURE
@@ -87,6 +89,8 @@ void initBitmap(City *city) {
     city->tabBitmapTexture[Building2] = LoadTextureFromImage(city->tabBitmapImage[Building2]);
     city->tabBitmapTexture[Building3] = LoadTextureFromImage(city->tabBitmapImage[Building3]);
 
+    city->tabBitmapTexture[ImagePageMenuPrincipale] = LoadTextureFromImage(city->tabBitmapImage[ImagePageMenuPrincipale]);
+
     //UNLOAD IMAGE
     UnloadImage(city->tabBitmapImage[DecorHerbeImage]);
     UnloadImage(city->tabBitmapImage[DecorObstacleCaillouImage]);
@@ -117,6 +121,8 @@ void initBitmap(City *city) {
     UnloadImage(city->tabBitmapImage[Building1]);
     UnloadImage(city->tabBitmapImage[Building2]);
     UnloadImage(city->tabBitmapImage[Building3]);
+
+    UnloadImage(city->tabBitmapImage[ImagePageMenuPrincipale]);
 
 }
 
@@ -150,6 +156,8 @@ void unloadTexture(City *city) {
     UnloadTexture(city->tabBitmapTexture[Building1]);
     UnloadTexture(city->tabBitmapTexture[Building2]);
     UnloadTexture(city->tabBitmapTexture[Building3]);
+
+    UnloadTexture(city->tabBitmapTexture[ImagePageMenuPrincipale]);
 }
 
 void affichage(City *city) {
@@ -189,6 +197,11 @@ void affichage(City *city) {
         DrawTexture(city->tabBitmapTexture[Building1], 500, 200, WHITE);
         DrawTexture(city->tabBitmapTexture[Building2], 560, 200, WHITE);
         DrawTexture(city->tabBitmapTexture[Building3], 620, 200, WHITE);
+
+
+        DrawTexture(city->tabBitmapTexture[ImagePageMenuPrincipale], 0, 0, WHITE);
+
+
 
         EndDrawing();
     }
