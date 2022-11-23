@@ -37,17 +37,17 @@ void initBitmap(City *city) {
 
     city->tabBitmapImage[Ruine] = LoadImage("../Images/Route/Ruines.png");
     city->tabBitmapImage[Cabanne1] = LoadImage("../Images/Route/Cabanne1.png");
-    city->tabBitmapImage[House1] = LoadImage("../Images/Route/House1.png");
-    city->tabBitmapImage[House2] = LoadImage("../Images/Route/House2.png");
-    city->tabBitmapImage[House3] = LoadImage("../Images/Route/House3.png");
-    city->tabBitmapImage[House4] = LoadImage("../Images/Route/House4.png");
-    city->tabBitmapImage[House5] = LoadImage("../Images/Route/House5.png");
-    city->tabBitmapImage[House6] = LoadImage("../Images/Route/House6.png");
-    city->tabBitmapImage[Immeuble1] = LoadImage("../Images/Route/Immeuble1.png");
-    city->tabBitmapImage[Immeuble2] = LoadImage("../Images/Route/Immeuble2.png");
-    city->tabBitmapImage[Building1] = LoadImage("../Images/Route/building1.png");
-    city->tabBitmapImage[Building2] = LoadImage("../Images/Route/Building2.png");
-    city->tabBitmapImage[Building3] = LoadImage("../Images/Route/Building3.png");
+    city->tabBitmapImage[House1] = LoadImage("../Images/Construction/House1.png");
+    city->tabBitmapImage[House2] = LoadImage("../Images/Construction/House2.png");
+    city->tabBitmapImage[House3] = LoadImage("../Images/Construction/House3.png");
+    city->tabBitmapImage[House4] = LoadImage("../Images/Construction/House4.png");
+    city->tabBitmapImage[House5] = LoadImage("../Images/Construction/House5.png");
+    city->tabBitmapImage[House6] = LoadImage("../Images/Construction/House6.png");
+    city->tabBitmapImage[Immeuble1] = LoadImage("../Images/Construction/Immeuble1.png");
+    city->tabBitmapImage[Immeuble2] = LoadImage("../Images/Construction/Immeuble2.png");
+    city->tabBitmapImage[Building1] = LoadImage("../Images/Construction/building1.png");
+    city->tabBitmapImage[Building2] = LoadImage("../Images/Construction/Building2.png");
+    city->tabBitmapImage[Building3] = LoadImage("../Images/Construction/Building3.png");
 
 
 
@@ -172,7 +172,7 @@ void affichage(City *city) {
                     city->terrain[i][j].obstacle = true;
                 }
                 if (i == 17 && j == 0) {
-                    DrawTexture(city->tabBitmapTexture[Route], j * 20, i * 20 + 100, WHITE);
+                    DrawTexture(city->tabBitmapTexture[Route], j * 20, i * 20 + 100, BLACK);
                     city->terrain[i][j].obstacle = true;
                 }
             }
@@ -180,6 +180,16 @@ void affichage(City *city) {
         dessinerGrille();
 
         DrawTexture(city->tabBitmapTexture[House1], 20, 200, WHITE);
+        DrawTexture(city->tabBitmapTexture[House2], 80, 200, WHITE);
+        DrawTexture(city->tabBitmapTexture[House3], 140, 200, WHITE);
+        DrawTexture(city->tabBitmapTexture[House4], 200, 200, WHITE);
+        DrawTexture(city->tabBitmapTexture[House5], 260, 200, WHITE);
+        DrawTexture(city->tabBitmapTexture[House6], 320, 200, WHITE);
+        DrawTexture(city->tabBitmapTexture[Immeuble1], 380, 200, WHITE);
+        DrawTexture(city->tabBitmapTexture[Immeuble2], 440, 200, WHITE);
+        DrawTexture(city->tabBitmapTexture[Building1], 500, 200, WHITE);
+        DrawTexture(city->tabBitmapTexture[Building2], 560, 200, WHITE);
+        DrawTexture(city->tabBitmapTexture[Building3], 620, 200, WHITE);
 
         EndDrawing();
     }
