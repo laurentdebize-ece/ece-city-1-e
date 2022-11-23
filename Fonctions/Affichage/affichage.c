@@ -1,5 +1,5 @@
 #include "affichage.h"
-/*
+
 int savoirAffichageRoute(City* city, int i, int j){
     bool haut = false,bas = false,gauche= false ,droite = false;
     if(city->terrain[i][j-1].typeBloc==1){
@@ -17,8 +17,41 @@ int savoirAffichageRoute(City* city, int i, int j){
     if(bas&&droite&&!gauche&&!haut){ //Anglet bas droit
         return 0;
     }
-    return 1;
-}*/
+    if(!bas && droite && gauche && !haut){ // Route_Horizontale
+        return 1;
+    }
+    if(bas && !droite && !gauche && haut){
+        return 2;
+    }
+    if(bas && !droite && gauche && !haut){
+        return 3;
+    }
+    if(!bas && !droite && gauche && haut){
+        return 4;
+    }
+    if(!bas && droite && !gauche && haut){
+        return 5;
+    }
+    if(!bas && !droite && !gauche && haut){
+        return 6;
+    }
+    if(!bas && droite && !gauche && !haut){
+        return 7;
+    }
+    if(bas && !droite && !gauche && !haut){
+        return 8;
+    }
+    if(!bas && !droite && gauche && !haut){
+        return 9;
+    }
+    if(bas && droite && gauche && haut){
+        return 10;
+    }
+    if(!bas && !droite && !gauche && !haut){ //Angle et bas droit
+        return 11;
+    }
+    return 1000;
+}
 
 void dessinerGrille() {
     int traitX = 0, traitY = 100;
@@ -323,6 +356,7 @@ void affichageBoucle(City *city) {
         } else if (city->page.pageReseauElec.pageElectricite) {
 
         }
+        dessinerGrille();
 
         for (int i = 0; i < LIGNES; i++) {
             for (int j = 0; j < COLONNES; j++) {
@@ -330,15 +364,47 @@ void affichageBoucle(City *city) {
                     DrawTexture(city->tabBitmapTexture[DecorObstacleCaillouImage], j * 20, i * 20 + 100, WHITE);
                     city->terrain[i][j].obstacle = true;
                 }
-                if (city->terrain[i][j].typeBloc == 2) {
-                    //if(savoirAffichageRoute(city,i,j)==0){
-                        DrawTexture(city->tabBitmapTexture[Route_Angle_Droite_Bas],j*20,i*20+100,BLACK);
-                    //printf("o");
-                    //}
-                    //else {
+                if (city->terrain[i][j].typeBloc==2) {
+                    if(savoirAffichageRoute(city,i,j)==0){
+                        DrawTexture(city->tabBitmapTexture[Route_Angle_Droite_Bas],j*20,i*20+100,WHITE);
+                    }
+                    else if(savoirAffichageRoute(city,i,j)==1){
+                        DrawTexture(city->tabBitmapTexture[Route_Horizontale],j*20,i*20+100,WHITE);
+                    }
+                    else if(savoirAffichageRoute(city,i,j)==2){
+                        DrawTexture(city->tabBitmapTexture[Route_Verticale],j*20,i*20+100,WHITE);
+                    }
+                    else if(savoirAffichageRoute(city,i,j)==3){
+                        DrawTexture(city->tabBitmapTexture[Route_Angle_Gauche_Bas],j*20,i*20+100,WHITE);
+                    }
+                    else if(savoirAffichageRoute(city,i,j)==4){
+                        DrawTexture(city->tabBitmapTexture[Route_Angle_Gauche_Haut],j*20,i*20+100,WHITE);
+                    }
+                    else if(savoirAffichageRoute(city,i,j)==5){
+                        DrawTexture(city->tabBitmapTexture[Route_Angle_Droite_Haut],j*20,i*20+100,WHITE);
+                    }
+                    else if(savoirAffichageRoute(city,i,j)==6){
+                        DrawTexture(city->tabBitmapTexture[Route_Croisement_Haut],j*20,i*20+100,WHITE);
+                    }
+                    else if(savoirAffichageRoute(city,i,j)==7){
+                        DrawTexture(city->tabBitmapTexture[Route_Croisement_Droite],j*20,i*20+100,WHITE);
+                    }
+                    else if(savoirAffichageRoute(city,i,j)==8){
+                        DrawTexture(city->tabBitmapTexture[Route_Croisement_Bas],j*20,i*20+100,WHITE);
+                    }
+                    else if(savoirAffichageRoute(city,i,j)==9){
+                        DrawTexture(city->tabBitmapTexture[Route_Croisement_Gauche],j*20,i*20+100,WHITE);
+                    }
+                    else if(savoirAffichageRoute(city,i,j)==10){
+                        DrawTexture(city->tabBitmapTexture[Route_Carrefour],j*20,i*20+100,WHITE);
+                    }
+                    else if(savoirAffichageRoute(city,i,j)==11){
+                        DrawTexture(city->tabBitmapTexture[Route],j*20,i*20+100,WHITE);
+                    }
+                    else {
                         DrawTexture(city->tabBitmapTexture[Route], j * 20, i * 20 + 100, BLACK);
                         city->terrain[i][j].obstacle = true;
-                    //}
+                    }
                 }
                 if (city->terrain[i][j].typeBloc==3 &&  city->terrain[i-1][j].typeBloc!=3 && city->terrain[i][j-1].typeBloc!=3) {
                     DrawTexture(city->tabBitmapTexture[House2], j * 20, i * 20 + 100, WHITE);
