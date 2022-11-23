@@ -194,5 +194,5 @@ void affichage(City *city) {
         EndDrawing();
     }
     unloadTexture(city);
-    CloseWindow();
+    //CloseWindow();
 }
