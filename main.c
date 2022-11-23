@@ -15,7 +15,7 @@ void mainAurelien(City *city) {
 void mainNino(City *city) {
     initialisationVille(city);
     initDataMap(city);
-    affichage(city);
+    initAffichage(city);
 }
 
 void mainTrystan(City *city) {

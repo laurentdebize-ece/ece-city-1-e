@@ -35,8 +35,8 @@ void initBitmap(City *city) {
     city->tabBitmapImage[Route_Carrefour] = LoadImage("../Images/Route/Route_Carrefour.png");
     city->tabBitmapImage[Route] = LoadImage("../Images/Route/Route.png");
 
-    city->tabBitmapImage[Ruine] = LoadImage("../Images/Route/Ruines.png");
-    city->tabBitmapImage[Cabanne1] = LoadImage("../Images/Route/Cabanne1.png");
+    city->tabBitmapImage[Ruine] = LoadImage("../Images/Construction/Ruines.png");
+    city->tabBitmapImage[Cabanne1] = LoadImage("../Images/Construction/Cabanne1.png");
     city->tabBitmapImage[House1] = LoadImage("../Images/Construction/House1.png");
     city->tabBitmapImage[House2] = LoadImage("../Images/Construction/House2.png");
     city->tabBitmapImage[House3] = LoadImage("../Images/Construction/House3.png");
@@ -49,10 +49,10 @@ void initBitmap(City *city) {
     city->tabBitmapImage[Building2] = LoadImage("../Images/Construction/Building2.png");
     city->tabBitmapImage[Building3] = LoadImage("../Images/Construction/Building3.png");
 
-    city->tabBitmapImage[PageChargementImage] = LoadImage("../Images/Construction/imageAccueilRedim.png");
-    city->tabBitmapImage[PageMenuPrincip] = LoadImage("../Images/Construction/imageChoixRedim.png");
-    city->tabBitmapImage[PageChoixMode] = LoadImage("../Images/Construction/imageChoixModeRedim.png");
-    city->tabBitmapImage[PageMap] = LoadImage("../Images/Construction/imageMapRedim.png");
+    city->tabBitmapImage[PageChargementImage] = LoadImage("../Images/imageAccueilRedim.png");
+    city->tabBitmapImage[PageMenuPrincip] = LoadImage("../Images/imageChoixRedim.png");
+    city->tabBitmapImage[PageChoixMode] = LoadImage("../Images/imageChoixModeRedim.png");
+    city->tabBitmapImage[PageMap] = LoadImage("../Images/imageMapRedim.png");
 
 
 
@@ -173,7 +173,7 @@ void unloadTexture(City *city) {
 
 }
 
-void affichage(City *city) {
+void initAffichage(City *city) {
     InitWindow(LARGEUR_ECRAN, HAUTEUR_ECRAN, "ECE-City");
     SetWindowState(FLAG_WINDOW_RESIZABLE);
 
@@ -181,17 +181,19 @@ void affichage(City *city) {
 
     SetTargetFPS(1080);
     while (!WindowShouldClose()) {
-        ClearBackground(RAYWHITE);
+        GetMouseX();
+        GetMouseY();
         BeginDrawing();
+        DrawTexture(city->tabBitmapTexture[PageMap], 0, 0, WHITE);
 
         for (int i = 0; i < LIGNES; i++) {
             for (int j = 0; j < COLONNES; j++) {
                 DrawTexture(city->tabBitmapTexture[DecorHerbeImage], j * 20, i * 20 + 100, WHITE);
-                if ( i == 0 || i == LIGNES - 1 || j == 0 || j == COLONNES - 1) {
-                    DrawTexture(city->tabBitmapTexture[DecorObstacleCaillouImage], j * 20, i * 20 + 100 , WHITE);
+                if (i == 0 || i == LIGNES - 1 || j == 0 || j == COLONNES - 1) {
+                    DrawTexture(city->tabBitmapTexture[DecorObstacleCaillouImage], j * 20, i * 20 + 100, WHITE);
                     city->terrain[i][j].obstacle = true;
                 }
-                if ( i == 17 && j == 0) {
+                if (i == 17 && j == 0) {
                     DrawTexture(city->tabBitmapTexture[Route], j * 20, i * 20 + 100, BLACK);
                     city->terrain[i][j].obstacle = true;
                 }
@@ -199,6 +201,8 @@ void affichage(City *city) {
         }
         dessinerGrille();
 
+        DrawTexture(city->tabBitmapTexture[Ruine], 20, 300, WHITE);
+        DrawTexture(city->tabBitmapTexture[Cabanne1], 80, 300, WHITE);
         DrawTexture(city->tabBitmapTexture[House1], 20, 200, WHITE);
         DrawTexture(city->tabBitmapTexture[House2], 80, 200, WHITE);
         DrawTexture(city->tabBitmapTexture[House3], 140, 200, WHITE);
@@ -211,10 +215,7 @@ void affichage(City *city) {
         DrawTexture(city->tabBitmapTexture[Building2], 560, 200, WHITE);
         DrawTexture(city->tabBitmapTexture[Building3], 620, 200, WHITE);
 
-        DrawTexture(city->tabBitmapTexture[PageChargementImage], 620, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[PageMenuPrincip], 0, 0, WHITE);
-        DrawTexture(city->tabBitmapTexture[PageChoixMode], 0, 0, WHITE);
-        DrawTexture(city->tabBitmapTexture[PageMap], 0, 0, WHITE);
+        IsMouseButtonDown(0);
 
         EndDrawing();
     }

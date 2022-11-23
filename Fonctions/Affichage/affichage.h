@@ -11,6 +11,6 @@ void dessinerGrille();
 void initBitmap(City *city);
 void unloadTexture(City *city);
 
-void affichage(City *city);
+void initAffichage(City *city);
 
 #endif
