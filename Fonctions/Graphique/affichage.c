@@ -1,6 +1,10 @@
 #include "affichage.h"
- void affichage(){
-    InitWindow(800, 450, "Raylib > Allegro");
+
+#define LARGEUR_ECRAN 1024
+#define HAUTEUR_ECRAN 768
+
+void affichage(){
+    InitWindow(LARGEUR_ECRAN, HAUTEUR_ECRAN, "ECE-City");
     SetWindowState(FLAG_WINDOW_RESIZABLE);
 
     while (!WindowShouldClose()) {
