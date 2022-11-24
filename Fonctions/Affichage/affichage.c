@@ -680,7 +680,7 @@ void affichageBoucle(City *city) {
         city->mouseX = GetMouseX();
         city->mouseY = GetMouseY();
         city->temps = GetTime();
-
+        sec = city->temps;
 
         if (sec / 60 == 1) {
             sec = 0;
