@@ -18,6 +18,16 @@ enum BITMAP {
     PageMenuPrincip,
     PageChoixMode,
     PageMap,
+    PageRouteSelectionner,
+    PageHabitationSelectionner,
+    PageChateauSelectionner,
+    PageCentraleSelectionner,
+    PageMenuJeu,
+    Niveau0,
+    Niveau1,
+    Niveau2,
+    PageQuitterSauvegarde,
+    PageSauvegardeEffectuer,
     Ruine,
     Cabanne1,
     House1,
@@ -31,6 +41,7 @@ enum BITMAP {
     Building1,
     Building2,
     Building3,
+    Croix,
     DecorHerbeImage,
     Route,
     DecorObstacleCaillouImage,
@@ -75,7 +86,17 @@ typedef struct {
 
 typedef struct {
     bool pageJeu;
-    bool toolBox;
+    bool menu;
+    bool croix;
+
+    bool aide;
+    bool sauvegarde;
+    bool quitter;
+
+    bool BatimentRoute;
+    bool BatimentHabitation;
+    bool BatimentEau;
+    bool BatimentElec;
 } PageJeux;
 
 typedef struct {
@@ -117,6 +138,8 @@ typedef struct {
     bool electricite;   // Affichage niveau -2
     bool obstacle;      // savoir si c'est un obstacle ou pas
 
+    //test |
+    //int x, y;
 } Terrain;
 
 typedef struct {
@@ -150,6 +173,7 @@ typedef struct {
     int nombreHabitation;
     int nombreConstruction;
 
+    //pour les bitmaps avec raylib
     Image tabBitmapImage[NB_BITMAP];
     Texture2D tabBitmapTexture[NB_BITMAP];
     int nbBitmap;
@@ -161,6 +185,9 @@ typedef struct {
     bool capitaliste;
 
     int mouseX, mouseY;
+    double temps;
+
+    int ligneSurMap, colonneSurMap;
 } City;
 
 #endif

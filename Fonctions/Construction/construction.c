@@ -470,6 +470,101 @@ bool constructionViable(City *city, int numeroConstruction) {
     }
     return false;
 }
+
+bool obstacleHabitation(City *city) {
+    if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle
+        && !city->terrain[city->ligneSurMap][city->colonneSurMap + 1].obstacle
+        && !city->terrain[city->ligneSurMap][city->colonneSurMap + 2].obstacle
+        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap].obstacle
+        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].obstacle
+        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].obstacle
+        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap].obstacle
+        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].obstacle
+        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].obstacle) {
+        return true;
+    }
+    return false;
+}
+
+void mettreAJObstacleHabitation(City *city) {
+    city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle = true;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 1].obstacle = true;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 2].obstacle = true;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap].obstacle = true;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].obstacle = true;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].obstacle = true;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap].obstacle = true;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].obstacle = true;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].obstacle = true;
+}
+
+void mettreAJHabitationMap(City *city, int type) {
+    city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = type;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 1].typeBloc = type;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 2].typeBloc = type;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap].typeBloc = type;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].typeBloc = type;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].typeBloc = type;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap].typeBloc = type;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].typeBloc = type;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].typeBloc = type;
+}
+
+bool obstacleAlimentation(City *city) {
+    if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle
+        && !city->terrain[city->ligneSurMap][city->colonneSurMap + 1].obstacle
+        && !city->terrain[city->ligneSurMap][city->colonneSurMap + 2].obstacle
+        && !city->terrain[city->ligneSurMap][city->colonneSurMap + 3].obstacle
+        && !city->terrain[city->ligneSurMap][city->colonneSurMap + 4].obstacle
+        && !city->terrain[city->ligneSurMap][city->colonneSurMap + 5].obstacle
+        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap].obstacle
+        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].obstacle
+        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].obstacle
+        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 3].obstacle
+        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 4].obstacle
+        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 5].obstacle
+        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap].obstacle
+        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].obstacle
+        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].obstacle
+        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 3].obstacle
+        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 4].obstacle
+        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 5].obstacle
+        && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap].obstacle
+        && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 1].obstacle
+        && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 2].obstacle
+        && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 3].obstacle
+        && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 4].obstacle
+        && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 5].obstacle
+            ) {
+        return true;
+    }
+    return false;
+}
+
+void mettreAJObstacleAlimentation(City *city) {
+    city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle = true;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 1].obstacle = true;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 2].obstacle = true;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 3].obstacle = true;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 4].obstacle = true;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 5].obstacle = true;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap].obstacle = true;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].obstacle = true;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].obstacle = true;
+}
+
+void mettreAJAlimentationMap(City *city, int type) {
+    city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = type;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 1].typeBloc = type;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 2].typeBloc = type;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 3].typeBloc = type;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 4].typeBloc = type;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 5].typeBloc = type;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap].typeBloc = type;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].typeBloc = type;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].typeBloc = type;
+}
+
 // --------------- A FAIRE --------------- //
 bool viabiliteeRoutiere(City *city, int numeroConstruction) {
     if ((city->tabConstruction[numeroConstruction].typeDeConstruction == 3) ||
@@ -543,6 +638,71 @@ bool viabiliteeRoutiere(City *city, int numeroConstruction) {
     return false;
 }
 
+bool viabiliteeRoutiereGraphique(City *city, int type) {
+    if (type == 3 || type == 4) {
+        for (int i = city->ligneSurMap - 1;
+             i <= city->ligneSurMap + 4; i++) {
+            for (int j = city->colonneSurMap - 1;
+                 j <= city->colonneSurMap + 6; j++) {
+                if (city->terrain[i][j].typeBloc == 2) {
+                    if (!(i == city->ligneSurMap - 1 &&
+                          j == city->colonneSurMap - 1) &&
+                        !(i == city->ligneSurMap - 1 &&
+                          j == city->colonneSurMap + 6) &&
+                        !(i == city->ligneSurMap + 4 &&
+                          j == city->colonneSurMap - 1) &&
+                        !(i == city->ligneSurMap + 4 &&
+                          j == city->colonneSurMap + 6)) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    if ((type == 5) || (type == 6) ||
+        (type == 7) || (type == 8) || (type == 9)) {
+        for (int i = city->ligneSurMap - 1;
+             i <= city->ligneSurMap + 3; i++) {
+            for (int j = city->colonneSurMap - 1;
+                 j <= city->colonneSurMap + 3; j++) {
+                if (city->terrain[i][j].typeBloc == 2) {
+                    if (!(i == city->ligneSurMap - 1 &&
+                          j == city->colonneSurMap - 1) &&
+                        !(i == city->ligneSurMap - 1 &&
+                          j == city->colonneSurMap + 3) &&
+                        !(i == city->ligneSurMap + 3 &&
+                          j == city->colonneSurMap - 1) &&
+                        !(i == city->ligneSurMap + 3 &&
+                          j == city->colonneSurMap + 3)) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    if (type == 2) {
+        for (int i = city->ligneSurMap - 1;
+             i <= city->ligneSurMap + 1; i++) {
+            for (int j = city->colonneSurMap - 1;
+                 j <= city->colonneSurMap + 1; j++) {
+                if (city->terrain[i][j].typeBloc == 2) {
+                    if (!(i == city->ligneSurMap - 1 &&
+                          j == city->colonneSurMap - 1) &&
+                        !(i == city->ligneSurMap - 1 &&
+                          j == city->colonneSurMap + 1) &&
+                        !(i == city->ligneSurMap + 1 &&
+                          j == city->colonneSurMap - 1) &&
+                        !(i == city->ligneSurMap + 1 &&
+                          j == city->colonneSurMap + 1)) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    return false;
+}
+
 bool viabiliteeElectrique(City *city, int numeroConstruction) {
     consommationElectrique(city);
     if (city->tabConstruction[numeroConstruction].typeDeConstruction == 5) {
@@ -573,6 +733,36 @@ bool viabiliteeElectrique(City *city, int numeroConstruction) {
     return false;
 }
 
+bool viabiliteeElectriqueGraphique(City *city, int type) {
+    consommationElectrique(city);
+    if (type == 5) {
+        if ((city->centrale.flot - city->ruine.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    if (type == 6) {
+        if ((city->centrale.flot - city->cabane.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    if (type == 7) {
+        if ((city->centrale.flot - city->maison.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    if (type == 8) {
+        if ((city->centrale.flot - city->immeuble.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    if (type == 9) {
+        if ((city->centrale.flot - city->gratteCiel.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
 bool viabiliteeEau(City *city, int numeroConstruction) {
     consommationEau(city);
     if (city->tabConstruction[numeroConstruction].typeDeConstruction == 5) {
@@ -596,6 +786,36 @@ bool viabiliteeEau(City *city, int numeroConstruction) {
         }
     }
     if (city->tabConstruction[numeroConstruction].typeDeConstruction == 9) {
+        if ((city->chateauEau.flot - city->gratteCiel.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool viabiliteeEauGraphique(City *city, int type) {
+    consommationEau(city);
+    if (type == 5) {
+        if ((city->chateauEau.flot - city->ruine.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    if (type == 6) {
+        if ((city->chateauEau.flot - city->cabane.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    if (type == 7) {
+        if ((city->chateauEau.flot - city->maison.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    if (type == 8) {
+        if ((city->chateauEau.flot - city->immeuble.nbHabitant) >= 0) {
+            return true;
+        }
+    }
+    if (type == 9) {
         if ((city->chateauEau.flot - city->gratteCiel.nbHabitant) >= 0) {
             return true;
         }
