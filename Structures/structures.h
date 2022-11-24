@@ -187,6 +187,7 @@ typedef struct {
     int mouseX, mouseY;
     double temps;
 
+
     int ligneSurMap, colonneSurMap;
 } City;
 

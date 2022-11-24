@@ -652,6 +652,17 @@ void fonction_Nino_ROUTE(City *city, int nbConstru) {
     }
 }
 
+void fonctionTemps(double *sec, double *min, double *hour) {
+    if (*sec == 60) {
+        *sec = 0;
+        *min += 1;
+    }
+    if (*min == 60) {
+        *min = 0;
+        *hour += 1;
+    }
+}
+
 void affichageBoucle(City *city) {
     InitWindow(LARGEUR_ECRAN, HAUTEUR_ECRAN, "ECE-City");
     SetWindowState(FLAG_WINDOW_RESIZABLE);
@@ -659,16 +670,40 @@ void affichageBoucle(City *city) {
     initBitmap(city);
 
     SetTargetFPS(1080);
+
     while (!WindowShouldClose()) {
-        ClearBackground(RAYWHITE);
+        //ClearBackground(RAYWHITE);
         BeginDrawing();
 
         int nbConstru = 0;
+        double sec = 0, min = 0, hour = 0;
         city->mouseX = GetMouseX();
         city->mouseY = GetMouseY();
         city->temps = GetTime();
+
+
+        if (sec / 60 == 1) {
+            sec = 0;
+            min++;
+        }
+        if (min / 60 == 1) {
+            min = 0;
+            hour++;
+        }
+
         gestionCliqueSouris(city);
         DrawTexture(city->tabBitmapTexture[PageMap], 0, 0, WHITE);
+        DrawTexture(city->tabBitmapTexture[Niveau0], 963, 169, WHITE);
+        DrawRectangle(932, 5, 75, 20, WHITE);
+        if (sec >= 1) {
+            DrawText(TextFormat("Temps de jeu : %.0fsec", sec), 870, 5, 20, BLACK);
+        }
+        if (min >= 1) {
+            DrawText(TextFormat("Temps de jeu : %.0fmin %.0fsec", min, sec), 870, 5, 20, BLACK);
+        }
+        if (hour >= 1) {
+            DrawText(TextFormat("Temps de jeu : %.0fheure %.0fmin %.0fsec", hour, min, sec), 870, 5, 20, BLACK);
+        }
         for (int i = 0; i < LIGNES; i++) {
             for (int j = 0; j < COLONNES; j++) {
                 DrawTexture(city->tabBitmapTexture[DecorHerbeImage], j * 20, i * 20 + 100, WHITE);
@@ -679,11 +714,10 @@ void affichageBoucle(City *city) {
         fonction_Nino_ROUTE(city, nbConstru);
 
         if (city->page.pageJeux.pageJeu) {
-            DrawTexture(city->tabBitmapTexture[Niveau0], 963, 169, WHITE);
             //Afficher map
             if (city->page.pageJeux.BatimentRoute) {
                 DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10, WHITE);
-                DrawTexture(city->tabBitmapTexture[PageRouteSelectionner], 968, 468, WHITE);
+                DrawTexture(city->tabBitmapTexture[PageRouteSelectionner], 968, 466, WHITE);
                 if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle &&
                     viabiliteeRoutiereGraphique(city, 2)) {
                     DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10, GREEN);
@@ -704,7 +738,7 @@ void affichageBoucle(City *city) {
                 }
             }
             if (city->page.pageJeux.BatimentHabitation) {
-                DrawTexture(city->tabBitmapTexture[PageHabitationSelectionner], 968, 468, WHITE);
+                DrawTexture(city->tabBitmapTexture[PageHabitationSelectionner], 968, 466, WHITE);
                 DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, WHITE);
                 if (obstacleHabitation(city)) {
                     if (!viabiliteeRoutiereGraphique(city, 5)) {
@@ -727,10 +761,10 @@ void affichageBoucle(City *city) {
                 }
             }
             if (city->page.pageJeux.BatimentEau) {
-                DrawTexture(city->tabBitmapTexture[PageChateauSelectionner], 968, 468, WHITE);
+                DrawTexture(city->tabBitmapTexture[PageChateauSelectionner], 968, 466, WHITE);
             }
             if (city->page.pageJeux.BatimentElec) {
-                DrawTexture(city->tabBitmapTexture[PageCentraleSelectionner], 968, 468, WHITE);
+                DrawTexture(city->tabBitmapTexture[PageCentraleSelectionner], 968, 466, WHITE);
             }
         }
         if (city->page.pageJeux.menu) {
