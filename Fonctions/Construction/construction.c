@@ -539,7 +539,7 @@ bool obstacleHabitation(City *city) {
     return false;
 }
 
-void mettreAJObstacleHabitation(City *city) {
+void mettreAJObstacleConstruction(City *city) {
     city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle = true;
     city->terrain[city->ligneSurMap][city->colonneSurMap + 1].obstacle = true;
     city->terrain[city->ligneSurMap][city->colonneSurMap + 2].obstacle = true;
@@ -587,7 +587,7 @@ void mettreAJObstacleHabitation(City *city) {
     }
 }
 
-void mettreAJHabitationMap(City *city, int type) {
+void mettreAJConstructionMap(City *city, int type) {
     city->tabConstruction[city->nombreConstruction].typeDeConstruction=type;
     city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = type;
     city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = type;

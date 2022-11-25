@@ -758,8 +758,8 @@ void affichageBoucle(City *city) {
                         DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, GREEN);
                     }
                     if (IsMouseButtonDown(0)) {
-                        mettreAJObstacleHabitation(city);
-                        mettreAJHabitationMap(city, 5);
+                        mettreAJObstacleConstruction(city);
+                        mettreAJConstructionMap(city, 5);
                         city->nombreConstruction++;
                     }
                 } else {
@@ -781,8 +781,8 @@ void affichageBoucle(City *city) {
                         DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, GREEN);
                     }
                     if (IsMouseButtonDown(0)) {
-                        mettreAJObstacleHabitation(city);
-                        mettreAJHabitationMap(city, 4);
+                        mettreAJObstacleConstruction(city);
+                        mettreAJConstructionMap(city, 4);
                         city->nombreConstruction++;
                     }
                 } else {
@@ -804,8 +804,8 @@ void affichageBoucle(City *city) {
                         DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, GREEN);
                     }
                     if (IsMouseButtonDown(0)) {
-                        mettreAJObstacleHabitation(city);
-                        mettreAJHabitationMap(city, 3);
+                        mettreAJObstacleConstruction(city);
+                        mettreAJConstructionMap(city, 3);
                         city->nombreConstruction++;
                     }
                 } else {
