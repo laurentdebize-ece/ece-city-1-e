@@ -23,6 +23,7 @@ void parcoursRoute(City *city, int numeroConstructionInitial);
 
 bool constructionViable(City *city, int numeroConstruction);
 
+void ameliorationBatiment(City* city);
 
 bool obstacleHabitation(City *city);
 

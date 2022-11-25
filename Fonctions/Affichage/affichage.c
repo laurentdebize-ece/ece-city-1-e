@@ -660,6 +660,7 @@ void fonction_Nino_ROUTE(City *city, int nbConstru) {
 }
 
 void affichageBoucle(City *city) {
+    bool ameliorer = true;
     InitWindow(LARGEUR_ECRAN, HAUTEUR_ECRAN, "ECE-City");
     SetWindowState(FLAG_WINDOW_RESIZABLE);
 
@@ -671,17 +672,25 @@ void affichageBoucle(City *city) {
         //ClearBackground(RAYWHITE);
         BeginDrawing();
 
+        int nbConstru = 0;
+        int sec = 0, min = 0, hour = 0;
         city->mouseX = GetMouseX();
         city->mouseY = GetMouseY();
 
-        int nbConstru = 0;
-        int sec = 0, min = 0, hour = 0;
-
         city->temps = GetTime();
+        sec = (int) city->temps;
 
         sec = ((int) city->temps % 3600) % 60;
         min = ((int) city->temps % 3600) / 60;
         hour = (int) city->temps / 3600;
+
+        if (sec % 15 == 0 && ameliorer){
+            ameliorationBatiment(city);
+            ameliorer=false;
+        }
+        if (sec % 15 != 0){
+            ameliorer=true;
+        }
 
         gestionCliqueSouris(city);
         DrawTexture(city->tabBitmapTexture[PageMap], 0, 0, WHITE);
