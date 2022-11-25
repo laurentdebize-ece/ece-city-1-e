@@ -671,28 +671,24 @@ void affichageBoucle(City *city) {
         //ClearBackground(RAYWHITE);
         BeginDrawing();
 
-        int nbConstru = 0;
-        int sec = 0, min = 0, hour = 0;
         city->mouseX = GetMouseX();
         city->mouseY = GetMouseY();
-        city->temps = GetTime();
-        sec = (int) city->temps;
 
-        if (sec / 60 == 1) {
-            sec = ((((int) city->temps) - 60));
-            min++;
-        }
-        if (min / 60 == 1) {
-            min = 0;
-            hour++;
-        }
+        int nbConstru = 0;
+        int sec = 0, min = 0, hour = 0;
+
+        city->temps = GetTime();
+
+        sec = ((int) city->temps % 3600) % 60;
+        min = ((int) city->temps % 3600) / 60;
+        hour = (int) city->temps / 3600;
 
         gestionCliqueSouris(city);
         DrawTexture(city->tabBitmapTexture[PageMap], 0, 0, WHITE);
         DrawTexture(city->tabBitmapTexture[Niveau0], 963, 169, WHITE);
         DrawRectangle(932, 5, 75, 20, WHITE);
         if (hour > 0) {
-            DrawText(TextFormat("Temps de jeu : %dheure %dmin %dsec", hour, min, sec), 870, 5, 20, BLACK);
+            DrawText(TextFormat("Temps de jeu : %dh %dmin %dsec", hour, min, sec), 870, 5, 20, BLACK);
         }
         if (min > 0 && hour == 0) {
             DrawText(TextFormat("Temps de jeu : %dmin %dsec", min, sec), 870, 5, 20, BLACK);
@@ -700,7 +696,7 @@ void affichageBoucle(City *city) {
         if (sec > 0 && min == 0 && hour == 0) {
             DrawText(TextFormat("Temps de jeu : %dsec", sec), 870, 5, 20, BLACK);
         }
-        DrawText(TextFormat("%d", city->nbHabitant), 1010, 48, 25, BLUE);
+        DrawText(TextFormat("%d", city->nbHabitant), 1010, 48, 25, BLACK);
         DrawText(TextFormat("%d", city->argent), 1010, 107, 25, BLACK);
         DrawText("ece", 1149, 102, 15, DARKGRAY);
         DrawText("flouz", 1143, 117, 15, DARKGRAY);
