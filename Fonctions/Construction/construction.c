@@ -122,6 +122,59 @@ void savoirIndiceConstruction(City *city) {
     }
 }
 
+void ameliorationBatiment(City* city){
+    for (int i = 0; i < city->nombreConstruction; i++) {
+        if(city->tabConstruction[i].typeDeConstruction==8){
+            city->tabConstruction[i].typeDeConstruction=9;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY].typeBloc=9;
+            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY].typeBloc=9;
+            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY].typeBloc=9;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY+1].typeBloc=9;
+            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY+1].typeBloc=9;
+            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY+1].typeBloc=9;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY+2].typeBloc=9;
+            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY+2].typeBloc=9;
+            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY+2].typeBloc=9;
+        }
+        if(city->tabConstruction[i].typeDeConstruction==7){
+            city->tabConstruction[i].typeDeConstruction=8;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY].typeBloc=8;
+            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY].typeBloc=8;
+            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY].typeBloc=8;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY+1].typeBloc=8;
+            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY+1].typeBloc=8;
+            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY+1].typeBloc=8;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY+2].typeBloc=8;
+            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY+2].typeBloc=8;
+            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY+2].typeBloc=8;
+        }
+        if(city->tabConstruction[i].typeDeConstruction==6){
+            city->tabConstruction[i].typeDeConstruction=7;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY].typeBloc=7;
+            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY].typeBloc=7;
+            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY].typeBloc=7;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY+1].typeBloc=7;
+            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY+1].typeBloc=7;
+            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY+1].typeBloc=7;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY+2].typeBloc=7;
+            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY+2].typeBloc=7;
+            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY+2].typeBloc=7;
+        }
+        if(city->tabConstruction[i].typeDeConstruction==5){
+            city->tabConstruction[i].typeDeConstruction=6;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY].typeBloc=6;
+            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY].typeBloc=6;
+            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY].typeBloc=6;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY+1].typeBloc=6;
+            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY+1].typeBloc=6;
+            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY+1].typeBloc=6;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY+2].typeBloc=6;
+            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY+2].typeBloc=6;
+            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY+2].typeBloc=6;
+        }
+    }
+}
+
 void getCoordonneConstruction4x6(City *city) {
     int nbConstru = 0;
     for (int i = 0; i < LIGNES; i++) {
