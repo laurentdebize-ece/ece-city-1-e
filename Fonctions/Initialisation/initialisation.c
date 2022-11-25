@@ -91,7 +91,12 @@ void initialisationVille(City *city) {
 
     city->nombreConstruction = 0;
 
-    for (int i = 0; i < MAX_BATIMENT; i++) {
+    for (int i = 0; i < LIGNES; i++) {
+        for (int j = 0; j < COLONNES; j++) {
+            city->terrain[i][j].nbBatiment=-1;
+        }
+    }
+    for (int i = 0 ; i < MAX_BATIMENT ; i++) {
 
         city->tabConstruction[i].numeroDesConstructions = 0;
         city->tabConstruction[i].typeDeConstruction = 0;

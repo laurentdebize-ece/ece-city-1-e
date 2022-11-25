@@ -11,24 +11,25 @@ void consommationElectrique(City *city) {
 void alimenteElectricite(City *city) {
     nbConstruction(city);
     capaciteTotalElectriciter(city);
+    int cabaneAlimente= city->cabane.numeroBatiment, maisonAlimente=city->maison.numeroBatiment,immeubleAlimente=city->immeuble.numeroBatiment,gratteCielAlimente=city->gratteCiel.numeroBatiment;
     if (city->centrale.capaciteTotal >= city->nbHabitant) {
         printf("Toutes les maisons sont alimentees\n");
     } else {
         int manque = city->nbHabitant - city->centrale.capaciteTotal;
-        while (city->cabane.numeroBatiment != 0 || manque != 0) {
-            city->cabane.numeroBatiment--;
+        while (cabaneAlimente != 0 || manque != 0) {
+           cabaneAlimente--;
             manque -= 10;
         }
-        while (city->maison.numeroBatiment != 0 || manque != 0) {
-            city->maison.numeroBatiment--;
+        while (maisonAlimente != 0 || manque != 0) {
+            maisonAlimente--;
             manque -= 50;
         }
-        while (city->immeuble.numeroBatiment != 0 || manque != 0) {
-            city->immeuble.numeroBatiment--;
+        while (immeubleAlimente != 0 || manque != 0) {
+            immeubleAlimente--;
             manque -= 100;
         }
-        while (city->gratteCiel.numeroBatiment != 0 || manque != 0) {
-            city->gratteCiel.numeroBatiment--;
+        while (gratteCielAlimente != 0 || manque != 0) {
+            gratteCielAlimente--;
             manque -= 1000;
         }
     }
