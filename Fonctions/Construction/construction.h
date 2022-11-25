@@ -27,16 +27,15 @@ void ameliorationBatiment(City* city);
 
 bool obstacleHabitation(City *city);
 
-void mettreAJObstacleHabitation(City *city);
+void mettreAJObstacleConstruction(City *city);
 
-void mettreAJHabitationMap(City *city, int type);
+void mettreAJConstructionMap(City *city, int type);
 
 bool obstacleAlimentation(City *city);
 
 void mettreAJObstacleAlimentation(City *city);
 
 void mettreAJAlimentationMap(City *city, int type);
-
 
 bool viabiliteeRoutiere(City *city, int numeroConstruction);
 

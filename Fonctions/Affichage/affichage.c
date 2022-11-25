@@ -684,7 +684,8 @@ void affichageBoucle(City *city) {
         min = ((int) city->temps % 3600) / 60;
         hour = (int) city->temps / 3600;
 
-        if (sec % 15 == 0 && ameliorer){
+
+        if (!(sec==0&&min==0&&hour==0) && sec % 15 == 0 && ameliorer){
             ameliorationBatiment(city);
             ameliorer=false;
         }
@@ -757,9 +758,9 @@ void affichageBoucle(City *city) {
                         DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, GREEN);
                     }
                     if (IsMouseButtonDown(0)) {
-                        city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = 5;
-                        mettreAJObstacleHabitation(city);
-                        mettreAJHabitationMap(city, 5);
+                        mettreAJObstacleConstruction(city);
+                        mettreAJConstructionMap(city, 5);
+                        city->nombreConstruction++;
                     }
                 } else {
                     DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, RED);
@@ -767,9 +768,49 @@ void affichageBoucle(City *city) {
             }
             if (city->page.pageJeux.BatimentEau) {
                 DrawTexture(city->tabBitmapTexture[PageChateauSelectionner], 968, 466, WHITE);
+                DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, WHITE);
+                if (obstacleAlimentation(city)) {
+                    if (!viabiliteeRoutiereGraphique(city, 4)) {
+                        DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, DARKGRAY);
+                    } else if (!viabiliteeElectriqueGraphique(city, 4)) {
+                        DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, YELLOW);
+                    } else if (!viabiliteeEauGraphique(city, 4)) {
+                        DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, BLUE);
+                    } else if (viabiliteeRoutiereGraphique(city, 4) && viabiliteeElectriqueGraphique(city, 4) &&
+                               viabiliteeEauGraphique(city, 4)) {
+                        DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, GREEN);
+                    }
+                    if (IsMouseButtonDown(0)) {
+                        mettreAJObstacleConstruction(city);
+                        mettreAJConstructionMap(city, 4);
+                        city->nombreConstruction++;
+                    }
+                } else {
+                    DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, RED);
+                }
             }
             if (city->page.pageJeux.BatimentElec) {
                 DrawTexture(city->tabBitmapTexture[PageCentraleSelectionner], 968, 466, WHITE);
+                DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, WHITE);
+                if (obstacleAlimentation(city)) {
+                    if (!viabiliteeRoutiereGraphique(city, 3)) {
+                        DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, DARKGRAY);
+                    } else if (!viabiliteeElectriqueGraphique(city, 3)) {
+                        DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, YELLOW);
+                    } else if (!viabiliteeEauGraphique(city, 3)) {
+                        DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, BLUE);
+                    } else if (viabiliteeRoutiereGraphique(city, 3) && viabiliteeElectriqueGraphique(city, 3) &&
+                               viabiliteeEauGraphique(city, 3)) {
+                        DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, GREEN);
+                    }
+                    if (IsMouseButtonDown(0)) {
+                        mettreAJObstacleConstruction(city);
+                        mettreAJConstructionMap(city, 3);
+                        city->nombreConstruction++;
+                    }
+                } else {
+                    DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, RED);
+                }
             }
         }
         if (city->page.pageJeux.menu) {
