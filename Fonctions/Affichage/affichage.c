@@ -1,5 +1,11 @@
 #include "affichage.h"
 
+// FONCTION SON
+
+// Music musique = LoadMusicStream("../Music/..")
+// PlayMusicStream(musique)
+// Pause Resume STop
+
 int savoirAffichageRoute(City *city, int i, int j) {
     bool haut = false, bas = false, gauche = false, droite = false;
     if (city->terrain[i][j - 1].typeBloc == 2) {
@@ -494,6 +500,7 @@ void gestionCliqueSouris(City *city) {
     //Bouton croix
     if ((city->mouseX > 1050 && city->mouseX < 1100 && city->mouseY > 400 && city->mouseY < 450) &&
         IsMouseButtonDown(0)) {
+        city->page.pageJeux.pageJeu = true;
         city->page.pageJeux.BatimentRoute = false;
         city->page.pageJeux.BatimentHabitation = false;
         city->page.pageJeux.BatimentEau = false;
@@ -652,17 +659,6 @@ void fonction_Nino_ROUTE(City *city, int nbConstru) {
     }
 }
 
-void fonctionTemps(double *sec, double *min, double *hour) {
-    if (*sec == 60) {
-        *sec = 0;
-        *min += 1;
-    }
-    if (*min == 60) {
-        *min = 0;
-        *hour += 1;
-    }
-}
-
 void affichageBoucle(City *city) {
     InitWindow(LARGEUR_ECRAN, HAUTEUR_ECRAN, "ECE-City");
     SetWindowState(FLAG_WINDOW_RESIZABLE);
@@ -676,14 +672,14 @@ void affichageBoucle(City *city) {
         BeginDrawing();
 
         int nbConstru = 0;
-        double sec = 0, min = 0, hour = 0;
+        int sec = 0, min = 0, hour = 0;
         city->mouseX = GetMouseX();
         city->mouseY = GetMouseY();
         city->temps = GetTime();
-        sec = city->temps;
+        sec = (int) city->temps;
 
         if (sec / 60 == 1) {
-            sec = 0;
+            sec = ((((int) city->temps) - 60));
             min++;
         }
         if (min / 60 == 1) {
@@ -695,15 +691,19 @@ void affichageBoucle(City *city) {
         DrawTexture(city->tabBitmapTexture[PageMap], 0, 0, WHITE);
         DrawTexture(city->tabBitmapTexture[Niveau0], 963, 169, WHITE);
         DrawRectangle(932, 5, 75, 20, WHITE);
-        if (sec >= 1) {
-            DrawText(TextFormat("Temps de jeu : %.0fsec", sec), 870, 5, 20, BLACK);
+        if (hour > 0) {
+            DrawText(TextFormat("Temps de jeu : %dheure %dmin %dsec", hour, min, sec), 870, 5, 20, BLACK);
         }
-        if (min >= 1) {
-            DrawText(TextFormat("Temps de jeu : %.0fmin %.0fsec", min, sec), 870, 5, 20, BLACK);
+        if (min > 0 && hour == 0) {
+            DrawText(TextFormat("Temps de jeu : %dmin %dsec", min, sec), 870, 5, 20, BLACK);
         }
-        if (hour >= 1) {
-            DrawText(TextFormat("Temps de jeu : %.0fheure %.0fmin %.0fsec", hour, min, sec), 870, 5, 20, BLACK);
+        if (sec > 0 && min == 0 && hour == 0) {
+            DrawText(TextFormat("Temps de jeu : %dsec", sec), 870, 5, 20, BLACK);
         }
+        DrawText(TextFormat("%d", city->nbHabitant), 1010, 48, 25, BLUE);
+        DrawText(TextFormat("%d", city->argent), 1010, 107, 25, BLACK);
+        DrawText("ece", 1149, 102, 15, DARKGRAY);
+        DrawText("flouz", 1143, 117, 15, DARKGRAY);
         for (int i = 0; i < LIGNES; i++) {
             for (int j = 0; j < COLONNES; j++) {
                 DrawTexture(city->tabBitmapTexture[DecorHerbeImage], j * 20, i * 20 + 100, WHITE);
