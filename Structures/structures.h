@@ -42,6 +42,8 @@ enum BITMAP {
     Building2,
     Building3,
     Croix,
+    ModeCapitaliste,
+    ModeCommuniste,
     DecorHerbeImage,
     Route,
     DecorObstacleCaillouImage,
@@ -58,18 +60,21 @@ enum BITMAP {
     Route_Carrefour,
     NB_BITMAP
 };
+enum MUSIQUE {
+    BlockPoser, InfraStructure, PagePrincipale, Bouton,BruitElectrique , BruitEau,Building, CentralPark,
+    NB_MUSIQUE
+};
 
 typedef struct {
     bool boolMenuPrincipal; //permet de rester dans la boucle de cette page
     bool partie;
-    bool partieHover;
-    bool partieClique;
+    bool choix;
+    bool sauvegarde;
+
     bool aide;
-    bool aideHover;
-    bool aideClique;
+
     bool quitter;
-    bool quitterHover;
-    bool quitterClique;
+
 } PageMenuPrincipale;
 
 typedef struct {
@@ -92,6 +97,8 @@ typedef struct {
     bool aide;
     bool sauvegarde;
     bool quitter;
+
+    bool musiqueJeu;
 
     bool BatimentRoute;
     bool BatimentHabitation;
@@ -181,15 +188,19 @@ typedef struct {
     Texture2D tabBitmapTexture[NB_BITMAP];
     int nbBitmap;
 
+    Music musique[NB_MUSIQUE];
+
     Construction tabConstruction[MAX_BATIMENT];
     Construction tabParcoursLongueur[MAX_BATIMENT];
 
     int nbHabitant;
     bool capitaliste;
+    bool communiste;
 
     int mouseX, mouseY;
     double temps;
 
+    bool quitter;
 
     int ligneSurMap, colonneSurMap;
 } City;
