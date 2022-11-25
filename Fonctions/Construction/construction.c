@@ -90,8 +90,8 @@ void nbConstruction(City *city) {
     city->maison.numeroBatiment = city->maison.numeroBatiment / 9;
     city->immeuble.numeroBatiment = city->immeuble.numeroBatiment / 9;
     city->gratteCiel.numeroBatiment = city->gratteCiel.numeroBatiment / 9;
-    city->centrale.capacite = city->centrale.numeroBatiment * city->centrale.capacite;
-    city->chateauEau.capacite = city->chateauEau.numeroBatiment * city->chateauEau.capacite;
+    city->centrale.capaciteTotal = city->centrale.numeroBatiment * city->centrale.capacite;
+    city->chateauEau.capaciteTotal = city->chateauEau.numeroBatiment * city->chateauEau.capacite;
     city->nombreConstruction = (city->centrale.numeroBatiment +
                                 city->chateauEau.numeroBatiment + city->ruine.numeroBatiment +
                                 city->cabane.numeroBatiment + city->maison.numeroBatiment +
@@ -361,6 +361,11 @@ void poserConstruction(City *city, char *nomFichier) {
                 city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 5;
                 city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 5;
                 city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 5;
+                for (int i = coordonneeX ; i < coordonneeX + 2; ++i) {
+                    for (int j = coordonneeY ; j < coordonneeY + 2; ++j) {
+                        city->terrain[i][j].nbBatiment=city->nombreConstruction+1;
+                    }
+                }
                 break;
             }
             case 'c' : {
@@ -373,6 +378,11 @@ void poserConstruction(City *city, char *nomFichier) {
                 city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 6;
                 city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 6;
                 city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 6;
+                for (int i = coordonneeX ; i < coordonneeX + 2; ++i) {
+                    for (int j = coordonneeY ; j < coordonneeY + 2; ++j) {
+                        city->terrain[i][j].nbBatiment=city->nombreConstruction+1;
+                    }
+                }
                 break;
             }
             case 'm' : {
@@ -385,6 +395,11 @@ void poserConstruction(City *city, char *nomFichier) {
                 city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 7;
                 city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 7;
                 city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 7;
+                for (int i = coordonneeX ; i < coordonneeX + 2; ++i) {
+                    for (int j = coordonneeY ; j < coordonneeY + 2; ++j) {
+                        city->terrain[i][j].nbBatiment=city->nombreConstruction+1;
+                    }
+                }
                 break;
             }
             case 'i' : {
@@ -397,6 +412,11 @@ void poserConstruction(City *city, char *nomFichier) {
                 city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 8;
                 city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 8;
                 city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 8;
+                for (int i = coordonneeX ; i < coordonneeX + 2; ++i) {
+                    for (int j = coordonneeY ; j < coordonneeY + 2; ++j) {
+                        city->terrain[i][j].nbBatiment=city->nombreConstruction+1;
+                    }
+                }
                 break;
             }
             case 'g' : {
@@ -409,6 +429,11 @@ void poserConstruction(City *city, char *nomFichier) {
                 city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 9;
                 city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 9;
                 city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 9;
+                for (int i = coordonneeX ; i < coordonneeX + 2; ++i) {
+                    for (int j = coordonneeY ; j < coordonneeY + 2; ++j) {
+                        city->terrain[i][j].nbBatiment=city->nombreConstruction+1;
+                    }
+                }
                 break;
             }
             default : {

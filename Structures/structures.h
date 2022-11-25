@@ -7,8 +7,8 @@
 #include <stdbool.h>
 #include "raylib.h"
 
-#define COLONNES 45 //case X
-#define LIGNES 35 //case Y
+#define COLONNES 45 //case Y
+#define LIGNES 35 //case X
 
 #define MAX_BATIMENT LIGNES*COLONNES
 
@@ -133,7 +133,8 @@ typedef struct {
 } Batiment;
 
 typedef struct {
-    int typeBloc;       // Provient du fichier map.txt
+    int typeBloc;// Provient du fichier map.txt
+    int nbBatiment;
     bool eau;           // Affichage niveau -1
     bool electricite;   // Affichage niveau -2
     bool obstacle;      // savoir si c'est un obstacle ou pas
@@ -153,6 +154,8 @@ typedef struct {
     int longueur;           // taille du chemin
     bool plusCourt;         // C'est le plus court ?
     int indiceParcours;     //pour reconnaitre chaque parcours effectué
+    bool electricite;//1 alimenter
+    int eau;//nombre habitant alimenter
 } Construction;
 
 typedef struct {
@@ -190,5 +193,12 @@ typedef struct {
 
     int ligneSurMap, colonneSurMap;
 } City;
+
+typedef struct {
+    int y,x;
+    int pred;
+    int distance;
+} Case;
+
 
 #endif
