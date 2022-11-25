@@ -684,7 +684,7 @@ void affichageBoucle(City *city) {
         min = ((int) city->temps % 3600) / 60;
         hour = (int) city->temps / 3600;
 
-        if (sec % 15 == 0 && ameliorer){
+        if (sec !=0 && sec % 15 == 0 && ameliorer){
             ameliorationBatiment(city);
             ameliorer=false;
         }
@@ -757,9 +757,11 @@ void affichageBoucle(City *city) {
                         DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, GREEN);
                     }
                     if (IsMouseButtonDown(0)) {
+                        city->tabConstruction[city->nombreConstruction].typeDeConstruction=5;
                         city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = 5;
                         mettreAJObstacleHabitation(city);
                         mettreAJHabitationMap(city, 5);
+                        city->nombreConstruction++;
                     }
                 } else {
                     DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, RED);

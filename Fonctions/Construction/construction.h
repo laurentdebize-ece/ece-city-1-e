@@ -37,7 +37,6 @@ void mettreAJObstacleAlimentation(City *city);
 
 void mettreAJAlimentationMap(City *city, int type);
 
-
 bool viabiliteeRoutiere(City *city, int numeroConstruction);
 
 bool viabiliteeRoutiereGraphique(City *city, int type);

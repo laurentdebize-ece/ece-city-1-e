@@ -561,6 +561,8 @@ void mettreAJHabitationMap(City *city, int type) {
     city->terrain[city->ligneSurMap + 2][city->colonneSurMap].typeBloc = type;
     city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].typeBloc = type;
     city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].typeBloc = type;
+    city->tabConstruction[city->nombreConstruction].coordonneeX=city->ligneSurMap;
+    city->tabConstruction[city->nombreConstruction].coordonneeY=city->colonneSurMap;
 }
 
 bool obstacleAlimentation(City *city) {
