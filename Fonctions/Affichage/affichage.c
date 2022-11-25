@@ -684,7 +684,8 @@ void affichageBoucle(City *city) {
         min = ((int) city->temps % 3600) / 60;
         hour = (int) city->temps / 3600;
 
-        if (sec !=0 && sec % 15 == 0 && ameliorer){
+
+        if (!(sec==0&&min==0&&hour==0) && sec % 15 == 0 && ameliorer){
             ameliorationBatiment(city);
             ameliorer=false;
         }
