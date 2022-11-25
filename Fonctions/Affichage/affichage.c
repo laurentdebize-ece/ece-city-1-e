@@ -1,11 +1,5 @@
 #include "affichage.h"
 
-// FONCTION SON
-
-// Music musique = LoadMusicStream("../Music/..")
-// PlayMusicStream(musique)
-// Pause Resume STop
-
 int savoirAffichageRoute(City *city, int i, int j) {
     bool haut = false, bas = false, gauche = false, droite = false;
     if (city->terrain[i][j - 1].typeBloc == 2) {
@@ -119,6 +113,8 @@ void initBitmap(City *city) {
     city->tabBitmapImage[Niveau0] = LoadImage("../Images/Pages/Niveau0.png");
     city->tabBitmapImage[Niveau1] = LoadImage("../Images/Pages/Niveau-1.png");
     city->tabBitmapImage[Niveau2] = LoadImage("../Images/Pages/Niveau-2.png");
+    city->tabBitmapImage[ModeCapitaliste] = LoadImage("../Images/Pages/ModeCapitaliste.png");
+    city->tabBitmapImage[ModeCommuniste] = LoadImage("../Images/Pages/ModeCommuniste.png");
 
 
 
@@ -179,6 +175,8 @@ void initBitmap(City *city) {
     city->tabBitmapTexture[Niveau0] = LoadTextureFromImage(city->tabBitmapImage[Niveau0]);
     city->tabBitmapTexture[Niveau1] = LoadTextureFromImage(city->tabBitmapImage[Niveau1]);
     city->tabBitmapTexture[Niveau2] = LoadTextureFromImage(city->tabBitmapImage[Niveau2]);
+    city->tabBitmapTexture[ModeCommuniste] = LoadTextureFromImage(city->tabBitmapImage[ModeCommuniste]);
+    city->tabBitmapTexture[ModeCapitaliste] = LoadTextureFromImage(city->tabBitmapImage[ModeCapitaliste]);
 
     //UNLOAD IMAGE
     UnloadImage(city->tabBitmapImage[DecorHerbeImage]);
@@ -228,6 +226,8 @@ void initBitmap(City *city) {
     UnloadImage(city->tabBitmapImage[Niveau0]);
     UnloadImage(city->tabBitmapImage[Niveau1]);
     UnloadImage(city->tabBitmapImage[Niveau2]);
+    UnloadImage(city->tabBitmapImage[ModeCommuniste]);
+    UnloadImage(city->tabBitmapImage[ModeCapitaliste]);
 
 }
 
@@ -279,6 +279,8 @@ void unloadTexture(City *city) {
     UnloadTexture(city->tabBitmapTexture[Niveau0]);
     UnloadTexture(city->tabBitmapTexture[Niveau1]);
     UnloadTexture(city->tabBitmapTexture[Niveau2]);
+    UnloadTexture(city->tabBitmapTexture[ModeCapitaliste]);
+    UnloadTexture(city->tabBitmapTexture[ModeCommuniste]);
 
 }
 
@@ -286,76 +288,82 @@ void gestionCliqueSouris(City *city) {
     //Bouton lvl0
     if ((city->mouseX > 963 && city->mouseX < 1028 && city->mouseY > 169 && city->mouseY < 231) &&
         IsMouseButtonDown(0)) {
-        city->page.pageJeux.pageJeu = true;
-        city->page.pageJeux.menu = false;
-        city->page.pageJeux.aide = false;
-        city->page.pageJeux.sauvegarde = false;
-        city->page.pageJeux.quitter = false;
-        city->page.pageReseauEau.pageEau = false;
-        city->page.pageReseauElec.pageElectricite = false;
-        city->page.pageJeux.BatimentRoute = false;
-        city->page.pageJeux.BatimentHabitation = false;
-        city->page.pageJeux.BatimentEau = false;
-        city->page.pageJeux.BatimentElec = false;
-        city->page.pageJeux.menu = false;
-        city->page.pageJeux.croix = false;
+        if (city->page.pageJeux.pageJeu) {
+            city->page.pageJeux.musiqueJeu = true;
+            city->page.pageJeux.menu = false;
+            city->page.pageJeux.aide = false;
+            city->page.pageJeux.sauvegarde = false;
+            city->page.pageJeux.quitter = false;
+            city->page.pageReseauEau.pageEau = false;
+            city->page.pageReseauElec.pageElectricite = false;
+            city->page.pageJeux.BatimentRoute = false;
+            city->page.pageJeux.BatimentHabitation = false;
+            city->page.pageJeux.BatimentEau = false;
+            city->page.pageJeux.BatimentElec = false;
+            city->page.pageJeux.menu = false;
+            city->page.pageJeux.croix = false;
+        }
     }
     //Bouton lvl -1
     if ((city->mouseX > 1042 && city->mouseX < 1107 && city->mouseY > 169 && city->mouseY < 231) &&
         IsMouseButtonDown(0)) {
-        city->page.pageJeux.pageJeu = false;
-        city->page.pageJeux.menu = false;
-        city->page.pageJeux.aide = false;
-        city->page.pageJeux.sauvegarde = false;
-        city->page.pageJeux.quitter = false;
-        city->page.pageReseauEau.pageEau = true;
-        city->page.pageReseauElec.pageElectricite = false;
-        city->page.pageJeux.BatimentRoute = false;
-        city->page.pageJeux.BatimentHabitation = false;
-        city->page.pageJeux.BatimentEau = false;
-        city->page.pageJeux.BatimentElec = false;
-        city->page.pageJeux.menu = false;
-        city->page.pageJeux.croix = false;
+        if (city->page.pageJeux.pageJeu) {
+            city->page.pageJeux.musiqueJeu = false;
+            city->page.pageJeux.menu = false;
+            city->page.pageJeux.aide = false;
+            city->page.pageJeux.sauvegarde = false;
+            city->page.pageJeux.quitter = false;
+            city->page.pageReseauEau.pageEau = true;
+            city->page.pageReseauElec.pageElectricite = false;
+            city->page.pageJeux.BatimentRoute = false;
+            city->page.pageJeux.BatimentHabitation = false;
+            city->page.pageJeux.BatimentEau = false;
+            city->page.pageJeux.BatimentElec = false;
+            city->page.pageJeux.menu = false;
+            city->page.pageJeux.croix = false;
+        }
     }
     //Bouton lvl -2
     if ((city->mouseX > 1120 && city->mouseX < 1185 && city->mouseY > 169 && city->mouseY < 231) &&
         IsMouseButtonDown(0)) {
-        city->page.pageJeux.pageJeu = false;
-        city->page.pageJeux.menu = false;
-        city->page.pageJeux.aide = false;
-        city->page.pageJeux.sauvegarde = false;
-        city->page.pageJeux.quitter = false;
-        city->page.pageReseauEau.pageEau = false;
-        city->page.pageReseauElec.pageElectricite = true;
-        city->page.pageJeux.BatimentRoute = false;
-        city->page.pageJeux.BatimentHabitation = false;
-        city->page.pageJeux.BatimentEau = false;
-        city->page.pageJeux.BatimentElec = false;
-        city->page.pageJeux.menu = false;
-        city->page.pageJeux.croix = false;
+        if (city->page.pageJeux.pageJeu) {
+            city->page.pageJeux.musiqueJeu = false;
+            city->page.pageJeux.menu = false;
+            city->page.pageJeux.aide = false;
+            city->page.pageJeux.sauvegarde = false;
+            city->page.pageJeux.quitter = false;
+            city->page.pageReseauEau.pageEau = false;
+            city->page.pageReseauElec.pageElectricite = true;
+            city->page.pageJeux.BatimentRoute = false;
+            city->page.pageJeux.BatimentHabitation = false;
+            city->page.pageJeux.BatimentEau = false;
+            city->page.pageJeux.BatimentElec = false;
+            city->page.pageJeux.menu = false;
+            city->page.pageJeux.croix = false;
+        }
     }
     //Bouton Déroulant menu
     if ((city->mouseX > 19 && city->mouseX < 92 && city->mouseY > 13 && city->mouseY < 85) &&
         IsMouseButtonDown(0)) {
-        city->page.pageJeux.pageJeu = false;
-        city->page.pageJeux.menu = true;
-        city->page.pageJeux.aide = false;
-        city->page.pageJeux.sauvegarde = false;
-        city->page.pageJeux.quitter = false;
-        city->page.pageReseauEau.pageEau = false;
-        city->page.pageReseauElec.pageElectricite = false;
-        city->page.pageJeux.BatimentRoute = false;
-        city->page.pageJeux.BatimentHabitation = false;
-        city->page.pageJeux.BatimentEau = false;
-        city->page.pageJeux.BatimentElec = false;
-        city->page.pageJeux.menu = false;
-        city->page.pageJeux.croix = false;
+        if (city->page.pageJeux.pageJeu) {
+            city->page.pageJeux.menu = true;
+            city->page.pageJeux.aide = false;
+            city->page.pageJeux.sauvegarde = false;
+            city->page.pageJeux.quitter = false;
+            city->page.pageReseauEau.pageEau = false;
+            city->page.pageReseauElec.pageElectricite = false;
+            city->page.pageJeux.BatimentRoute = false;
+            city->page.pageJeux.BatimentHabitation = false;
+            city->page.pageJeux.BatimentEau = false;
+            city->page.pageJeux.BatimentElec = false;
+            city->page.pageJeux.menu = false;
+            city->page.pageJeux.croix = false;
+        }
     }
     //Bouton retour du menu déroulant
     if ((city->mouseX > 9 && city->mouseX < 103 && city->mouseY > 25 && city->mouseY < 116) &&
         IsMouseButtonDown(0)) {
         if (city->page.pageJeux.menu) {
-            city->page.pageJeux.pageJeu = true;
             city->page.pageJeux.menu = false;
             city->page.pageJeux.aide = false;
             city->page.pageJeux.sauvegarde = false;
@@ -423,6 +431,8 @@ void gestionCliqueSouris(City *city) {
             city->page.pageJeux.BatimentElec = false;
             city->page.pageJeux.menu = false;
             city->page.pageJeux.croix = false;
+
+            city->quitter = true;
         }
     }
     //Bouton route
@@ -500,15 +510,84 @@ void gestionCliqueSouris(City *city) {
     //Bouton croix
     if ((city->mouseX > 1050 && city->mouseX < 1100 && city->mouseY > 400 && city->mouseY < 450) &&
         IsMouseButtonDown(0)) {
-        city->page.pageJeux.pageJeu = true;
-        city->page.pageJeux.BatimentRoute = false;
-        city->page.pageJeux.BatimentHabitation = false;
-        city->page.pageJeux.BatimentEau = false;
-        city->page.pageJeux.BatimentElec = false;
-        city->page.pageReseauEau.pageEau = false;
-        city->page.pageReseauElec.pageElectricite = false;
+        if (city->page.pageJeux.pageJeu) {
+            city->page.pageJeux.BatimentRoute = false;
+            city->page.pageJeux.BatimentHabitation = false;
+            city->page.pageJeux.BatimentEau = false;
+            city->page.pageJeux.BatimentElec = false;
+            city->page.pageReseauEau.pageEau = false;
+            city->page.pageReseauElec.pageElectricite = false;
+        }
     }
 
+    //PagePrincipale
+    if (city->page.pageMenuPrincipale.boolMenuPrincipal) {
+        if ((city->mouseX > 393 && city->mouseX < 821) && IsMouseButtonDown(0)) {
+            if (city->mouseY > 51 && city->mouseY < 166) {
+                //city->page.pageJeux.pageJeu = true;
+                city->page.pageMenuPrincipale.choix = true;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+                city->page.pageMenuPrincipale.sauvegarde = false;
+                city->page.pageMenuPrincipale.aide = false;
+                city->page.pageMenuPrincipale.quitter = false;
+                city->capitaliste = false;
+                city->communiste = false;
+            }
+            if (city->mouseY > 250 && city->mouseY < 361) {
+                city->page.pageMenuPrincipale.choix = false;
+                city->page.pageMenuPrincipale.sauvegarde = true;
+                city->page.pageMenuPrincipale.aide = false;
+                city->page.pageMenuPrincipale.quitter = false;
+                city->capitaliste = false;
+                city->communiste = false;
+            }
+            if (city->mouseY > 444 && city->mouseY < 558) {
+                city->page.pageMenuPrincipale.choix = false;
+                city->page.pageMenuPrincipale.sauvegarde = false;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = true;
+                //city->page.pageMenuPrincipale.aide = true;
+                city->page.pageMenuPrincipale.quitter = false;
+                city->capitaliste = false;
+                city->communiste = false;
+            }
+            if (city->mouseY > 624 && city->mouseY < 737) {
+                city->page.pageMenuPrincipale.choix = false;
+                city->page.pageMenuPrincipale.sauvegarde = false;
+                city->page.pageMenuPrincipale.aide = false;
+                //city->page.pageMenuPrincipale.quitter = true;
+                city->quitter = true;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+                city->capitaliste = false;
+                city->communiste = false;
+            }
+        }
+    }
+    if (city->page.pageMenuPrincipale.choix) {
+        if ((city->mouseY > 341 && city->mouseY < 472) && IsMouseButtonDown(0)) {
+            if (city->mouseX > 17 && city->mouseX < 528) {
+                city->page.pageJeux.pageJeu = true;
+                city->page.pageJeux.musiqueJeu = true;
+                city->page.pageMenuPrincipale.choix = false;
+                city->capitaliste = true;
+                city->communiste = false;
+            }
+            if (city->mouseX > 665 && city->mouseX < 1179) {
+                city->page.pageJeux.pageJeu = true;
+                city->page.pageJeux.musiqueJeu = true;
+                city->page.pageMenuPrincipale.choix = false;
+                city->capitaliste = false;
+                city->communiste = true;
+            }
+        }
+        if ((city->mouseY > 143 && city->mouseY < 240) && IsMouseButtonDown(0) && city->mouseX > 420 &&
+            city->mouseX < 799) {
+            city->page.pageJeux.pageJeu = false;
+            city->page.pageMenuPrincipale.choix = false;
+            city->page.pageMenuPrincipale.boolMenuPrincipal = true;
+            city->capitaliste = false;
+            city->communiste = false;
+        }
+    }
     // Repérage colonnes et lignes
     for (int i = 0; i < COLONNES; i++) {
         for (int j = 0; j < LIGNES; j++) {
@@ -665,32 +744,37 @@ void affichageBoucle(City *city) {
     SetWindowState(FLAG_WINDOW_RESIZABLE);
 
     initBitmap(city);
+    initSon(city);
 
-    SetTargetFPS(1080);
+    SetTargetFPS(60);
 
-    while (!WindowShouldClose()) {
+    while (!city->quitter) {
+        if (WindowShouldClose()) {
+            city->quitter = true;
+        }
+
         //ClearBackground(RAYWHITE);
         BeginDrawing();
 
         int nbConstru = 0;
+        int compteurTemps = 0;
         int sec = 0, min = 0, hour = 0;
         city->mouseX = GetMouseX();
         city->mouseY = GetMouseY();
+        updateMusique(city);
 
         city->temps = GetTime();
-        sec = (int) city->temps;
-
         sec = ((int) city->temps % 3600) % 60;
         min = ((int) city->temps % 3600) / 60;
         hour = (int) city->temps / 3600;
 
 
-        if (!(sec==0&&min==0&&hour==0) && sec % 15 == 0 && ameliorer){
+        if (!(sec == 0 && min == 0 && hour == 0) && sec % 15 == 0 && ameliorer) {
             ameliorationBatiment(city);
-            ameliorer=false;
+            ameliorer = false;
         }
-        if (sec % 15 != 0){
-            ameliorer=true;
+        if (sec % 15 != 0) {
+            ameliorer = true;
         }
 
         gestionCliqueSouris(city);
@@ -718,6 +802,28 @@ void affichageBoucle(City *city) {
         dessinerGrille();
 
         fonction_Nino_ROUTE(city, nbConstru);
+
+        jouerSon(city);
+
+        if (city->page.pageMenuPrincipale.boolMenuPrincipal) {
+            DrawTexture(city->tabBitmapTexture[PageMenuPrincip], 0, 0, WHITE);
+        }
+        if (city->page.pageMenuPrincipale.choix) {
+            DrawTexture(city->tabBitmapTexture[PageChoixMode], 0, 0, WHITE);
+        }
+
+        if (city->communiste) {
+            DrawTexture(city->tabBitmapTexture[ModeCommuniste], 128, 23, WHITE);
+            //Mode communiste
+        }
+        if (city->capitaliste) {
+            DrawTexture(city->tabBitmapTexture[ModeCapitaliste], 128, 23, WHITE);
+            //Mode capitalisme
+        }
+        if (city->page.pageMenuPrincipale.sauvegarde) {
+            DrawTexture(city->tabBitmapTexture[PageSauvegardeEffectuer], 0, 0, WHITE);
+            city->page.pageMenuPrincipale.sauvegarde = false;
+        }
 
         if (city->page.pageJeux.pageJeu) {
             //Afficher map
@@ -829,13 +935,33 @@ void affichageBoucle(City *city) {
         }
         if (city->page.pageReseauEau.pageEau) {
             DrawTexture(city->tabBitmapTexture[Niveau1], 963, 169, WHITE);
-            DrawRectangle(0, 99, 900, 701, WHITE);
+            DrawRectangle(0, 99, 900, 701, LIGHTGRAY);
+            for (int i = 0; i < LIGNES; i++) {
+                for (int j = 0; j < COLONNES; j++) {
+                    if (city->terrain[i][j].typeBloc == 2) {
+                        DrawRectangle(j * 20, i * 20 + 100, 20, 20, BLUE);
+                    }
+                    if (city->terrain[i][j].typeBloc == 4) {
+                        DrawRectangle(j * 20, i * 20 + 100, 20, 20, DARKBLUE);
+                    }
+                }
+            }
             //Afficher réseau
             dessinerGrille();
         }
         if (city->page.pageReseauElec.pageElectricite) {
             DrawTexture(city->tabBitmapTexture[Niveau2], 963, 169, WHITE);
-            DrawRectangle(0, 99, 900, 701, WHITE);
+            DrawRectangle(0, 99, 900, 701, LIGHTGRAY);
+            for (int i = 0; i < LIGNES; i++) {
+                for (int j = 0; j < COLONNES; j++) {
+                    if (city->terrain[i][j].typeBloc == 2) {
+                        DrawRectangle(j * 20, i * 20 + 100, 20, 20, YELLOW);
+                    }
+                    if (city->terrain[i][j].typeBloc == 3) {
+                        DrawRectangle(j * 20, i * 20 + 100, 20, 20, GOLD);
+                    }
+                }
+            }
             //Afficher réseau
             dessinerGrille();
         }
@@ -848,5 +974,6 @@ void affichageBoucle(City *city) {
         EndDrawing();
     }
     unloadTexture(city);
+    arreterSon(city);
     CloseWindow();
 }

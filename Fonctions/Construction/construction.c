@@ -602,7 +602,6 @@ void mettreAJConstructionMap(City *city, int type) {
     city->tabConstruction[city->nombreConstruction].coordonneeX=city->ligneSurMap;
     city->tabConstruction[city->nombreConstruction].coordonneeY=city->colonneSurMap;
     if(type==3||type==4){
-        city->tabConstruction[city->nombreConstruction].horizontale=0;
         if(city->tabConstruction[city->nombreConstruction].horizontale){
             city->terrain[city->ligneSurMap+3][city->colonneSurMap].obstacle = type;
             city->terrain[city->ligneSurMap+3][city->colonneSurMap+1].obstacle = type;
@@ -641,7 +640,7 @@ void mettreAJConstructionMap(City *city, int type) {
 }
 
 bool obstacleAlimentation(City *city) {
-    /*if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle
+    if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle
         && !city->terrain[city->ligneSurMap][city->colonneSurMap + 1].obstacle
         && !city->terrain[city->ligneSurMap][city->colonneSurMap + 2].obstacle
         && !city->terrain[city->ligneSurMap][city->colonneSurMap + 3].obstacle
@@ -666,33 +665,6 @@ bool obstacleAlimentation(City *city) {
         && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 4].obstacle
         && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 5].obstacle
             ) {
-        return true;
-    }*/
-    if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle
-        && !city->terrain[city->ligneSurMap][city->colonneSurMap + 1].obstacle
-        && !city->terrain[city->ligneSurMap][city->colonneSurMap + 2].obstacle
-        && !city->terrain[city->ligneSurMap][city->colonneSurMap + 3].obstacle
-        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap].obstacle
-        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].obstacle
-        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].obstacle
-        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 3].obstacle
-        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap].obstacle
-        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].obstacle
-        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].obstacle
-        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 3].obstacle
-        && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap].obstacle
-        && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 1].obstacle
-        && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 2].obstacle
-        && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 3].obstacle
-        && !city->terrain[city->ligneSurMap + 4][city->colonneSurMap].obstacle
-        && !city->terrain[city->ligneSurMap + 4][city->colonneSurMap + 1].obstacle
-        && !city->terrain[city->ligneSurMap + 4][city->colonneSurMap + 2].obstacle
-        && !city->terrain[city->ligneSurMap + 4][city->colonneSurMap + 3].obstacle
-        && !city->terrain[city->ligneSurMap + 5][city->colonneSurMap].obstacle
-        && !city->terrain[city->ligneSurMap + 5][city->colonneSurMap + 1].obstacle
-        && !city->terrain[city->ligneSurMap + 5][city->colonneSurMap + 2].obstacle
-        && !city->terrain[city->ligneSurMap + 5][city->colonneSurMap + 3].obstacle)
-    {
         return true;
     }
     return false;

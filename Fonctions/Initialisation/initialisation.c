@@ -80,7 +80,11 @@ void initialisationVille(City *city) {
     city->route.tailleY = 1;
     city->route.numeroBatiment = 0;
 
-    city->page.pageJeux.pageJeu = true;
+    city->page.pageMenuPrincipale.boolMenuPrincipal = true;
+    city->page.pageMenuPrincipale.choix = false;
+    city->page.pageMenuPrincipale.sauvegarde = false;
+    city->page.pageMenuPrincipale.aide = false;
+    city->page.pageMenuPrincipale.quitter = false;
 
     for (int i = 0; i < 150; i++) {
     }
