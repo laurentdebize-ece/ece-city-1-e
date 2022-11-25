@@ -549,9 +549,47 @@ void mettreAJObstacleHabitation(City *city) {
     city->terrain[city->ligneSurMap + 2][city->colonneSurMap].obstacle = true;
     city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].obstacle = true;
     city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].obstacle = true;
+    if(city->tabConstruction[city->nombreConstruction].typeDeConstruction==3||city->tabConstruction[city->nombreConstruction].typeDeConstruction==4){
+        if(city->tabConstruction[city->nombreConstruction].horizontale){
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap].obstacle = true;
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap+1].obstacle = true;
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap+2].obstacle = true;
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap+3].obstacle = true;
+            city->terrain[city->ligneSurMap+2][city->colonneSurMap+3].obstacle = true;
+            city->terrain[city->ligneSurMap+1][city->colonneSurMap+3].obstacle = true;
+            city->terrain[city->ligneSurMap][city->colonneSurMap+3].obstacle = true;
+            city->terrain[city->ligneSurMap][city->colonneSurMap+4].obstacle = true;
+            city->terrain[city->ligneSurMap+1][city->colonneSurMap+4].obstacle = true;
+            city->terrain[city->ligneSurMap+2][city->colonneSurMap+4].obstacle = true;
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap+4].obstacle = true;
+            city->terrain[city->ligneSurMap][city->colonneSurMap+5].obstacle = true;
+            city->terrain[city->ligneSurMap+1][city->colonneSurMap+5].obstacle = true;
+            city->terrain[city->ligneSurMap+2][city->colonneSurMap+5].obstacle = true;
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap+5].obstacle = true;
+        }
+        else{
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap].obstacle = true;
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap+1].obstacle = true;
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap+2].obstacle = true;
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap+3].obstacle = true;
+            city->terrain[city->ligneSurMap+2][city->colonneSurMap+3].obstacle = true;
+            city->terrain[city->ligneSurMap+1][city->colonneSurMap+3].obstacle = true;
+            city->terrain[city->ligneSurMap][city->colonneSurMap+3].obstacle = true;
+            city->terrain[city->ligneSurMap+4][city->colonneSurMap].obstacle = true;
+            city->terrain[city->ligneSurMap+4][city->colonneSurMap+1].obstacle = true;
+            city->terrain[city->ligneSurMap+4][city->colonneSurMap+2].obstacle = true;
+            city->terrain[city->ligneSurMap+4][city->colonneSurMap+3].obstacle = true;
+            city->terrain[city->ligneSurMap+5][city->colonneSurMap].obstacle = true;
+            city->terrain[city->ligneSurMap+5][city->colonneSurMap+1].obstacle = true;
+            city->terrain[city->ligneSurMap+5][city->colonneSurMap+2].obstacle = true;
+            city->terrain[city->ligneSurMap+5][city->colonneSurMap+3].obstacle = true;
+        }
+    }
 }
 
 void mettreAJHabitationMap(City *city, int type) {
+    city->tabConstruction[city->nombreConstruction].typeDeConstruction=type;
+    city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = type;
     city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = type;
     city->terrain[city->ligneSurMap][city->colonneSurMap + 1].typeBloc = type;
     city->terrain[city->ligneSurMap][city->colonneSurMap + 2].typeBloc = type;
@@ -563,6 +601,42 @@ void mettreAJHabitationMap(City *city, int type) {
     city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].typeBloc = type;
     city->tabConstruction[city->nombreConstruction].coordonneeX=city->ligneSurMap;
     city->tabConstruction[city->nombreConstruction].coordonneeY=city->colonneSurMap;
+    if(type==3||type==4){
+        if(city->tabConstruction[city->nombreConstruction].horizontale){
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap].obstacle = type;
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap+1].obstacle = type;
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap+2].obstacle = type;
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap+3].obstacle = type;
+            city->terrain[city->ligneSurMap+2][city->colonneSurMap+3].obstacle = type;
+            city->terrain[city->ligneSurMap+1][city->colonneSurMap+3].obstacle = type;
+            city->terrain[city->ligneSurMap][city->colonneSurMap+3].obstacle = type;
+            city->terrain[city->ligneSurMap][city->colonneSurMap+4].obstacle = type;
+            city->terrain[city->ligneSurMap+1][city->colonneSurMap+4].obstacle = type;
+            city->terrain[city->ligneSurMap+2][city->colonneSurMap+4].obstacle = type;
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap+4].obstacle = type;
+            city->terrain[city->ligneSurMap][city->colonneSurMap+5].obstacle = type;
+            city->terrain[city->ligneSurMap+1][city->colonneSurMap+5].obstacle = type;
+            city->terrain[city->ligneSurMap+2][city->colonneSurMap+5].obstacle = type;
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap+5].obstacle = type;
+        }
+        else{
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap].obstacle = type;
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap+1].obstacle = type;
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap+2].obstacle = type;
+            city->terrain[city->ligneSurMap+3][city->colonneSurMap+3].obstacle = type;
+            city->terrain[city->ligneSurMap+2][city->colonneSurMap+3].obstacle = type;
+            city->terrain[city->ligneSurMap+1][city->colonneSurMap+3].obstacle = type;
+            city->terrain[city->ligneSurMap][city->colonneSurMap+3].obstacle = type;
+            city->terrain[city->ligneSurMap+4][city->colonneSurMap].obstacle = type;
+            city->terrain[city->ligneSurMap+4][city->colonneSurMap+1].obstacle = type;
+            city->terrain[city->ligneSurMap+4][city->colonneSurMap+2].obstacle = type;
+            city->terrain[city->ligneSurMap+4][city->colonneSurMap+3].obstacle = type;
+            city->terrain[city->ligneSurMap+5][city->colonneSurMap].obstacle = type;
+            city->terrain[city->ligneSurMap+5][city->colonneSurMap+1].obstacle = type;
+            city->terrain[city->ligneSurMap+5][city->colonneSurMap+2].obstacle = type;
+            city->terrain[city->ligneSurMap+5][city->colonneSurMap+3].obstacle = type;
+        }
+    }
 }
 
 bool obstacleAlimentation(City *city) {
