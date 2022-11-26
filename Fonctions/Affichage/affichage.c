@@ -946,7 +946,8 @@ void affichageBoucle(City *city) {
                         city->nombreConstruction++;
                     }
                 } else {
-                    DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, RED);
+                    //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, RED);
+                    DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, RED);////
                 }
             }
         }
