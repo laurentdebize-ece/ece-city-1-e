@@ -6,11 +6,13 @@ void sauvegarderPartie (City *city, char* nomFichier) {
         printf("Erreur d'écriture dans le fichier\n");
         exit(-1);
     }
-    for (int i = 1; i < LIGNES-1; i++) {
-        for (int j = 1; j < COLONNES-1; j++) {
+    for (int i = 1; i < LIGNES; i++) {
+        for (int j = 1; j < COLONNES; j++) {
             fprintf(file, " %d", (city->terrain[i][j].typeBloc));
         }
         fprintf(file, "\n");
     }
+    fprintf(file, " %d\n", city->nbHabitant);
+    fprintf(file, " %d\n", city->argent);
     fclose(file);
 }

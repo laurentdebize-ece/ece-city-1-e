@@ -28,6 +28,7 @@ enum BITMAP {
     Niveau2,
     PageQuitterSauvegarde,
     PageSauvegardeEffectuer,
+    NomSauvegarde,
     Ruine,
     Cabanne1,
     Cabane2,
@@ -73,6 +74,8 @@ typedef struct {
     bool partie;
     bool choix;
     bool sauvegarde;
+    bool chargementSauvegarde;
+    bool faireSauvegarde;
 
     bool aide;
 

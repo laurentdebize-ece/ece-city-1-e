@@ -11,5 +11,7 @@ void lireFichierTexte (char *nomFichier, City* city) {
             fscanf(file, " %d", &(city->terrain[i][j].typeBloc));
         }
     }
+    fscanf(file, " %d", city->nbHabitant);
+    fscanf(file, " %d", city->argent);
     fclose(file);
 }

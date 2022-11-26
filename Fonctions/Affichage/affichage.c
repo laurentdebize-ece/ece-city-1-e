@@ -116,8 +116,9 @@ void initBitmap(City *city) {
     city->tabBitmapImage[Niveau0] = LoadImage("../Images/Pages/Niveau0.png");
     city->tabBitmapImage[Niveau1] = LoadImage("../Images/Pages/Niveau-1.png");
     city->tabBitmapImage[Niveau2] = LoadImage("../Images/Pages/Niveau-2.png");
-    city->tabBitmapImage[ModeCapitaliste] = LoadImage("../Images/Pages/ModeCapitaliste.png");
+    city->tabBitmapImage[ModeCapitaliste] = LoadImage("../Images/Pages/ModeCapitalisme.png");
     city->tabBitmapImage[ModeCommuniste] = LoadImage("../Images/Pages/ModeCommuniste.png");
+    city->tabBitmapImage[NomSauvegarde] = LoadImage("../Images/Pages/NomSauvegarde.png");
 
 
 
@@ -183,6 +184,7 @@ void initBitmap(City *city) {
     city->tabBitmapTexture[Niveau2] = LoadTextureFromImage(city->tabBitmapImage[Niveau2]);
     city->tabBitmapTexture[ModeCommuniste] = LoadTextureFromImage(city->tabBitmapImage[ModeCommuniste]);
     city->tabBitmapTexture[ModeCapitaliste] = LoadTextureFromImage(city->tabBitmapImage[ModeCapitaliste]);
+    city->tabBitmapTexture[NomSauvegarde] = LoadTextureFromImage(city->tabBitmapImage[NomSauvegarde]);
 
     //UNLOAD IMAGE
     UnloadImage(city->tabBitmapImage[DecorHerbeImage]);
@@ -237,6 +239,7 @@ void initBitmap(City *city) {
     UnloadImage(city->tabBitmapImage[Niveau2]);
     UnloadImage(city->tabBitmapImage[ModeCommuniste]);
     UnloadImage(city->tabBitmapImage[ModeCapitaliste]);
+    UnloadImage(city->tabBitmapImage[NomSauvegarde]);
 
 }
 
@@ -293,6 +296,7 @@ void unloadTexture(City *city) {
     UnloadTexture(city->tabBitmapTexture[Niveau2]);
     UnloadTexture(city->tabBitmapTexture[ModeCapitaliste]);
     UnloadTexture(city->tabBitmapTexture[ModeCommuniste]);
+    UnloadTexture(city->tabBitmapTexture[NomSauvegarde]);
 
 }
 
@@ -575,6 +579,52 @@ void gestionCliqueSouris(City *city) {
             }
         }
     }
+    if (city->page.pageMenuPrincipale.sauvegarde) {
+        if (city->mouseX > 33 && city->mouseX < 128 && city->mouseY > 33 && city->mouseY < 128 && IsMouseButtonDown(0)) {
+            city->page.pageJeux.pageJeu = false;
+            city->page.pageMenuPrincipale.choix = false;
+            city->page.pageMenuPrincipale.boolMenuPrincipal = true;
+            city->page.pageMenuPrincipale.sauvegarde = false;
+            city->page.pageMenuPrincipale.aide = false;
+            city->page.pageMenuPrincipale.quitter = false;
+            city->capitaliste = false;
+            city->communiste = false;
+            city->page.pageMenuPrincipale.faireSauvegarde = false;
+            city->page.pageMenuPrincipale.chargementSauvegarde = true;
+        }
+        if ((city->mouseY > 340 && city->mouseY < 458) && IsMouseButtonDown(0)) {
+            if (city->mouseX > 341 && city->mouseX < 520) {
+                city->page.pageJeux.pageJeu = false;
+                city->page.pageMenuPrincipale.choix = false;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+                city->page.pageMenuPrincipale.sauvegarde = false;
+                city->page.pageMenuPrincipale.aide = false;
+                city->page.pageMenuPrincipale.quitter = false;
+                city->capitaliste = false;
+                city->communiste = false;
+                city->page.pageMenuPrincipale.faireSauvegarde = false;
+                city->page.pageMenuPrincipale.chargementSauvegarde = true;
+            }
+            if (city->mouseX > 678 && city->mouseX < 1121) {
+                city->page.pageJeux.pageJeu = false;
+                city->page.pageMenuPrincipale.choix = false;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+                city->page.pageMenuPrincipale.sauvegarde = false;
+                city->page.pageMenuPrincipale.aide = false;
+                city->page.pageMenuPrincipale.quitter = false;
+                city->capitaliste = false;
+                city->communiste = false;
+                city->page.pageMenuPrincipale.faireSauvegarde = true;
+                city->page.pageMenuPrincipale.chargementSauvegarde = false;
+            }
+        }
+    }
+    if (city->page.pageMenuPrincipale.faireSauvegarde) {
+        city->page.pageMenuPrincipale.sauvegarde = true;
+    }
+    if (city->page.pageMenuPrincipale.chargementSauvegarde) {
+
+    }
     if (city->page.pageMenuPrincipale.choix) {
         if ((city->mouseY > 341 && city->mouseY < 472) && IsMouseButtonDown(0)) {
             if (city->mouseX > 17 && city->mouseX < 528) {
@@ -678,7 +728,7 @@ void initAffichage(City *city) {
     CloseWindow();
 }
 
-void deroulemntPage(City * city){
+void deroulemntPage(City *city) {
     // boucle on lance le jeu
     initBitmap(city);
     city->page.pageChargement;
@@ -833,26 +883,35 @@ void affichageBoucle(City *city) {
             DrawTexture(city->tabBitmapTexture[ModeCapitaliste], 128, 23, WHITE);
             //Mode capitalisme
         }
+
         if (city->page.pageMenuPrincipale.sauvegarde) {
-            while (city->temps - city->compteurTemps3s < 3) {
-                city->temps = GetTime();
-                BeginDrawing();
-                DrawTexture(city->tabBitmapTexture[PageSauvegardeEffectuer], 0, 0, WHITE);
-                EndDrawing();
-                city->page.pageMenuPrincipale.sauvegarde = false;
+            DrawTexture(city->tabBitmapTexture[NomSauvegarde], 0, 0, WHITE);
+            if (city->page.pageMenuPrincipale.chargementSauvegarde) {
+                lireFichierTexte("../txt/SauvegardeEffectuer/sauvegarde", city);
+            }
+            if (city->page.pageMenuPrincipale.faireSauvegarde) {
+                sauvegarderPartie(city, "../txt/SauvegardeEffectuer/sauvegarde");
+                while (city->temps - city->compteurTemps3s < 3 && !city->quitter) {
+                    city->temps = GetTime();
+                    BeginDrawing();
+                    DrawTexture(city->tabBitmapTexture[PageSauvegardeEffectuer], 0, 0, WHITE);
+                    EndDrawing();
+                    city->page.pageMenuPrincipale.sauvegarde = false;
+                }
             }
         }
 
         if (city->page.pageJeux.pageJeu) {
 
-            for(int i=0;i<city->nombreConstruction; i++) {
+            for (int i = 0; i < city->nombreConstruction; i++) {
                 city->tabConstruction[i].compteur = city->temps - city->tabConstruction[i].tempsPose;
 
-                if ((int)city->tabConstruction[i].compteur != 0 && (int)city->tabConstruction[i].compteur % 15 == 0 && city->tabConstruction[i].ameliorerBat) {
-                    ameliorationBatiment(city,i);
+                if ((int) city->tabConstruction[i].compteur != 0 && (int) city->tabConstruction[i].compteur % 15 == 0 &&
+                    city->tabConstruction[i].ameliorerBat) {
+                    ameliorationBatiment(city, i);
                     city->tabConstruction[i].ameliorerBat = false;
                 }
-                if ((int)city->tabConstruction[i].compteur % 15 != 0) {
+                if ((int) city->tabConstruction[i].compteur % 15 != 0) {
                     city->tabConstruction[i].ameliorerBat = true;
                 }
             }
@@ -933,10 +992,12 @@ void affichageBoucle(City *city) {
                 if (obstacleAlimentation(city)) {
                     if (!viabiliteeRoutiereGraphique(city, 3)) {
                         //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, DARKGRAY);
-                        DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, DARKGRAY);////
+                        DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY,
+                                    DARKGRAY);////
                     } else if (!viabiliteeElectriqueGraphique(city, 3)) {
                         //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, YELLOW);
-                        DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, YELLOW);/////
+                        DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY,
+                                    YELLOW);/////
                     } else if (!viabiliteeEauGraphique(city, 3)) {
                         //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, BLUE);
                         DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, BLUE);/////
