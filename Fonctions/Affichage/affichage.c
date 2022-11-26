@@ -920,6 +920,7 @@ void affichageBoucle(City *city) {
                     DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, RED);
                 }
             }
+
             if (city->page.pageJeux.BatimentElec) {
                 DrawTexture(city->tabBitmapTexture[PageCentraleSelectionner], 968, 466, WHITE);
                 //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, WHITE);
