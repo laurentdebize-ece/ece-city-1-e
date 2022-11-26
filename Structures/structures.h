@@ -30,6 +30,7 @@ enum BITMAP {
     PageSauvegardeEffectuer,
     Ruine,
     Cabanne1,
+    Cabane2,
     House1,
     House2,
     House3,
@@ -38,9 +39,11 @@ enum BITMAP {
     House6,
     Immeuble1,
     Immeuble2,
+    Immeuble3,
     Building1,
     Building2,
     Building3,
+    CentraleElectrique,
     Croix,
     ModeCapitaliste,
     ModeCommuniste,
@@ -107,7 +110,8 @@ typedef struct {
 } PageJeux;
 
 typedef struct {
-
+    bool ModeCapitaliste;
+    bool ModeCommuniste;
 } PageMode;
 
 typedef struct {
