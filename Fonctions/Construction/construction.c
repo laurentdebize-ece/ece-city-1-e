@@ -619,6 +619,9 @@ void faireObstacleHabitation(City *city) {
 }
 
 void faireAlimentationMap (City *city, int type) {
+    city->tabConstruction[city->nombreConstruction].typeDeConstruction=type;
+    city->tabConstruction[city->nombreConstruction].coordonneeX=city->ligneSurMap;
+    city->tabConstruction[city->nombreConstruction].coordonneeY=city->colonneSurMap;
     city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = type;
     city->terrain[city->ligneSurMap][city->colonneSurMap + 1].typeBloc = type;
     city->terrain[city->ligneSurMap][city->colonneSurMap + 2].typeBloc = type;
@@ -645,6 +648,9 @@ void faireAlimentationMap (City *city, int type) {
     city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 5].typeBloc = type;
 }
 void faireHabitationMap (City *city, int type) {
+    city->tabConstruction[city->nombreConstruction].typeDeConstruction=type;
+    city->tabConstruction[city->nombreConstruction].coordonneeX=city->ligneSurMap;
+    city->tabConstruction[city->nombreConstruction].coordonneeY=city->colonneSurMap;
     city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = type;
     city->terrain[city->ligneSurMap][city->colonneSurMap + 1].typeBloc = type;
     city->terrain[city->ligneSurMap][city->colonneSurMap + 2].typeBloc = type;
