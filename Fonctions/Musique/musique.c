@@ -61,6 +61,9 @@ void jouerSon(City *city) {
         PauseMusicStream(city->musique[BruitEau]);
         ResumeMusicStream(city->musique[InfraStructure]);
     }
+    if (city->page.pageJeux.quitter) {
+        StopMusicStream(city->musique[InfraStructure]);
+    }
 }
 
 void stopSon(City *city) {

@@ -13,5 +13,6 @@ void lireFichierTexte (char *nomFichier, City* city) {
     }
     fscanf(file, " %d", &city->nbHabitant);
     fscanf(file, " %d", &city->argent);
+    fscanf(file, " %d", &city->mode);
     fclose(file);
 }

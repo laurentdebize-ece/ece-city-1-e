@@ -2,7 +2,14 @@
 
 
 void initialisationVille(City *city) {
-
+    if (city->mode == 1) {
+        city->capitaliste = true;
+        city->communiste = false;
+    }
+    if (city->mode == 2) {
+        city->capitaliste = false;
+        city->communiste = true;
+    }
     //---------------- Terrain Vague _ Ruine ----------------//
 
     city->ruine.prix = 1000; // 1000 ECE flouz et apèrs plus de prix car augmente avec compteur

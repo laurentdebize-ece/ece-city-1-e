@@ -18,6 +18,7 @@ enum BITMAP {
     PageMenuPrincip,
     PageChoixMode,
     PageMap,
+    MenuEnJeu,
     PageRouteSelectionner,
     PageHabitationSelectionner,
     PageChateauSelectionner,
@@ -216,6 +217,7 @@ typedef struct {
     double compteurTemps3s;
 
     bool quitter;
+    int mode;
 
     int ligneSurMap, colonneSurMap;
 } City;

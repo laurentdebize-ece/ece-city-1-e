@@ -121,6 +121,7 @@ void initBitmap(City *city) {
     city->tabBitmapImage[ModeCapitaliste] = LoadImage("../Images/Pages/ModeCapitalisme.png");
     city->tabBitmapImage[ModeCommuniste] = LoadImage("../Images/Pages/ModeCommuniste.png");
     city->tabBitmapImage[NomSauvegarde] = LoadImage("../Images/Pages/NomSauvegarde.png");
+    city->tabBitmapImage[MenuEnJeu] = LoadImage("../Images/Pages/MenuEnJeu.png");
 
 
 
@@ -189,6 +190,7 @@ void initBitmap(City *city) {
     city->tabBitmapTexture[ModeCommuniste] = LoadTextureFromImage(city->tabBitmapImage[ModeCommuniste]);
     city->tabBitmapTexture[ModeCapitaliste] = LoadTextureFromImage(city->tabBitmapImage[ModeCapitaliste]);
     city->tabBitmapTexture[NomSauvegarde] = LoadTextureFromImage(city->tabBitmapImage[NomSauvegarde]);
+    city->tabBitmapTexture[MenuEnJeu] = LoadTextureFromImage(city->tabBitmapImage[MenuEnJeu]);
 
     //UNLOAD IMAGE
     UnloadImage(city->tabBitmapImage[DecorHerbeImage]);
@@ -246,6 +248,7 @@ void initBitmap(City *city) {
     UnloadImage(city->tabBitmapImage[ModeCommuniste]);
     UnloadImage(city->tabBitmapImage[ModeCapitaliste]);
     UnloadImage(city->tabBitmapImage[NomSauvegarde]);
+    UnloadImage(city->tabBitmapImage[MenuEnJeu]);
 
 }
 
@@ -305,6 +308,7 @@ void unloadTexture(City *city) {
     UnloadTexture(city->tabBitmapTexture[ModeCapitaliste]);
     UnloadTexture(city->tabBitmapTexture[ModeCommuniste]);
     UnloadTexture(city->tabBitmapTexture[NomSauvegarde]);
+    UnloadTexture(city->tabBitmapTexture[MenuEnJeu]);
 
 }
 
@@ -367,10 +371,11 @@ void gestionCliqueSouris(City *city) {
         }
     }
     //Bouton Déroulant menu
-    if ((city->mouseX > 19 && city->mouseX < 92 && city->mouseY > 13 && city->mouseY < 85) &&
+    if ((city->mouseX > 10 && city->mouseX < 85 && city->mouseY > 10 && city->mouseY < 85) &&
         IsMouseButtonDown(0)) {
         if (city->page.pageJeux.pageJeu) {
             city->page.pageJeux.menu = true;
+            city->page.pageJeux.pageJeu = false;
             city->page.pageJeux.aide = false;
             city->page.pageJeux.sauvegarde = false;
             city->page.pageJeux.quitter = false;
@@ -380,15 +385,15 @@ void gestionCliqueSouris(City *city) {
             city->page.pageJeux.BatimentHabitation = false;
             city->page.pageJeux.BatimentEau = false;
             city->page.pageJeux.BatimentElec = false;
-            city->page.pageJeux.menu = false;
             city->page.pageJeux.croix = false;
         }
     }
     //Bouton retour du menu déroulant
-    if ((city->mouseX > 9 && city->mouseX < 103 && city->mouseY > 25 && city->mouseY < 116) &&
+    if ((city->mouseX > 7 && city->mouseX < 57 && city->mouseY > 16 && city->mouseY < 65) &&
         IsMouseButtonDown(0)) {
         if (city->page.pageJeux.menu) {
             city->page.pageJeux.menu = false;
+            city->page.pageJeux.pageJeu = true;
             city->page.pageJeux.aide = false;
             city->page.pageJeux.sauvegarde = false;
             city->page.pageJeux.quitter = false;
@@ -404,7 +409,7 @@ void gestionCliqueSouris(City *city) {
     }
     //PAS ENCORE FAIT
     //Bouton AIDE pageMenuJeu
-    if ((city->mouseX > 126 && city->mouseX < 584 && city->mouseY > 10 && city->mouseY < 130) &&
+    /*if ((city->mouseX > 69 && city->mouseX < 300 && city->mouseY > 10 && city->mouseY < 70) &&
         IsMouseButtonDown(0)) {
         if (city->page.pageJeux.menu) {
             city->page.pageJeux.pageJeu = false;
@@ -420,9 +425,9 @@ void gestionCliqueSouris(City *city) {
             city->page.pageJeux.menu = false;
             city->page.pageJeux.croix = false;
         }
-    }
+    }*/
     //Bouton SAUVEGARDE pageMenuJeu
-    if ((city->mouseX > 126 && city->mouseX < 584 && city->mouseY > 151 && city->mouseY < 270) &&
+    if ((city->mouseX > 69 && city->mouseX < 300 && city->mouseY > 82 && city->mouseY < 142) &&
         IsMouseButtonDown(0)) {
         if (city->page.pageJeux.menu) {
             city->page.pageJeux.pageJeu = false;
@@ -440,7 +445,7 @@ void gestionCliqueSouris(City *city) {
         }
     }
     //Bouton QUITTER pageMenuJeu
-    if ((city->mouseX > 126 && city->mouseX < 584 && city->mouseY > 290 && city->mouseY < 410) &&
+    if ((city->mouseX > 69 && city->mouseX < 300 && city->mouseY > 152 && city->mouseY < 210) &&
         IsMouseButtonDown(0)) {
         if (city->page.pageJeux.menu) {
             city->page.pageJeux.pageJeu = false;
@@ -456,7 +461,16 @@ void gestionCliqueSouris(City *city) {
             city->page.pageJeux.menu = false;
             city->page.pageJeux.croix = false;
 
-            city->quitter = true;
+            city->page.pageJeux.musiqueJeu = false;
+            city->page.pageMenuPrincipale.choix = false;
+            city->page.pageMenuPrincipale.boolMenuPrincipal = true;
+            city->page.pageMenuPrincipale.sauvegarde = false;
+            city->page.pageMenuPrincipale.aide = false;
+            city->page.pageMenuPrincipale.quitter = false;
+            city->capitaliste = false;
+            city->communiste = false;
+            city->page.pageMenuPrincipale.faireSauvegarde = false;
+            city->page.pageMenuPrincipale.chargementSauvegarde = false;
         }
     }
     //Bouton route
@@ -588,7 +602,8 @@ void gestionCliqueSouris(City *city) {
         }
     }
     if (city->page.pageMenuPrincipale.sauvegarde) {
-        if (city->mouseX > 33 && city->mouseX < 128 && city->mouseY > 33 && city->mouseY < 128 && IsMouseButtonDown(0)) {
+        if (city->mouseX > 33 && city->mouseX < 128 && city->mouseY > 33 && city->mouseY < 128 &&
+            IsMouseButtonDown(0)) {
             city->page.pageJeux.pageJeu = false;
             city->page.pageMenuPrincipale.choix = false;
             city->page.pageMenuPrincipale.boolMenuPrincipal = true;
@@ -631,7 +646,8 @@ void gestionCliqueSouris(City *city) {
         city->page.pageMenuPrincipale.sauvegarde = true;
     }
     if (city->page.pageMenuPrincipale.chargementSauvegarde) {
-
+        city->page.pageMenuPrincipale.sauvegarde = false;
+        city->page.pageJeux.pageJeu = true;
     }
     if (city->page.pageMenuPrincipale.choix) {
         if ((city->mouseY > 341 && city->mouseY < 472) && IsMouseButtonDown(0)) {
@@ -673,69 +689,6 @@ void gestionCliqueSouris(City *city) {
             }
         }
     }
-}
-
-void initAffichage(City *city) {
-    InitWindow(LARGEUR_ECRAN, HAUTEUR_ECRAN, "ECE-City");
-    SetWindowState(FLAG_WINDOW_RESIZABLE);
-
-    initBitmap(city);
-
-    SetTargetFPS(1080);
-    while (!WindowShouldClose()) {
-        city->mouseX = GetMouseX();
-        city->mouseY = GetMouseY();
-        BeginDrawing();
-        DrawTexture(city->tabBitmapTexture[PagePrincipaleToolBox], 0, 0, WHITE);
-
-        for (int i = 0; i < LIGNES; i++) {
-            for (int j = 0; j < COLONNES; j++) {
-                DrawTexture(city->tabBitmapTexture[DecorHerbeImage], j * 20, i * 20 + 100, WHITE);
-                if (i == 0 || i == LIGNES - 1 || j == 0 || j == COLONNES - 1) {
-                    DrawTexture(city->tabBitmapTexture[DecorObstacleCaillouImage], j * 20, i * 20 + 100, WHITE);
-                    city->terrain[i][j].obstacle = true;
-                }
-                if (i == 17 && j == 0) {
-                    DrawTexture(city->tabBitmapTexture[Route], j * 20, i * 20 + 100, BLACK);
-                    city->terrain[i][j].obstacle = true;
-                }
-            }
-        }
-        dessinerGrille();
-
-        DrawTexture(city->tabBitmapTexture[Ruine], 20, 300, WHITE);
-        DrawTexture(city->tabBitmapTexture[Cabanne1], 80, 300, WHITE);
-        DrawTexture(city->tabBitmapTexture[Cabane2], 80, 300, WHITE);////
-        DrawTexture(city->tabBitmapTexture[House1], 20, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[House2], 80, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[CentraleElectrique], 80, 200, WHITE);//////
-        DrawTexture(city->tabBitmapTexture[ChateauEau], 80, 200, WHITE);//////
-        DrawTexture(city->tabBitmapTexture[House3], 140, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[House4], 200, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[House5], 260, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[House6], 320, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[Immeuble1], 380, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[Immeuble3], 380, 200, WHITE); /////
-        DrawTexture(city->tabBitmapTexture[Immeuble2], 440, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[Building1], 500, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[Building2], 560, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[Building3], 620, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[Buildingg], 620, 200, WHITE);/////
-
-        gestionCliqueSouris(city);
-
-        if (city->page.pageJeux.menu) {
-            DrawTexture(city->tabBitmapTexture[PagePrincipaleToolBox], 0, 0, WHITE);
-        }
-
-        if (city->page.pageReseauElec.pageElectricite) {
-            DrawRectangle(0, 99, 900, 800, WHITE);
-        }
-
-        EndDrawing();
-    }
-    unloadTexture(city);
-    CloseWindow();
 }
 
 void deroulemntPage(City *city) {
@@ -837,8 +790,6 @@ void affichageBoucle(City *city) {
         if (WindowShouldClose()) {
             city->quitter = true;
         }
-
-        //ClearBackground(RAYWHITE);
         BeginDrawing();
 
         int sec = 0, min = 0, hour = 0;
@@ -880,6 +831,10 @@ void affichageBoucle(City *city) {
 
         jouerSon(city);
 
+        if (city->communiste || city->capitaliste) {
+            city->page.pageJeux.musiqueJeu = true;
+        }
+
         if (city->page.pageMenuPrincipale.boolMenuPrincipal) {
             DrawTexture(city->tabBitmapTexture[PageMenuPrincip], 0, 0, WHITE);
         }
@@ -888,18 +843,21 @@ void affichageBoucle(City *city) {
         }
 
         if (city->communiste) {
-            DrawTexture(city->tabBitmapTexture[ModeCommuniste], 128, 23, WHITE);
+            city->mode = 2;
+            DrawTexture(city->tabBitmapTexture[ModeCommuniste], 128, 20, WHITE);
             //Mode communiste
         }
         if (city->capitaliste) {
-            DrawTexture(city->tabBitmapTexture[ModeCapitaliste], 128, 23, WHITE);
+            city->mode = 1;
+            DrawTexture(city->tabBitmapTexture[ModeCapitaliste], 128, 20, WHITE);
             //Mode capitalisme
         }
 
-        if (city->page.pageMenuPrincipale.sauvegarde) {
+        if (city->page.pageMenuPrincipale.sauvegarde || city->page.pageJeux.sauvegarde) {
             DrawTexture(city->tabBitmapTexture[NomSauvegarde], 0, 0, WHITE);
             if (city->page.pageMenuPrincipale.chargementSauvegarde) {
                 lireFichierTexte("../txt/SauvegardeEffectuer/sauvegarde", city);
+                city->page.pageJeux.pageJeu = true;
             }
             if (city->page.pageMenuPrincipale.faireSauvegarde) {
                 sauvegarderPartie(city, "../txt/SauvegardeEffectuer/sauvegarde");
@@ -908,13 +866,19 @@ void affichageBoucle(City *city) {
                     BeginDrawing();
                     DrawTexture(city->tabBitmapTexture[PageSauvegardeEffectuer], 0, 0, WHITE);
                     EndDrawing();
-                    city->page.pageMenuPrincipale.sauvegarde = false;
                 }
+                city->page.pageMenuPrincipale.faireSauvegarde = false;
+                city->page.pageMenuPrincipale.sauvegarde = false;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = true;
             }
         }
 
-        if (city->page.pageJeux.pageJeu) {
+        if (city->page.pageJeux.menu) {
+            DrawTexture(city->tabBitmapTexture[PageMenuJeu], 5, 5, WHITE);
+        }
 
+        if (city->page.pageJeux.pageJeu) {
+            DrawTexture(city->tabBitmapTexture[MenuEnJeu], 10, 10, WHITE);
             for (int i = 0; i < city->nombreConstruction; i++) {
                 city->tabConstruction[i].compteur = city->temps - city->tabConstruction[i].tempsPose;
 
@@ -1034,20 +998,6 @@ void affichageBoucle(City *city) {
                     DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, RED);////
                 }
             }
-        }
-        if (city->page.pageJeux.menu) {
-            DrawTexture(city->tabBitmapTexture[PageMenuJeu], 0, 0, WHITE);
-            if (city->page.pageJeux.aide) {
-
-            }
-            if (city->page.pageJeux.sauvegarde) {
-                DrawTexture(city->tabBitmapTexture[PageSauvegardeEffectuer], 0, 0, GREEN);
-            }
-            if (city->page.pageJeux.quitter) {
-                DrawTexture(city->tabBitmapTexture[PageQuitterSauvegarde], 100, 338, RED);
-            }
-            DrawRectangle(0, 99, 900, 701, WHITE);
-            //Afficher le menu quitter
         }
         if (city->page.pageReseauEau.pageEau) {
             DrawTexture(city->tabBitmapTexture[Niveau1], 963, 169, WHITE);

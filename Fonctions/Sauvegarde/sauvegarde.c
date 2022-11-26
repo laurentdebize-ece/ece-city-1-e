@@ -14,5 +14,6 @@ void sauvegarderPartie (City *city, char* nomFichier) {
     }
     fprintf(file, " %d\n", city->nbHabitant);
     fprintf(file, " %d\n", city->argent);
+    fprintf(file, " %d\n", city->mode);
     fclose(file);
 }
