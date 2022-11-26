@@ -99,7 +99,8 @@ void initBitmap(City *city) {
     city->tabBitmapImage[Building1] = LoadImage("../Images/Construction/building1.png");
     city->tabBitmapImage[Building2] = LoadImage("../Images/Construction/Building2.png");
     city->tabBitmapImage[Building3] = LoadImage("../Images/Construction/Building3.png");
-    city->tabBitmapImage[CentraleElectrique] = LoadImage("../Images/Construction/ElectriciteCentrale.png");/////
+    city->tabBitmapImage[CentraleElectrique] = LoadImage("../Images/Construction/CentraleElec2.png");/////
+    city->tabBitmapImage[ChateauEau] = LoadImage("../Images/Construction/ChateauEau.png");/////
 
     city->tabBitmapImage[PageChargementImage] = LoadImage("../Images/Pages/imageAccueilRedim.png");
     city->tabBitmapImage[PageMenuPrincip] = LoadImage("../Images/Pages/imageChoixRedim.png");
@@ -161,6 +162,7 @@ void initBitmap(City *city) {
     city->tabBitmapTexture[Building2] = LoadTextureFromImage(city->tabBitmapImage[Building2]);
     city->tabBitmapTexture[Building3] = LoadTextureFromImage(city->tabBitmapImage[Building3]);
     city->tabBitmapTexture[CentraleElectrique] = LoadTextureFromImage(city->tabBitmapImage[CentraleElectrique]);/////
+    city->tabBitmapTexture[ChateauEau] = LoadTextureFromImage(city->tabBitmapImage[ChateauEau]);/////
 
     city->tabBitmapTexture[PageRouteSelectionner] = LoadTextureFromImage(city->tabBitmapImage[PageRouteSelectionner]);
     city->tabBitmapTexture[PageHabitationSelectionner] = LoadTextureFromImage(
@@ -219,6 +221,7 @@ void initBitmap(City *city) {
     UnloadImage(city->tabBitmapImage[Building2]);
     UnloadImage(city->tabBitmapImage[Building3]);
     UnloadImage(city->tabBitmapImage[CentraleElectrique]);/////
+    UnloadImage(city->tabBitmapImage[ChateauEau]);/////
 
     UnloadImage(city->tabBitmapImage[PageRouteSelectionner]);
     UnloadImage(city->tabBitmapImage[PageHabitationSelectionner]);
@@ -275,6 +278,7 @@ void unloadTexture(City *city) {
     UnloadTexture(city->tabBitmapTexture[Building2]);
     UnloadTexture(city->tabBitmapTexture[Building3]);
     UnloadTexture(city->tabBitmapTexture[CentraleElectrique]);/////
+    UnloadTexture(city->tabBitmapTexture[ChateauEau]);/////
 
     UnloadTexture(city->tabBitmapTexture[PageChargementImage]);
     UnloadTexture(city->tabBitmapTexture[PageMenuPrincip]);
@@ -651,6 +655,7 @@ void initAffichage(City *city) {
         DrawTexture(city->tabBitmapTexture[House1], 20, 200, WHITE);
         DrawTexture(city->tabBitmapTexture[House2], 80, 200, WHITE);
         DrawTexture(city->tabBitmapTexture[CentraleElectrique], 80, 200, WHITE);//////
+        DrawTexture(city->tabBitmapTexture[ChateauEau], 80, 200, WHITE);//////
         DrawTexture(city->tabBitmapTexture[House3], 140, 200, WHITE);
         DrawTexture(city->tabBitmapTexture[House4], 200, 200, WHITE);
         DrawTexture(city->tabBitmapTexture[House5], 260, 200, WHITE);
@@ -728,7 +733,8 @@ void fonction_Nino_ROUTE(City *city) {
             }
             if (city->terrain[i][j].typeBloc == 4 && city->terrain[i - 1][j].typeBloc != 4 &&
                 city->terrain[i][j - 1].typeBloc != 4) {
-                DrawTexture(city->tabBitmapTexture[House4], j * 20, i * 20 + 100, WHITE);
+                //DrawTexture(city->tabBitmapTexture[House4], j * 20, i * 20 + 100, WHITE);
+                DrawTexture(city->tabBitmapTexture[ChateauEau], j * 20, i * 20 + 100, WHITE);/////
             }
             if (city->terrain[i][j].typeBloc == 5 && city->terrain[i - 1][j].typeBloc != 5 &&
                 city->terrain[i][j - 1].typeBloc != 5) {
@@ -905,17 +911,22 @@ void affichageBoucle(City *city) {
             }
             if (city->page.pageJeux.BatimentEau) {
                 DrawTexture(city->tabBitmapTexture[PageChateauSelectionner], 968, 466, WHITE);
-                DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, WHITE);
+                //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, WHITE);
+                DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, WHITE);////
                 if (obstacleAlimentation(city)) {
                     if (!viabiliteeRoutiereGraphique(city, 4)) {
-                        DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, DARKGRAY);
+                        //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, DARKGRAY);
+                        DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, DARKGRAY);/////
                     } else if (!viabiliteeElectriqueGraphique(city, 4)) {
-                        DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, YELLOW);
+                        //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, YELLOW);
+                        DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, YELLOW);/////
                     } else if (!viabiliteeEauGraphique(city, 4)) {
-                        DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, BLUE);
+                        //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, BLUE);
+                        DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, BLUE);////
                     } else if (viabiliteeRoutiereGraphique(city, 4) && viabiliteeElectriqueGraphique(city, 4) &&
                                viabiliteeEauGraphique(city, 4)) {
-                        DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, GREEN);
+                        //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, GREEN);
+                        DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, GREEN);////
                     }
                     if (IsMouseButtonDown(0)) {
                         faireObstacleAlimentation(city);
@@ -923,7 +934,8 @@ void affichageBoucle(City *city) {
                         city->nombreConstruction++;
                     }
                 } else {
-                    DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, RED);
+                    //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, RED);
+                    DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, RED);/////
                 }
             }
             if (city->page.pageJeux.BatimentElec) {
