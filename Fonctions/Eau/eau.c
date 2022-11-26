@@ -5,7 +5,7 @@ void consommationEau (City *city) {
 
 void alimenteEau(City* city) {
     nbConstruction(city);
-    capaciteTotalEau(city);
+    //capaciteTotalEau(city);
     int Batiment = 0, nbChateauEauPlein = city->chateauEau.numeroBatiment;
     int  distance, etape;
     Case fileEau[45 * 35];
