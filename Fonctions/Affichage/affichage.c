@@ -536,6 +536,7 @@ void gestionCliqueSouris(City *city) {
             if (city->mouseY > 250 && city->mouseY < 361) {
                 city->page.pageMenuPrincipale.choix = false;
                 city->page.pageMenuPrincipale.sauvegarde = true;
+                city->compteurTemps3s = GetTime();
                 city->page.pageMenuPrincipale.aide = false;
                 city->page.pageMenuPrincipale.quitter = false;
                 city->capitaliste = false;
@@ -570,6 +571,8 @@ void gestionCliqueSouris(City *city) {
                 city->page.pageMenuPrincipale.choix = false;
                 city->capitaliste = true;
                 city->communiste = false;
+                city->commencerPartieTemps = GetTime();
+
             }
             if (city->mouseX > 665 && city->mouseX < 1179) {
                 city->page.pageJeux.pageJeu = true;
@@ -577,6 +580,7 @@ void gestionCliqueSouris(City *city) {
                 city->page.pageMenuPrincipale.choix = false;
                 city->capitaliste = false;
                 city->communiste = true;
+                city->commencerPartieTemps = GetTime();
             }
         }
         if ((city->mouseY > 143 && city->mouseY < 240) && IsMouseButtonDown(0) && city->mouseX > 420 &&
@@ -763,7 +767,7 @@ void affichageBoucle(City *city) {
         city->mouseY = GetMouseY();
         updateMusique(city);
 
-        city->temps = GetTime();
+        city->temps = GetTime() - city->commencerPartieTemps;
         sec = ((int) city->temps % 3600) % 60;
         min = ((int) city->temps % 3600) / 60;
         hour = (int) city->temps / 3600;
@@ -821,11 +825,17 @@ void affichageBoucle(City *city) {
             //Mode capitalisme
         }
         if (city->page.pageMenuPrincipale.sauvegarde) {
-            DrawTexture(city->tabBitmapTexture[PageSauvegardeEffectuer], 0, 0, WHITE);
-            city->page.pageMenuPrincipale.sauvegarde = false;
+            while (city->temps - city->compteurTemps3s < 3) {
+                city->temps = GetTime();
+                BeginDrawing();
+                DrawTexture(city->tabBitmapTexture[PageSauvegardeEffectuer], 0, 0, WHITE);
+                EndDrawing();
+                city->page.pageMenuPrincipale.sauvegarde = false;
+            }
         }
 
         if (city->page.pageJeux.pageJeu) {
+
             //Afficher map
             if (city->page.pageJeux.BatimentRoute) {
                 DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10, WHITE);
@@ -864,8 +874,8 @@ void affichageBoucle(City *city) {
                         DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, GREEN);
                     }
                     if (IsMouseButtonDown(0)) {
-                        mettreAJObstacleConstruction(city);
-                        mettreAJConstructionMap(city, 5);
+                        faireObstacleHabitation(city);
+                        faireHabitationMap(city, 5);
                         city->nombreConstruction++;
                     }
                 } else {
@@ -887,8 +897,8 @@ void affichageBoucle(City *city) {
                         DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, GREEN);
                     }
                     if (IsMouseButtonDown(0)) {
-                        mettreAJObstacleConstruction(city);
-                        mettreAJConstructionMap(city, 4);
+                        faireObstacleAlimentation(city);
+                        faireAlimentationMap(city, 4);
                         city->nombreConstruction++;
                     }
                 } else {
@@ -910,8 +920,8 @@ void affichageBoucle(City *city) {
                         DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, GREEN);
                     }
                     if (IsMouseButtonDown(0)) {
-                        mettreAJObstacleConstruction(city);
-                        mettreAJConstructionMap(city, 3);
+                        faireObstacleAlimentation(city);
+                        faireAlimentationMap(city, 3);
                         city->nombreConstruction++;
                     }
                 } else {

@@ -199,6 +199,8 @@ typedef struct {
 
     int mouseX, mouseY;
     double temps;
+    double commencerPartieTemps;
+    double compteurTemps3s;
 
     bool quitter;
 
