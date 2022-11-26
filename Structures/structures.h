@@ -44,7 +44,9 @@ enum BITMAP {
     Building1,
     Building2,
     Building3,
+    Buildingg, // bon building
     CentraleElectrique,
+    ChateauEau,
     Croix,
     ModeCapitaliste,
     ModeCommuniste,
