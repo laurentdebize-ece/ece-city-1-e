@@ -43,6 +43,7 @@ enum BITMAP {
     Building1,
     Building2,
     Building3,
+    CentraleElectrique,
     Croix,
     ModeCapitaliste,
     ModeCommuniste,
