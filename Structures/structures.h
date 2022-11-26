@@ -167,6 +167,10 @@ typedef struct {
     int indiceParcours;     //pour reconnaitre chaque parcours effectué
     bool electricite;//1 alimenter
     int eau;//nombre habitant alimenter
+
+    double compteur;
+    double tempsPose;
+    bool ameliorerBat
 } Construction;
 
 typedef struct {

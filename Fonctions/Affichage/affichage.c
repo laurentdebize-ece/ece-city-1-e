@@ -685,7 +685,7 @@ void deroulemntPage(City * city){
     affichageBoucle(city);
 }
 
-void fonction_Nino_ROUTE(City *city, int nbConstru) {
+void fonction_Nino_ROUTE(City *city) {
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {
             if (city->terrain[i][j].typeBloc == 1) {
@@ -725,12 +725,10 @@ void fonction_Nino_ROUTE(City *city, int nbConstru) {
                 city->terrain[i][j - 1].typeBloc != 3) {
                 //DrawTexture(city->tabBitmapTexture[House2], j * 20, i * 20 + 100, WHITE);
                 DrawTexture(city->tabBitmapTexture[CentraleElectrique], j * 20, i * 20 + 100, WHITE);/////
-                nbConstru++;
             }
             if (city->terrain[i][j].typeBloc == 4 && city->terrain[i - 1][j].typeBloc != 4 &&
                 city->terrain[i][j - 1].typeBloc != 4) {
                 DrawTexture(city->tabBitmapTexture[House4], j * 20, i * 20 + 100, WHITE);
-                nbConstru++;
             }
             if (city->terrain[i][j].typeBloc == 5 && city->terrain[i - 1][j].typeBloc != 5 &&
                 city->terrain[i][j - 1].typeBloc != 5) {
@@ -741,26 +739,22 @@ void fonction_Nino_ROUTE(City *city, int nbConstru) {
                 city->terrain[i][j - 1].typeBloc != 6) {
                 //DrawTexture(city->tabBitmapTexture[Cabanne1], j * 20, i * 20 + 100, WHITE);
                 DrawTexture(city->tabBitmapTexture[Cabane2], j * 20, i * 20 + 100, WHITE);//////
-                nbConstru++;
                 city->terrain[i][j].obstacle = true;
             }
             if (city->terrain[i][j].typeBloc == 7 && city->terrain[i - 1][j].typeBloc != 7 &&
                 city->terrain[i][j - 1].typeBloc != 7) {
                 DrawTexture(city->tabBitmapTexture[House6], j * 20, i * 20 + 100, WHITE);
-                nbConstru++;
                 city->terrain[i][j].obstacle = true;
             }
             if (city->terrain[i][j].typeBloc == 8 && city->terrain[i - 1][j].typeBloc != 8 &&
                 city->terrain[i][j - 1].typeBloc != 8) {
                 //DrawTexture(city->tabBitmapTexture[Immeuble1], j * 20, i * 20 + 100, WHITE);
                 DrawTexture(city->tabBitmapTexture[Immeuble3], j * 20, i * 20 + 100, WHITE);/////
-                nbConstru++;
                 city->terrain[i][j].obstacle = true;
             }
             if (city->terrain[i][j].typeBloc == 9 && city->terrain[i - 1][j].typeBloc != 9 &&
                 city->terrain[i][j - 1].typeBloc != 9) {
                 DrawTexture(city->tabBitmapTexture[Building2], j * 20, i * 20 + 100, WHITE);
-                nbConstru++;
                 city->terrain[i][j].obstacle = true;
             }
         }
@@ -785,8 +779,6 @@ void affichageBoucle(City *city) {
         //ClearBackground(RAYWHITE);
         BeginDrawing();
 
-        int nbConstru = 0;
-        int compteurTemps = 0;
         int sec = 0, min = 0, hour = 0;
         city->mouseX = GetMouseX();
         city->mouseY = GetMouseY();
@@ -797,14 +789,6 @@ void affichageBoucle(City *city) {
         min = ((int) city->temps % 3600) / 60;
         hour = (int) city->temps / 3600;
 
-
-        if (!(sec == 0 && min == 0 && hour == 0) && sec % 15 == 0 && ameliorer) {
-            ameliorationBatiment(city);
-            ameliorer = false;
-        }
-        if (sec % 15 != 0) {
-            ameliorer = true;
-        }
 
         gestionCliqueSouris(city);
         DrawTexture(city->tabBitmapTexture[PageMap], 0, 0, WHITE);
@@ -830,7 +814,7 @@ void affichageBoucle(City *city) {
         }
         dessinerGrille();
 
-        fonction_Nino_ROUTE(city, nbConstru);
+        fonction_Nino_ROUTE(city);
 
         jouerSon(city);
 
@@ -860,6 +844,18 @@ void affichageBoucle(City *city) {
         }
 
         if (city->page.pageJeux.pageJeu) {
+
+            for(int i=0;i<city->nombreConstruction; i++) {
+                city->tabConstruction[i].compteur = city->temps - city->tabConstruction[i].tempsPose;
+
+                if ((int)city->tabConstruction[i].compteur != 0 && (int)city->tabConstruction[i].compteur % 15 == 0 && city->tabConstruction[i].ameliorerBat) {
+                    ameliorationBatiment(city,i);
+                    city->tabConstruction[i].ameliorerBat = false;
+                }
+                if ((int)city->tabConstruction[i].compteur % 15 != 0) {
+                    city->tabConstruction[i].ameliorerBat = true;
+                }
+            }
 
             //Afficher map
             if (city->page.pageJeux.BatimentRoute) {
