@@ -18,6 +18,7 @@ enum BITMAP {
     PageMenuPrincip,
     PageChoixMode,
     PageMap,
+    MenuEnJeu,
     PageRouteSelectionner,
     PageHabitationSelectionner,
     PageChateauSelectionner,
@@ -28,8 +29,10 @@ enum BITMAP {
     Niveau2,
     PageQuitterSauvegarde,
     PageSauvegardeEffectuer,
+    NomSauvegarde,
     Ruine,
     Cabanne1,
+    Cabane2,
     House1,
     House2,
     House3,
@@ -38,10 +41,16 @@ enum BITMAP {
     House6,
     Immeuble1,
     Immeuble2,
+    Immeuble3,
     Building1,
     Building2,
     Building3,
+    Buildingg, // bon building
+    CentraleElectrique,
+    ChateauEau,
     Croix,
+    ModeCapitaliste,
+    ModeCommuniste,
     DecorHerbeImage,
     Route,
     DecorObstacleCaillouImage,
@@ -58,18 +67,23 @@ enum BITMAP {
     Route_Carrefour,
     NB_BITMAP
 };
+enum MUSIQUE {
+    BlockPoser, InfraStructure, PagePrincipale, Bouton,BruitElectrique , BruitEau,Building, CentralPark,
+    NB_MUSIQUE
+};
 
 typedef struct {
     bool boolMenuPrincipal; //permet de rester dans la boucle de cette page
     bool partie;
-    bool partieHover;
-    bool partieClique;
+    bool choix;
+    bool sauvegarde;
+    bool chargementSauvegarde;
+    bool faireSauvegarde;
+
     bool aide;
-    bool aideHover;
-    bool aideClique;
+
     bool quitter;
-    bool quitterHover;
-    bool quitterClique;
+
 } PageMenuPrincipale;
 
 typedef struct {
@@ -93,6 +107,8 @@ typedef struct {
     bool sauvegarde;
     bool quitter;
 
+    bool musiqueJeu;
+
     bool BatimentRoute;
     bool BatimentHabitation;
     bool BatimentEau;
@@ -100,7 +116,8 @@ typedef struct {
 } PageJeux;
 
 typedef struct {
-
+    bool ModeCapitaliste;
+    bool ModeCommuniste;
 } PageMode;
 
 typedef struct {
@@ -156,6 +173,10 @@ typedef struct {
     int indiceParcours;     //pour reconnaitre chaque parcours effectué
     bool electricite;//1 alimenter
     int eau;//nombre habitant alimenter
+
+    double compteur;
+    double tempsPose;
+    bool ameliorerBat
 } Construction;
 
 typedef struct {
@@ -181,15 +202,22 @@ typedef struct {
     Texture2D tabBitmapTexture[NB_BITMAP];
     int nbBitmap;
 
+    Music musique[NB_MUSIQUE];
+
     Construction tabConstruction[MAX_BATIMENT];
     Construction tabParcoursLongueur[MAX_BATIMENT];
 
     int nbHabitant;
     bool capitaliste;
+    bool communiste;
 
     int mouseX, mouseY;
     double temps;
+    double commencerPartieTemps;
+    double compteurTemps3s;
 
+    bool quitter;
+    int mode;
 
     int ligneSurMap, colonneSurMap;
 } City;

@@ -23,19 +23,16 @@ void parcoursRoute(City *city, int numeroConstructionInitial);
 
 bool constructionViable(City *city, int numeroConstruction);
 
-void ameliorationBatiment(City* city);
+void ameliorationBatiment(City* city, int i);
 
 bool obstacleHabitation(City *city);
 
-void mettreAJObstacleConstruction(City *city);
-
-void mettreAJConstructionMap(City *city, int type);
+void faireObstacleAlimentation (City *city);
+void faireObstacleHabitation (City *city);
+void faireAlimentationMap (City *city, int type);
+void faireHabitationMap (City *city, int type);
 
 bool obstacleAlimentation(City *city);
-
-void mettreAJObstacleAlimentation(City *city);
-
-void mettreAJAlimentationMap(City *city, int type);
 
 bool viabiliteeRoutiere(City *city, int numeroConstruction);
 

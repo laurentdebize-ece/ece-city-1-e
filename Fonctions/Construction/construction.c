@@ -122,56 +122,78 @@ void savoirIndiceConstruction(City *city) {
     }
 }
 
-void ameliorationBatiment(City* city){
-    for (int i = 0; i < city->nombreConstruction; i++) {
-        if(city->tabConstruction[i].typeDeConstruction==8){
-            city->tabConstruction[i].typeDeConstruction=9;
-            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY].typeBloc=9;
-            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY].typeBloc=9;
-            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY].typeBloc=9;
-            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY+1].typeBloc=9;
-            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY+1].typeBloc=9;
-            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY+1].typeBloc=9;
-            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY+2].typeBloc=9;
-            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY+2].typeBloc=9;
-            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY+2].typeBloc=9;
+void ameliorationBatiment(City *city, int i) {
+        if (city->tabConstruction[i].typeDeConstruction == 8) {
+            city->nbHabitant -= 100;
+            city->nbHabitant += 1000;
+            city->tabConstruction[i].typeDeConstruction = 9;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY].typeBloc = 9;
+            city->terrain[city->tabConstruction[i].coordonneeX + 1][city->tabConstruction[i].coordonneeY].typeBloc = 9;
+            city->terrain[city->tabConstruction[i].coordonneeX + 2][city->tabConstruction[i].coordonneeY].typeBloc = 9;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY + 1].typeBloc = 9;
+            city->terrain[city->tabConstruction[i].coordonneeX + 1][city->tabConstruction[i].coordonneeY +
+                                                                    1].typeBloc = 9;
+            city->terrain[city->tabConstruction[i].coordonneeX + 2][city->tabConstruction[i].coordonneeY +
+                                                                    1].typeBloc = 9;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY + 2].typeBloc = 9;
+            city->terrain[city->tabConstruction[i].coordonneeX + 1][city->tabConstruction[i].coordonneeY +
+                                                                    2].typeBloc = 9;
+            city->terrain[city->tabConstruction[i].coordonneeX + 2][city->tabConstruction[i].coordonneeY +
+                                                                    2].typeBloc = 9;
         }
-        if(city->tabConstruction[i].typeDeConstruction==7){
-            city->tabConstruction[i].typeDeConstruction=8;
-            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY].typeBloc=8;
-            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY].typeBloc=8;
-            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY].typeBloc=8;
-            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY+1].typeBloc=8;
-            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY+1].typeBloc=8;
-            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY+1].typeBloc=8;
-            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY+2].typeBloc=8;
-            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY+2].typeBloc=8;
-            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY+2].typeBloc=8;
+        if (city->tabConstruction[i].typeDeConstruction == 7) {
+            city->nbHabitant -= 50;
+            city->nbHabitant += 100;
+            city->tabConstruction[i].typeDeConstruction = 8;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY].typeBloc = 8;
+            city->terrain[city->tabConstruction[i].coordonneeX + 1][city->tabConstruction[i].coordonneeY].typeBloc = 8;
+            city->terrain[city->tabConstruction[i].coordonneeX + 2][city->tabConstruction[i].coordonneeY].typeBloc = 8;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY + 1].typeBloc = 8;
+            city->terrain[city->tabConstruction[i].coordonneeX + 1][city->tabConstruction[i].coordonneeY +
+                                                                    1].typeBloc = 8;
+            city->terrain[city->tabConstruction[i].coordonneeX + 2][city->tabConstruction[i].coordonneeY +
+                                                                    1].typeBloc = 8;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY + 2].typeBloc = 8;
+            city->terrain[city->tabConstruction[i].coordonneeX + 1][city->tabConstruction[i].coordonneeY +
+                                                                    2].typeBloc = 8;
+            city->terrain[city->tabConstruction[i].coordonneeX + 2][city->tabConstruction[i].coordonneeY +
+                                                                    2].typeBloc = 8;
         }
-        if(city->tabConstruction[i].typeDeConstruction==6){
-            city->tabConstruction[i].typeDeConstruction=7;
-            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY].typeBloc=7;
-            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY].typeBloc=7;
-            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY].typeBloc=7;
-            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY+1].typeBloc=7;
-            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY+1].typeBloc=7;
-            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY+1].typeBloc=7;
-            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY+2].typeBloc=7;
-            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY+2].typeBloc=7;
-            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY+2].typeBloc=7;
+        if (city->tabConstruction[i].typeDeConstruction == 6) {
+            city->nbHabitant -= 10;
+            city->nbHabitant += 50;
+            city->tabConstruction[i].typeDeConstruction = 7;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY].typeBloc = 7;
+            city->terrain[city->tabConstruction[i].coordonneeX + 1][city->tabConstruction[i].coordonneeY].typeBloc = 7;
+            city->terrain[city->tabConstruction[i].coordonneeX + 2][city->tabConstruction[i].coordonneeY].typeBloc = 7;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY + 1].typeBloc = 7;
+            city->terrain[city->tabConstruction[i].coordonneeX + 1][city->tabConstruction[i].coordonneeY +
+                                                                    1].typeBloc = 7;
+            city->terrain[city->tabConstruction[i].coordonneeX + 2][city->tabConstruction[i].coordonneeY +
+                                                                    1].typeBloc = 7;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY + 2].typeBloc = 7;
+            city->terrain[city->tabConstruction[i].coordonneeX + 1][city->tabConstruction[i].coordonneeY +
+                                                                    2].typeBloc = 7;
+            city->terrain[city->tabConstruction[i].coordonneeX + 2][city->tabConstruction[i].coordonneeY +
+                                                                    2].typeBloc = 7;
         }
-        if(city->tabConstruction[i].typeDeConstruction==5){
-            city->tabConstruction[i].typeDeConstruction=6;
-            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY].typeBloc=6;
-            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY].typeBloc=6;
-            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY].typeBloc=6;
-            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY+1].typeBloc=6;
-            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY+1].typeBloc=6;
-            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY+1].typeBloc=6;
-            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY+2].typeBloc=6;
-            city->terrain[city->tabConstruction[i].coordonneeX+1][city->tabConstruction[i].coordonneeY+2].typeBloc=6;
-            city->terrain[city->tabConstruction[i].coordonneeX+2][city->tabConstruction[i].coordonneeY+2].typeBloc=6;
-        }
+        if (city->tabConstruction[i].typeDeConstruction == 5) {
+            city->nbHabitant -= 0;
+            city->nbHabitant += 10;
+            city->tabConstruction[i].typeDeConstruction = 6;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY].typeBloc = 6;
+            city->terrain[city->tabConstruction[i].coordonneeX + 1][city->tabConstruction[i].coordonneeY].typeBloc = 6;
+            city->terrain[city->tabConstruction[i].coordonneeX + 2][city->tabConstruction[i].coordonneeY].typeBloc = 6;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY + 1].typeBloc = 6;
+            city->terrain[city->tabConstruction[i].coordonneeX + 1][city->tabConstruction[i].coordonneeY +
+                                                                    1].typeBloc = 6;
+            city->terrain[city->tabConstruction[i].coordonneeX + 2][city->tabConstruction[i].coordonneeY +
+                                                                    1].typeBloc = 6;
+            city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY + 2].typeBloc = 6;
+            city->terrain[city->tabConstruction[i].coordonneeX + 1][city->tabConstruction[i].coordonneeY +
+                                                                    2].typeBloc = 6;
+            city->terrain[city->tabConstruction[i].coordonneeX + 2][city->tabConstruction[i].coordonneeY +
+                                                                    2].typeBloc = 6;
     }
 }
 
@@ -188,6 +210,8 @@ void getCoordonneConstruction4x6(City *city) {
                     city->tabConstruction[nbConstru].coordonneeY = j;
                     city->tabConstruction[nbConstru].typeDeConstruction = 3;
                     city->tabConstruction[nbConstru].horizontale = true;
+                    city->tabConstruction[nbConstru].compteur=0;
+                    city->tabConstruction[nbConstru].tempsPose=0;
                     nbConstru++;
                 } else if ((city->terrain[i][(j + 5)].typeBloc != 3) && (city->terrain[i + 4][j].typeBloc == 3) &&
                            (city->terrain[i - 1][j].typeBloc != 3) && (city->terrain[i][j - 1].typeBloc != 3)) {
@@ -197,6 +221,8 @@ void getCoordonneConstruction4x6(City *city) {
                     city->tabConstruction[nbConstru].coordonneeY = j + 3;
                     city->tabConstruction[nbConstru].typeDeConstruction = 3;
                     city->tabConstruction[nbConstru].horizontale = false;
+                    city->tabConstruction[nbConstru].compteur=0;
+                    city->tabConstruction[nbConstru].tempsPose=0;
                     nbConstru++;
                 }
             }
@@ -209,6 +235,8 @@ void getCoordonneConstruction4x6(City *city) {
                     city->tabConstruction[nbConstru].coordonneeY = j;
                     city->tabConstruction[nbConstru].typeDeConstruction = 4;
                     city->tabConstruction[nbConstru].horizontale = true;
+                    city->tabConstruction[nbConstru].compteur=0;
+                    city->tabConstruction[nbConstru].tempsPose=0;
                     nbConstru++;
                 } else if ((city->terrain[i][(j + 5)].typeBloc != 4) && (city->terrain[i + 4][j].typeBloc == 4) &&
                            (city->terrain[i - 1][j].typeBloc != 4) && (city->terrain[i][j - 1].typeBloc != 4)) {
@@ -218,6 +246,8 @@ void getCoordonneConstruction4x6(City *city) {
                     city->tabConstruction[nbConstru].coordonneeY = j + 3;
                     city->tabConstruction[nbConstru].typeDeConstruction = 4;
                     city->tabConstruction[nbConstru].horizontale = false;
+                    city->tabConstruction[nbConstru].compteur=0;
+                    city->tabConstruction[nbConstru].tempsPose=0;
                     nbConstru++;
                 }
             }
@@ -231,6 +261,8 @@ void getCoordonneConstruction4x6(City *city) {
                     city->tabConstruction[nbConstru].coordonneeX = i;
                     city->tabConstruction[nbConstru].coordonneeY = j;
                     city->tabConstruction[nbConstru].typeDeConstruction = 5;
+                    city->tabConstruction[nbConstru].compteur=0;
+                    city->tabConstruction[nbConstru].tempsPose=0;
                     nbConstru++;
                 }
             }
@@ -244,6 +276,8 @@ void getCoordonneConstruction4x6(City *city) {
                     city->tabConstruction[nbConstru].coordonneeX = i;
                     city->tabConstruction[nbConstru].coordonneeY = j;
                     city->tabConstruction[nbConstru].typeDeConstruction = 6;
+                    city->tabConstruction[nbConstru].compteur=0;
+                    city->tabConstruction[nbConstru].tempsPose=0;
                     nbConstru++;
                 }
             }
@@ -257,6 +291,8 @@ void getCoordonneConstruction4x6(City *city) {
                     city->tabConstruction[nbConstru].coordonneeX = i;
                     city->tabConstruction[nbConstru].coordonneeY = j;
                     city->tabConstruction[nbConstru].typeDeConstruction = 7;
+                    city->tabConstruction[nbConstru].compteur=0;
+                    city->tabConstruction[nbConstru].tempsPose=0;
                     nbConstru++;
                 }
             }
@@ -270,6 +306,8 @@ void getCoordonneConstruction4x6(City *city) {
                     city->tabConstruction[nbConstru].coordonneeX = i;
                     city->tabConstruction[nbConstru].coordonneeY = j;
                     city->tabConstruction[nbConstru].typeDeConstruction = 8;
+                    city->tabConstruction[nbConstru].compteur=0;
+                    city->tabConstruction[nbConstru].tempsPose=0;
                     nbConstru++;
                 }
             }
@@ -283,6 +321,8 @@ void getCoordonneConstruction4x6(City *city) {
                     city->tabConstruction[nbConstru].coordonneeX = i;
                     city->tabConstruction[nbConstru].coordonneeY = j;
                     city->tabConstruction[nbConstru].typeDeConstruction = 9;
+                    city->tabConstruction[nbConstru].compteur=0;
+                    city->tabConstruction[nbConstru].tempsPose=0;
                     nbConstru++;
                 }
             }
@@ -361,9 +401,9 @@ void poserConstruction(City *city, char *nomFichier) {
                 city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 5;
                 city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 5;
                 city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 5;
-                for (int i = coordonneeX ; i < coordonneeX + 2; ++i) {
-                    for (int j = coordonneeY ; j < coordonneeY + 2; ++j) {
-                        city->terrain[i][j].nbBatiment=city->nombreConstruction+1;
+                for (int i = coordonneeX; i < coordonneeX + 2; ++i) {
+                    for (int j = coordonneeY; j < coordonneeY + 2; ++j) {
+                        city->terrain[i][j].nbBatiment = city->nombreConstruction + 1;
                     }
                 }
                 break;
@@ -378,9 +418,9 @@ void poserConstruction(City *city, char *nomFichier) {
                 city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 6;
                 city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 6;
                 city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 6;
-                for (int i = coordonneeX ; i < coordonneeX + 2; ++i) {
-                    for (int j = coordonneeY ; j < coordonneeY + 2; ++j) {
-                        city->terrain[i][j].nbBatiment=city->nombreConstruction+1;
+                for (int i = coordonneeX; i < coordonneeX + 2; ++i) {
+                    for (int j = coordonneeY; j < coordonneeY + 2; ++j) {
+                        city->terrain[i][j].nbBatiment = city->nombreConstruction + 1;
                     }
                 }
                 break;
@@ -395,9 +435,9 @@ void poserConstruction(City *city, char *nomFichier) {
                 city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 7;
                 city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 7;
                 city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 7;
-                for (int i = coordonneeX ; i < coordonneeX + 2; ++i) {
-                    for (int j = coordonneeY ; j < coordonneeY + 2; ++j) {
-                        city->terrain[i][j].nbBatiment=city->nombreConstruction+1;
+                for (int i = coordonneeX; i < coordonneeX + 2; ++i) {
+                    for (int j = coordonneeY; j < coordonneeY + 2; ++j) {
+                        city->terrain[i][j].nbBatiment = city->nombreConstruction + 1;
                     }
                 }
                 break;
@@ -412,9 +452,9 @@ void poserConstruction(City *city, char *nomFichier) {
                 city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 8;
                 city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 8;
                 city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 8;
-                for (int i = coordonneeX ; i < coordonneeX + 2; ++i) {
-                    for (int j = coordonneeY ; j < coordonneeY + 2; ++j) {
-                        city->terrain[i][j].nbBatiment=city->nombreConstruction+1;
+                for (int i = coordonneeX; i < coordonneeX + 2; ++i) {
+                    for (int j = coordonneeY; j < coordonneeY + 2; ++j) {
+                        city->terrain[i][j].nbBatiment = city->nombreConstruction + 1;
                     }
                 }
                 break;
@@ -429,9 +469,9 @@ void poserConstruction(City *city, char *nomFichier) {
                 city->terrain[coordonneeX + 2][coordonneeY].typeBloc = 9;
                 city->terrain[coordonneeX + 2][coordonneeY + 1].typeBloc = 9;
                 city->terrain[coordonneeX + 2][coordonneeY + 2].typeBloc = 9;
-                for (int i = coordonneeX ; i < coordonneeX + 2; ++i) {
-                    for (int j = coordonneeY ; j < coordonneeY + 2; ++j) {
-                        city->terrain[i][j].nbBatiment=city->nombreConstruction+1;
+                for (int i = coordonneeX; i < coordonneeX + 2; ++i) {
+                    for (int j = coordonneeY; j < coordonneeY + 2; ++j) {
+                        city->terrain[i][j].nbBatiment = city->nombreConstruction + 1;
                     }
                 }
                 break;
@@ -460,6 +500,8 @@ void poserConstruction(City *city, char *nomFichier) {
     fclose(file);
 }
 
+
+// ---------- A FAIRE ---------- //
 void parcoursRoute(City *city, int numeroConstructionInitial) {
 //    city->tabConstruction[i].source = 0;
 //    city->tabConstruction[i].destination = 0;
@@ -564,7 +606,33 @@ bool obstacleHabitation(City *city) {
     return false;
 }
 
-void mettreAJObstacleConstruction(City *city) {
+void faireObstacleAlimentation (City *city) {
+    city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle = true;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 1].obstacle = true;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 2].obstacle = true;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 3].obstacle = true;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 4].obstacle = true;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 5].obstacle = true;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap].obstacle = true;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].obstacle = true;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].obstacle = true;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 3].obstacle = true;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 4].obstacle = true;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 5].obstacle = true;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap].obstacle = true;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].obstacle = true;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].obstacle = true;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 3].obstacle = true;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 4].obstacle = true;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 5].obstacle = true;
+    city->terrain[city->ligneSurMap + 3][city->colonneSurMap].obstacle = true;
+    city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 1].obstacle = true;
+    city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 2].obstacle = true;
+    city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 3].obstacle = true;
+    city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 4].obstacle = true;
+    city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 5].obstacle = true;
+}
+void faireObstacleHabitation(City *city) {
     city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle = true;
     city->terrain[city->ligneSurMap][city->colonneSurMap + 1].obstacle = true;
     city->terrain[city->ligneSurMap][city->colonneSurMap + 2].obstacle = true;
@@ -574,47 +642,45 @@ void mettreAJObstacleConstruction(City *city) {
     city->terrain[city->ligneSurMap + 2][city->colonneSurMap].obstacle = true;
     city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].obstacle = true;
     city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].obstacle = true;
-    if(city->tabConstruction[city->nombreConstruction].typeDeConstruction==3||city->tabConstruction[city->nombreConstruction].typeDeConstruction==4){
-        if(city->tabConstruction[city->nombreConstruction].horizontale){
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap].obstacle = true;
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap+1].obstacle = true;
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap+2].obstacle = true;
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap+3].obstacle = true;
-            city->terrain[city->ligneSurMap+2][city->colonneSurMap+3].obstacle = true;
-            city->terrain[city->ligneSurMap+1][city->colonneSurMap+3].obstacle = true;
-            city->terrain[city->ligneSurMap][city->colonneSurMap+3].obstacle = true;
-            city->terrain[city->ligneSurMap][city->colonneSurMap+4].obstacle = true;
-            city->terrain[city->ligneSurMap+1][city->colonneSurMap+4].obstacle = true;
-            city->terrain[city->ligneSurMap+2][city->colonneSurMap+4].obstacle = true;
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap+4].obstacle = true;
-            city->terrain[city->ligneSurMap][city->colonneSurMap+5].obstacle = true;
-            city->terrain[city->ligneSurMap+1][city->colonneSurMap+5].obstacle = true;
-            city->terrain[city->ligneSurMap+2][city->colonneSurMap+5].obstacle = true;
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap+5].obstacle = true;
-        }
-        else{
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap].obstacle = true;
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap+1].obstacle = true;
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap+2].obstacle = true;
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap+3].obstacle = true;
-            city->terrain[city->ligneSurMap+2][city->colonneSurMap+3].obstacle = true;
-            city->terrain[city->ligneSurMap+1][city->colonneSurMap+3].obstacle = true;
-            city->terrain[city->ligneSurMap][city->colonneSurMap+3].obstacle = true;
-            city->terrain[city->ligneSurMap+4][city->colonneSurMap].obstacle = true;
-            city->terrain[city->ligneSurMap+4][city->colonneSurMap+1].obstacle = true;
-            city->terrain[city->ligneSurMap+4][city->colonneSurMap+2].obstacle = true;
-            city->terrain[city->ligneSurMap+4][city->colonneSurMap+3].obstacle = true;
-            city->terrain[city->ligneSurMap+5][city->colonneSurMap].obstacle = true;
-            city->terrain[city->ligneSurMap+5][city->colonneSurMap+1].obstacle = true;
-            city->terrain[city->ligneSurMap+5][city->colonneSurMap+2].obstacle = true;
-            city->terrain[city->ligneSurMap+5][city->colonneSurMap+3].obstacle = true;
-        }
-    }
 }
 
-void mettreAJConstructionMap(City *city, int type) {
+void faireAlimentationMap (City *city, int type) {
     city->tabConstruction[city->nombreConstruction].typeDeConstruction=type;
+    city->tabConstruction[city->nombreConstruction].coordonneeX=city->ligneSurMap;
+    city->tabConstruction[city->nombreConstruction].coordonneeY=city->colonneSurMap;
     city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = type;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 1].typeBloc = type;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 2].typeBloc = type;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 3].typeBloc = type;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 4].typeBloc = type;
+    city->terrain[city->ligneSurMap][city->colonneSurMap + 5].typeBloc = type;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap].typeBloc = type;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].typeBloc = type;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].typeBloc = type;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 3].typeBloc = type;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 4].typeBloc = type;
+    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 5].typeBloc = type;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap].typeBloc = type;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].typeBloc = type;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].typeBloc = type;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 3].typeBloc = type;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 4].typeBloc = type;
+    city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 5].typeBloc = type;
+    city->terrain[city->ligneSurMap + 3][city->colonneSurMap].typeBloc = type;
+    city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 1].typeBloc = type;
+    city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 2].typeBloc = type;
+    city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 3].typeBloc = type;
+    city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 4].typeBloc = type;
+    city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 5].typeBloc = type;
+
+    city->argent -= 100000;
+}
+void faireHabitationMap (City *city, int type) {
+    city->tabConstruction[city->nombreConstruction].compteur=0;
+    city->tabConstruction[city->nombreConstruction].tempsPose=city->temps;
+    city->tabConstruction[city->nombreConstruction].typeDeConstruction=type;
+    city->tabConstruction[city->nombreConstruction].coordonneeX=city->ligneSurMap;
+    city->tabConstruction[city->nombreConstruction].coordonneeY=city->colonneSurMap;
     city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = type;
     city->terrain[city->ligneSurMap][city->colonneSurMap + 1].typeBloc = type;
     city->terrain[city->ligneSurMap][city->colonneSurMap + 2].typeBloc = type;
@@ -624,49 +690,56 @@ void mettreAJConstructionMap(City *city, int type) {
     city->terrain[city->ligneSurMap + 2][city->colonneSurMap].typeBloc = type;
     city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].typeBloc = type;
     city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].typeBloc = type;
-    city->tabConstruction[city->nombreConstruction].coordonneeX=city->ligneSurMap;
-    city->tabConstruction[city->nombreConstruction].coordonneeY=city->colonneSurMap;
-    if(type==3||type==4){
-        city->tabConstruction[city->nombreConstruction].horizontale=0;
-        if(city->tabConstruction[city->nombreConstruction].horizontale){
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap].obstacle = type;
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap+1].obstacle = type;
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap+2].obstacle = type;
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap+3].obstacle = type;
-            city->terrain[city->ligneSurMap+2][city->colonneSurMap+3].obstacle = type;
-            city->terrain[city->ligneSurMap+1][city->colonneSurMap+3].obstacle = type;
-            city->terrain[city->ligneSurMap][city->colonneSurMap+3].obstacle = type;
-            city->terrain[city->ligneSurMap][city->colonneSurMap+4].obstacle = type;
-            city->terrain[city->ligneSurMap+1][city->colonneSurMap+4].obstacle = type;
-            city->terrain[city->ligneSurMap+2][city->colonneSurMap+4].obstacle = type;
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap+4].obstacle = type;
-            city->terrain[city->ligneSurMap][city->colonneSurMap+5].obstacle = type;
-            city->terrain[city->ligneSurMap+1][city->colonneSurMap+5].obstacle = type;
-            city->terrain[city->ligneSurMap+2][city->colonneSurMap+5].obstacle = type;
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap+5].obstacle = type;
-        }
-        else{
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap].obstacle = type;
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap+1].obstacle = type;
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap+2].obstacle = type;
-            city->terrain[city->ligneSurMap+3][city->colonneSurMap+3].obstacle = type;
-            city->terrain[city->ligneSurMap+2][city->colonneSurMap+3].obstacle = type;
-            city->terrain[city->ligneSurMap+1][city->colonneSurMap+3].obstacle = type;
-            city->terrain[city->ligneSurMap][city->colonneSurMap+3].obstacle = type;
-            city->terrain[city->ligneSurMap+4][city->colonneSurMap].obstacle = type;
-            city->terrain[city->ligneSurMap+4][city->colonneSurMap+1].obstacle = type;
-            city->terrain[city->ligneSurMap+4][city->colonneSurMap+2].obstacle = type;
-            city->terrain[city->ligneSurMap+4][city->colonneSurMap+3].obstacle = type;
-            city->terrain[city->ligneSurMap+5][city->colonneSurMap].obstacle = type;
-            city->terrain[city->ligneSurMap+5][city->colonneSurMap+1].obstacle = type;
-            city->terrain[city->ligneSurMap+5][city->colonneSurMap+2].obstacle = type;
-            city->terrain[city->ligneSurMap+5][city->colonneSurMap+3].obstacle = type;
-        }
-    }
+
+    city->argent -= 1000;
 }
 
+/*void mettreAJConstructionMap(City *city, int type) {
+    city->tabConstruction[city->nombreConstruction].typeDeConstruction = type;
+    city->tabConstruction[city->nombreConstruction].coordonneeX = city->ligneSurMap;
+    city->tabConstruction[city->nombreConstruction].coordonneeY = city->colonneSurMap;
+    if (type == 5 || type == 6 || type == 7 || type == 8 || type == 9) {
+        city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = type;
+        city->terrain[city->ligneSurMap][city->colonneSurMap + 1].typeBloc = type;
+        city->terrain[city->ligneSurMap][city->colonneSurMap + 2].typeBloc = type;
+        city->terrain[city->ligneSurMap + 1][city->colonneSurMap].typeBloc = type;
+        city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].typeBloc = type;
+        city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].typeBloc = type;
+        city->terrain[city->ligneSurMap + 2][city->colonneSurMap].typeBloc = type;
+        city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].typeBloc = type;
+        city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].typeBloc = type;
+    }
+    if (type == 3 || type == 4) {
+        city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = type;
+        city->terrain[city->ligneSurMap][city->colonneSurMap + 1].typeBloc = type;
+        city->terrain[city->ligneSurMap][city->colonneSurMap + 2].typeBloc = type;
+        city->terrain[city->ligneSurMap][city->colonneSurMap + 3].typeBloc = type;
+        city->terrain[city->ligneSurMap][city->colonneSurMap + 4].typeBloc = type;
+        city->terrain[city->ligneSurMap][city->colonneSurMap + 5].typeBloc = type;
+        city->terrain[city->ligneSurMap + 1][city->colonneSurMap].typeBloc = type;
+        city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].typeBloc = type;
+        city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].typeBloc = type;
+        city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 3].typeBloc = type;
+        city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 4].typeBloc = type;
+        city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 5].typeBloc = type;
+        city->terrain[city->ligneSurMap + 2][city->colonneSurMap].typeBloc = type;
+        city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].typeBloc = type;
+        city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].typeBloc = type;
+        city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 3].typeBloc = type;
+        city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 4].typeBloc = type;
+        city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 5].typeBloc = type;
+        city->terrain[city->ligneSurMap + 3][city->colonneSurMap].typeBloc = type;
+        city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 1].typeBloc = type;
+        city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 2].typeBloc = type;
+        city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 3].typeBloc = type;
+        city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 4].typeBloc = type;
+        city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 5].typeBloc = type;
+    }
+}
+*/
+
 bool obstacleAlimentation(City *city) {
-    /*if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle
+    if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle
         && !city->terrain[city->ligneSurMap][city->colonneSurMap + 1].obstacle
         && !city->terrain[city->ligneSurMap][city->colonneSurMap + 2].obstacle
         && !city->terrain[city->ligneSurMap][city->colonneSurMap + 3].obstacle
@@ -692,37 +765,11 @@ bool obstacleAlimentation(City *city) {
         && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 5].obstacle
             ) {
         return true;
-    }*/
-    if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle
-        && !city->terrain[city->ligneSurMap][city->colonneSurMap + 1].obstacle
-        && !city->terrain[city->ligneSurMap][city->colonneSurMap + 2].obstacle
-        && !city->terrain[city->ligneSurMap][city->colonneSurMap + 3].obstacle
-        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap].obstacle
-        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].obstacle
-        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].obstacle
-        && !city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 3].obstacle
-        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap].obstacle
-        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].obstacle
-        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].obstacle
-        && !city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 3].obstacle
-        && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap].obstacle
-        && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 1].obstacle
-        && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 2].obstacle
-        && !city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 3].obstacle
-        && !city->terrain[city->ligneSurMap + 4][city->colonneSurMap].obstacle
-        && !city->terrain[city->ligneSurMap + 4][city->colonneSurMap + 1].obstacle
-        && !city->terrain[city->ligneSurMap + 4][city->colonneSurMap + 2].obstacle
-        && !city->terrain[city->ligneSurMap + 4][city->colonneSurMap + 3].obstacle
-        && !city->terrain[city->ligneSurMap + 5][city->colonneSurMap].obstacle
-        && !city->terrain[city->ligneSurMap + 5][city->colonneSurMap + 1].obstacle
-        && !city->terrain[city->ligneSurMap + 5][city->colonneSurMap + 2].obstacle
-        && !city->terrain[city->ligneSurMap + 5][city->colonneSurMap + 3].obstacle)
-    {
-        return true;
     }
     return false;
 }
 
+/*
 void mettreAJObstacleAlimentation(City *city) {
     city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle = true;
     city->terrain[city->ligneSurMap][city->colonneSurMap + 1].obstacle = true;
@@ -734,7 +781,6 @@ void mettreAJObstacleAlimentation(City *city) {
     city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].obstacle = true;
     city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].obstacle = true;
 }
-
 void mettreAJAlimentationMap(City *city, int type) {
     city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = type;
     city->terrain[city->ligneSurMap][city->colonneSurMap + 1].typeBloc = type;
@@ -746,8 +792,8 @@ void mettreAJAlimentationMap(City *city, int type) {
     city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].typeBloc = type;
     city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].typeBloc = type;
 }
+*/
 
-// --------------- A FAIRE --------------- //
 bool viabiliteeRoutiere(City *city, int numeroConstruction) {
     if ((city->tabConstruction[numeroConstruction].typeDeConstruction == 3) ||
         (city->tabConstruction[numeroConstruction].typeDeConstruction == 4)) {
@@ -819,7 +865,6 @@ bool viabiliteeRoutiere(City *city, int numeroConstruction) {
     }
     return false;
 }
-
 bool viabiliteeRoutiereGraphique(City *city, int type) {
     if (type == 3 || type == 4) {
         for (int i = city->ligneSurMap - 1;
@@ -914,7 +959,6 @@ bool viabiliteeElectrique(City *city, int numeroConstruction) {
     }
     return false;
 }
-
 bool viabiliteeElectriqueGraphique(City *city, int type) {
     consommationElectrique(city);
     if (type == 5) {
@@ -974,7 +1018,6 @@ bool viabiliteeEau(City *city, int numeroConstruction) {
     }
     return false;
 }
-
 bool viabiliteeEauGraphique(City *city, int type) {
     consommationEau(city);
     if (type == 5) {

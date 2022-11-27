@@ -2,7 +2,14 @@
 
 
 void initialisationVille(City *city) {
-
+    if (city->mode == 1) {
+        city->capitaliste = true;
+        city->communiste = false;
+    }
+    if (city->mode == 2) {
+        city->capitaliste = false;
+        city->communiste = true;
+    }
     //---------------- Terrain Vague _ Ruine ----------------//
 
     city->ruine.prix = 1000; // 1000 ECE flouz et apèrs plus de prix car augmente avec compteur
@@ -80,7 +87,11 @@ void initialisationVille(City *city) {
     city->route.tailleY = 1;
     city->route.numeroBatiment = 0;
 
-    city->page.pageJeux.pageJeu = true;
+    city->page.pageMenuPrincipale.boolMenuPrincipal = true;
+    city->page.pageMenuPrincipale.choix = false;
+    city->page.pageMenuPrincipale.sauvegarde = false;
+    city->page.pageMenuPrincipale.aide = false;
+    city->page.pageMenuPrincipale.quitter = false;
 
     for (int i = 0; i < 150; i++) {
     }

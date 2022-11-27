@@ -1,11 +1,5 @@
 #include "affichage.h"
 
-// FONCTION SON
-
-// Music musique = LoadMusicStream("../Music/..")
-// PlayMusicStream(musique)
-// Pause Resume STop
-
 int savoirAffichageRoute(City *city, int i, int j) {
     bool haut = false, bas = false, gauche = false, droite = false;
     if (city->terrain[i][j - 1].typeBloc == 2) {
@@ -69,7 +63,6 @@ void dessinerGrille() {
         traitX += 20;
     }
 }
-
 void initBitmap(City *city) {
     //IMAGE
     city->tabBitmapImage[DecorHerbeImage] = LoadImage("../Images/Decor/land_1.png");
@@ -92,6 +85,7 @@ void initBitmap(City *city) {
 
     city->tabBitmapImage[Ruine] = LoadImage("../Images/Construction/Ruines.png");
     city->tabBitmapImage[Cabanne1] = LoadImage("../Images/Construction/Cabanne1.png");
+    city->tabBitmapImage[Cabane2] = LoadImage("../Images/Construction/Cabanee2.png");//////
     city->tabBitmapImage[House1] = LoadImage("../Images/Construction/House1.png");
     city->tabBitmapImage[House2] = LoadImage("../Images/Construction/House2.png");
     city->tabBitmapImage[House3] = LoadImage("../Images/Construction/House3.png");
@@ -100,9 +94,13 @@ void initBitmap(City *city) {
     city->tabBitmapImage[House6] = LoadImage("../Images/Construction/House6.png");
     city->tabBitmapImage[Immeuble1] = LoadImage("../Images/Construction/Immeuble1.png");
     city->tabBitmapImage[Immeuble2] = LoadImage("../Images/Construction/Immeuble2.png");
+    city->tabBitmapImage[Immeuble3] = LoadImage("../Images/Construction/Immeuble3.png"); ///////
     city->tabBitmapImage[Building1] = LoadImage("../Images/Construction/building1.png");
     city->tabBitmapImage[Building2] = LoadImage("../Images/Construction/Building2.png");
     city->tabBitmapImage[Building3] = LoadImage("../Images/Construction/Building3.png");
+    city->tabBitmapImage[Buildingg] = LoadImage("../Images/Construction/Buildingg.png");/////
+    city->tabBitmapImage[CentraleElectrique] = LoadImage("../Images/Construction/CentraleElec2.png");/////
+    city->tabBitmapImage[ChateauEau] = LoadImage("../Images/Construction/EauMoulin.png");/////
 
     city->tabBitmapImage[PageChargementImage] = LoadImage("../Images/Pages/imageAccueilRedim.png");
     city->tabBitmapImage[PageMenuPrincip] = LoadImage("../Images/Pages/imageChoixRedim.png");
@@ -119,6 +117,10 @@ void initBitmap(City *city) {
     city->tabBitmapImage[Niveau0] = LoadImage("../Images/Pages/Niveau0.png");
     city->tabBitmapImage[Niveau1] = LoadImage("../Images/Pages/Niveau-1.png");
     city->tabBitmapImage[Niveau2] = LoadImage("../Images/Pages/Niveau-2.png");
+    city->tabBitmapImage[ModeCapitaliste] = LoadImage("../Images/Pages/ModeCapitalisme.png");
+    city->tabBitmapImage[ModeCommuniste] = LoadImage("../Images/Pages/ModeCommuniste.png");
+    city->tabBitmapImage[NomSauvegarde] = LoadImage("../Images/Pages/NomSauvegarde.png");
+    city->tabBitmapImage[MenuEnJeu] = LoadImage("../Images/Pages/MenuEnJeu.png");
 
 
 
@@ -148,6 +150,7 @@ void initBitmap(City *city) {
 
     city->tabBitmapTexture[Ruine] = LoadTextureFromImage(city->tabBitmapImage[Ruine]);
     city->tabBitmapTexture[Cabanne1] = LoadTextureFromImage(city->tabBitmapImage[Cabanne1]);
+    city->tabBitmapTexture[Cabane2] = LoadTextureFromImage(city->tabBitmapImage[Cabane2]);/////
     city->tabBitmapTexture[House1] = LoadTextureFromImage(city->tabBitmapImage[House1]);
     city->tabBitmapTexture[House2] = LoadTextureFromImage(city->tabBitmapImage[House2]);
     city->tabBitmapTexture[House3] = LoadTextureFromImage(city->tabBitmapImage[House3]);
@@ -156,9 +159,13 @@ void initBitmap(City *city) {
     city->tabBitmapTexture[House6] = LoadTextureFromImage(city->tabBitmapImage[House6]);
     city->tabBitmapTexture[Immeuble1] = LoadTextureFromImage(city->tabBitmapImage[Immeuble1]);
     city->tabBitmapTexture[Immeuble2] = LoadTextureFromImage(city->tabBitmapImage[Immeuble2]);
+    city->tabBitmapTexture[Immeuble3] = LoadTextureFromImage(city->tabBitmapImage[Immeuble3]); /////
     city->tabBitmapTexture[Building1] = LoadTextureFromImage(city->tabBitmapImage[Building1]);
     city->tabBitmapTexture[Building2] = LoadTextureFromImage(city->tabBitmapImage[Building2]);
     city->tabBitmapTexture[Building3] = LoadTextureFromImage(city->tabBitmapImage[Building3]);
+    city->tabBitmapTexture[Buildingg] = LoadTextureFromImage(city->tabBitmapImage[Buildingg]);////
+    city->tabBitmapTexture[CentraleElectrique] = LoadTextureFromImage(city->tabBitmapImage[CentraleElectrique]);/////
+    city->tabBitmapTexture[ChateauEau] = LoadTextureFromImage(city->tabBitmapImage[ChateauEau]);/////
 
     city->tabBitmapTexture[PageRouteSelectionner] = LoadTextureFromImage(city->tabBitmapImage[PageRouteSelectionner]);
     city->tabBitmapTexture[PageHabitationSelectionner] = LoadTextureFromImage(
@@ -179,6 +186,10 @@ void initBitmap(City *city) {
     city->tabBitmapTexture[Niveau0] = LoadTextureFromImage(city->tabBitmapImage[Niveau0]);
     city->tabBitmapTexture[Niveau1] = LoadTextureFromImage(city->tabBitmapImage[Niveau1]);
     city->tabBitmapTexture[Niveau2] = LoadTextureFromImage(city->tabBitmapImage[Niveau2]);
+    city->tabBitmapTexture[ModeCommuniste] = LoadTextureFromImage(city->tabBitmapImage[ModeCommuniste]);
+    city->tabBitmapTexture[ModeCapitaliste] = LoadTextureFromImage(city->tabBitmapImage[ModeCapitaliste]);
+    city->tabBitmapTexture[NomSauvegarde] = LoadTextureFromImage(city->tabBitmapImage[NomSauvegarde]);
+    city->tabBitmapTexture[MenuEnJeu] = LoadTextureFromImage(city->tabBitmapImage[MenuEnJeu]);
 
     //UNLOAD IMAGE
     UnloadImage(city->tabBitmapImage[DecorHerbeImage]);
@@ -201,6 +212,7 @@ void initBitmap(City *city) {
 
     UnloadImage(city->tabBitmapImage[Ruine]);
     UnloadImage(city->tabBitmapImage[Cabanne1]);
+    UnloadImage(city->tabBitmapImage[Cabane2]);//////
     UnloadImage(city->tabBitmapImage[House1]);
     UnloadImage(city->tabBitmapImage[House2]);
     UnloadImage(city->tabBitmapImage[House3]);
@@ -209,9 +221,13 @@ void initBitmap(City *city) {
     UnloadImage(city->tabBitmapImage[House6]);
     UnloadImage(city->tabBitmapImage[Immeuble1]);
     UnloadImage(city->tabBitmapImage[Immeuble2]);
+    UnloadImage(city->tabBitmapImage[Immeuble3]);//////
     UnloadImage(city->tabBitmapImage[Building1]);
     UnloadImage(city->tabBitmapImage[Building2]);
     UnloadImage(city->tabBitmapImage[Building3]);
+    UnloadImage(city->tabBitmapImage[Buildingg]);////
+    UnloadImage(city->tabBitmapImage[CentraleElectrique]);/////
+    UnloadImage(city->tabBitmapImage[ChateauEau]);/////
 
     UnloadImage(city->tabBitmapImage[PageRouteSelectionner]);
     UnloadImage(city->tabBitmapImage[PageHabitationSelectionner]);
@@ -228,9 +244,12 @@ void initBitmap(City *city) {
     UnloadImage(city->tabBitmapImage[Niveau0]);
     UnloadImage(city->tabBitmapImage[Niveau1]);
     UnloadImage(city->tabBitmapImage[Niveau2]);
+    UnloadImage(city->tabBitmapImage[ModeCommuniste]);
+    UnloadImage(city->tabBitmapImage[ModeCapitaliste]);
+    UnloadImage(city->tabBitmapImage[NomSauvegarde]);
+    UnloadImage(city->tabBitmapImage[MenuEnJeu]);
 
 }
-
 void unloadTexture(City *city) {
     UnloadTexture(city->tabBitmapTexture[DecorHerbeImage]);
     UnloadTexture(city->tabBitmapTexture[DecorObstacleCaillouImage]);
@@ -252,6 +271,7 @@ void unloadTexture(City *city) {
 
     UnloadTexture(city->tabBitmapTexture[Ruine]);
     UnloadTexture(city->tabBitmapTexture[Cabanne1]);
+    UnloadTexture(city->tabBitmapTexture[Cabane2]);///////
     UnloadTexture(city->tabBitmapTexture[House1]);
     UnloadTexture(city->tabBitmapTexture[House2]);
     UnloadTexture(city->tabBitmapTexture[House3]);
@@ -260,9 +280,13 @@ void unloadTexture(City *city) {
     UnloadTexture(city->tabBitmapTexture[House6]);
     UnloadTexture(city->tabBitmapTexture[Immeuble1]);
     UnloadTexture(city->tabBitmapTexture[Immeuble2]);
+    UnloadTexture(city->tabBitmapTexture[Immeuble3]);/////
     UnloadTexture(city->tabBitmapTexture[Building1]);
     UnloadTexture(city->tabBitmapTexture[Building2]);
     UnloadTexture(city->tabBitmapTexture[Building3]);
+    UnloadTexture(city->tabBitmapTexture[Buildingg]);////
+    UnloadTexture(city->tabBitmapTexture[CentraleElectrique]);/////
+    UnloadTexture(city->tabBitmapTexture[ChateauEau]);/////
 
     UnloadTexture(city->tabBitmapTexture[PageChargementImage]);
     UnloadTexture(city->tabBitmapTexture[PageMenuPrincip]);
@@ -279,84 +303,145 @@ void unloadTexture(City *city) {
     UnloadTexture(city->tabBitmapTexture[Niveau0]);
     UnloadTexture(city->tabBitmapTexture[Niveau1]);
     UnloadTexture(city->tabBitmapTexture[Niveau2]);
+    UnloadTexture(city->tabBitmapTexture[ModeCapitaliste]);
+    UnloadTexture(city->tabBitmapTexture[ModeCommuniste]);
+    UnloadTexture(city->tabBitmapTexture[NomSauvegarde]);
+    UnloadTexture(city->tabBitmapTexture[MenuEnJeu]);
 
+}
+
+void pageSauvegarder (City *city) {
+    if (city->mouseX > 33 && city->mouseX < 128 && city->mouseY > 33 && city->mouseY < 128 &&
+        IsMouseButtonDown(0)) {
+        city->page.pageJeux.pageJeu = false;
+        city->page.pageMenuPrincipale.choix = false;
+        city->page.pageMenuPrincipale.sauvegarde = false;
+        city->page.pageMenuPrincipale.faireSauvegarde = false;
+        city->page.pageMenuPrincipale.chargementSauvegarde = false;
+        city->page.pageJeux.pageJeu = false;
+        city->page.pageJeux.musiqueJeu = false;
+        city->page.pageJeux.menu = false;
+        city->page.pageMenuPrincipale.boolMenuPrincipal = true;
+        city->capitaliste = false;
+        city->communiste = false;
+    }
+    if ((city->mouseY > 340 && city->mouseY < 458) && IsMouseButtonDown(0)) {
+        if (city->mouseX > 341 && city->mouseX < 520) {
+            city->page.pageJeux.pageJeu = false;
+            city->page.pageMenuPrincipale.choix = false;
+            city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+            city->page.pageMenuPrincipale.sauvegarde = false;
+            city->page.pageMenuPrincipale.aide = false;
+            city->page.pageMenuPrincipale.quitter = false;
+            city->capitaliste = false;
+            city->communiste = false;
+            city->page.pageMenuPrincipale.faireSauvegarde = false;
+            city->page.pageMenuPrincipale.chargementSauvegarde = true;
+        }
+        if (city->mouseX > 678 && city->mouseX < 1121) {
+            city->page.pageJeux.pageJeu = false;
+            city->page.pageMenuPrincipale.choix = false;
+            city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+            city->page.pageMenuPrincipale.sauvegarde = false;
+            city->page.pageMenuPrincipale.aide = false;
+            city->page.pageMenuPrincipale.quitter = false;
+            city->capitaliste = false;
+            city->communiste = false;
+            city->page.pageMenuPrincipale.faireSauvegarde = true;
+            city->page.pageMenuPrincipale.chargementSauvegarde = false;
+        }
+    }
+    if (city->page.pageMenuPrincipale.faireSauvegarde) {
+        city->page.pageMenuPrincipale.sauvegarde = true;
+    }
+    if (city->page.pageMenuPrincipale.chargementSauvegarde) {
+        city->page.pageMenuPrincipale.sauvegarde = false;
+        city->page.pageJeux.pageJeu = true;
+    }
 }
 
 void gestionCliqueSouris(City *city) {
     //Bouton lvl0
     if ((city->mouseX > 963 && city->mouseX < 1028 && city->mouseY > 169 && city->mouseY < 231) &&
         IsMouseButtonDown(0)) {
-        city->page.pageJeux.pageJeu = true;
-        city->page.pageJeux.menu = false;
-        city->page.pageJeux.aide = false;
-        city->page.pageJeux.sauvegarde = false;
-        city->page.pageJeux.quitter = false;
-        city->page.pageReseauEau.pageEau = false;
-        city->page.pageReseauElec.pageElectricite = false;
-        city->page.pageJeux.BatimentRoute = false;
-        city->page.pageJeux.BatimentHabitation = false;
-        city->page.pageJeux.BatimentEau = false;
-        city->page.pageJeux.BatimentElec = false;
-        city->page.pageJeux.menu = false;
-        city->page.pageJeux.croix = false;
+        if (city->page.pageJeux.pageJeu) {
+            city->page.pageJeux.musiqueJeu = true;
+            city->page.pageJeux.menu = false;
+            city->page.pageJeux.aide = false;
+            city->page.pageJeux.sauvegarde = false;
+            city->page.pageJeux.quitter = false;
+            city->page.pageReseauEau.pageEau = false;
+            city->page.pageReseauElec.pageElectricite = false;
+            city->page.pageJeux.BatimentRoute = false;
+            city->page.pageJeux.BatimentHabitation = false;
+            city->page.pageJeux.BatimentEau = false;
+            city->page.pageJeux.BatimentElec = false;
+            city->page.pageJeux.menu = false;
+            city->page.pageJeux.croix = false;
+        }
     }
     //Bouton lvl -1
     if ((city->mouseX > 1042 && city->mouseX < 1107 && city->mouseY > 169 && city->mouseY < 231) &&
         IsMouseButtonDown(0)) {
-        city->page.pageJeux.pageJeu = false;
-        city->page.pageJeux.menu = false;
-        city->page.pageJeux.aide = false;
-        city->page.pageJeux.sauvegarde = false;
-        city->page.pageJeux.quitter = false;
-        city->page.pageReseauEau.pageEau = true;
-        city->page.pageReseauElec.pageElectricite = false;
-        city->page.pageJeux.BatimentRoute = false;
-        city->page.pageJeux.BatimentHabitation = false;
-        city->page.pageJeux.BatimentEau = false;
-        city->page.pageJeux.BatimentElec = false;
-        city->page.pageJeux.menu = false;
-        city->page.pageJeux.croix = false;
+        if (city->page.pageJeux.pageJeu) {
+            city->page.pageJeux.musiqueJeu = false;
+            city->page.pageJeux.menu = false;
+            city->page.pageJeux.aide = false;
+            city->page.pageJeux.sauvegarde = false;
+            city->page.pageJeux.quitter = false;
+            city->page.pageReseauEau.pageEau = true;
+            city->page.pageReseauElec.pageElectricite = false;
+            city->page.pageJeux.BatimentRoute = false;
+            city->page.pageJeux.BatimentHabitation = false;
+            city->page.pageJeux.BatimentEau = false;
+            city->page.pageJeux.BatimentElec = false;
+            city->page.pageJeux.menu = false;
+            city->page.pageJeux.croix = false;
+        }
     }
     //Bouton lvl -2
     if ((city->mouseX > 1120 && city->mouseX < 1185 && city->mouseY > 169 && city->mouseY < 231) &&
         IsMouseButtonDown(0)) {
-        city->page.pageJeux.pageJeu = false;
-        city->page.pageJeux.menu = false;
-        city->page.pageJeux.aide = false;
-        city->page.pageJeux.sauvegarde = false;
-        city->page.pageJeux.quitter = false;
-        city->page.pageReseauEau.pageEau = false;
-        city->page.pageReseauElec.pageElectricite = true;
-        city->page.pageJeux.BatimentRoute = false;
-        city->page.pageJeux.BatimentHabitation = false;
-        city->page.pageJeux.BatimentEau = false;
-        city->page.pageJeux.BatimentElec = false;
-        city->page.pageJeux.menu = false;
-        city->page.pageJeux.croix = false;
+        if (city->page.pageJeux.pageJeu) {
+            city->page.pageJeux.musiqueJeu = false;
+            city->page.pageJeux.menu = false;
+            city->page.pageJeux.aide = false;
+            city->page.pageJeux.sauvegarde = false;
+            city->page.pageJeux.quitter = false;
+            city->page.pageReseauEau.pageEau = false;
+            city->page.pageReseauElec.pageElectricite = true;
+            city->page.pageJeux.BatimentRoute = false;
+            city->page.pageJeux.BatimentHabitation = false;
+            city->page.pageJeux.BatimentEau = false;
+            city->page.pageJeux.BatimentElec = false;
+            city->page.pageJeux.menu = false;
+            city->page.pageJeux.croix = false;
+        }
     }
     //Bouton Déroulant menu
-    if ((city->mouseX > 19 && city->mouseX < 92 && city->mouseY > 13 && city->mouseY < 85) &&
+    if ((city->mouseX > 10 && city->mouseX < 85 && city->mouseY > 10 && city->mouseY < 85) &&
         IsMouseButtonDown(0)) {
-        city->page.pageJeux.pageJeu = false;
-        city->page.pageJeux.menu = true;
-        city->page.pageJeux.aide = false;
-        city->page.pageJeux.sauvegarde = false;
-        city->page.pageJeux.quitter = false;
-        city->page.pageReseauEau.pageEau = false;
-        city->page.pageReseauElec.pageElectricite = false;
-        city->page.pageJeux.BatimentRoute = false;
-        city->page.pageJeux.BatimentHabitation = false;
-        city->page.pageJeux.BatimentEau = false;
-        city->page.pageJeux.BatimentElec = false;
-        city->page.pageJeux.menu = false;
-        city->page.pageJeux.croix = false;
+        if (city->page.pageJeux.pageJeu) {
+            city->page.pageJeux.menu = true;
+            city->page.pageJeux.pageJeu = false;
+            city->page.pageJeux.aide = false;
+            city->page.pageJeux.sauvegarde = false;
+            city->page.pageJeux.quitter = false;
+            city->page.pageReseauEau.pageEau = false;
+            city->page.pageReseauElec.pageElectricite = false;
+            city->page.pageJeux.BatimentRoute = false;
+            city->page.pageJeux.BatimentHabitation = false;
+            city->page.pageJeux.BatimentEau = false;
+            city->page.pageJeux.BatimentElec = false;
+            city->page.pageJeux.croix = false;
+        }
     }
     //Bouton retour du menu déroulant
-    if ((city->mouseX > 9 && city->mouseX < 103 && city->mouseY > 25 && city->mouseY < 116) &&
+    if ((city->mouseX > 7 && city->mouseX < 57 && city->mouseY > 16 && city->mouseY < 65) &&
         IsMouseButtonDown(0)) {
         if (city->page.pageJeux.menu) {
-            city->page.pageJeux.pageJeu = true;
             city->page.pageJeux.menu = false;
+            city->page.pageJeux.pageJeu = true;
             city->page.pageJeux.aide = false;
             city->page.pageJeux.sauvegarde = false;
             city->page.pageJeux.quitter = false;
@@ -372,7 +457,7 @@ void gestionCliqueSouris(City *city) {
     }
     //PAS ENCORE FAIT
     //Bouton AIDE pageMenuJeu
-    if ((city->mouseX > 126 && city->mouseX < 584 && city->mouseY > 10 && city->mouseY < 130) &&
+    /*if ((city->mouseX > 69 && city->mouseX < 300 && city->mouseY > 10 && city->mouseY < 70) &&
         IsMouseButtonDown(0)) {
         if (city->page.pageJeux.menu) {
             city->page.pageJeux.pageJeu = false;
@@ -388,14 +473,15 @@ void gestionCliqueSouris(City *city) {
             city->page.pageJeux.menu = false;
             city->page.pageJeux.croix = false;
         }
-    }
+    }*/
     //Bouton SAUVEGARDE pageMenuJeu
-    if ((city->mouseX > 126 && city->mouseX < 584 && city->mouseY > 151 && city->mouseY < 270) &&
+    if ((city->mouseX > 69 && city->mouseX < 300 && city->mouseY > 82 && city->mouseY < 142) &&
         IsMouseButtonDown(0)) {
         if (city->page.pageJeux.menu) {
             city->page.pageJeux.pageJeu = false;
             city->page.pageJeux.aide = false;
             city->page.pageJeux.sauvegarde = true;
+            city->page.pageMenuPrincipale.sauvegarde = true;
             city->page.pageJeux.quitter = false;
             city->page.pageReseauEau.pageEau = false;
             city->page.pageReseauElec.pageElectricite = false;
@@ -407,8 +493,67 @@ void gestionCliqueSouris(City *city) {
             city->page.pageJeux.croix = false;
         }
     }
+    if (city->page.pageJeux.sauvegarde && city->page.pageMenuPrincipale.sauvegarde) {
+        if (city->mouseX > 33 && city->mouseX < 128 && city->mouseY > 33 && city->mouseY < 128 &&
+            IsMouseButtonDown(0)) {
+            city->page.pageJeux.pageJeu = true;
+            city->page.pageJeux.aide = false;
+            city->page.pageJeux.sauvegarde = false;
+            city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+            city->page.pageMenuPrincipale.sauvegarde = false;
+            city->page.pageJeux.quitter = false;
+            city->page.pageReseauEau.pageEau = false;
+            city->page.pageReseauElec.pageElectricite = false;
+            city->page.pageJeux.BatimentRoute = false;
+            city->page.pageJeux.BatimentHabitation = false;
+            city->page.pageJeux.BatimentEau = false;
+            city->page.pageJeux.BatimentElec = false;
+            city->page.pageJeux.menu = false;
+            city->page.pageJeux.croix = false;
+        }
+        if ((city->mouseY > 340 && city->mouseY < 458) && IsMouseButtonDown(0)) {
+            if (city->mouseX > 341 && city->mouseX < 520) {
+                city->page.pageJeux.pageJeu = false;
+                city->page.pageMenuPrincipale.choix = false;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+                city->page.pageMenuPrincipale.sauvegarde = false;
+                city->page.pageMenuPrincipale.aide = false;
+                city->page.pageMenuPrincipale.quitter = false;
+                city->capitaliste = false;
+                city->communiste = false;
+                city->page.pageMenuPrincipale.faireSauvegarde = false;
+                city->page.pageMenuPrincipale.chargementSauvegarde = true;
+                city->page.pageJeux.menu = false;
+            }
+            if (city->mouseX > 678 && city->mouseX < 1121) {
+                city->page.pageJeux.pageJeu = false;
+                city->page.pageMenuPrincipale.choix = false;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+                city->page.pageMenuPrincipale.sauvegarde = false;
+                city->page.pageMenuPrincipale.aide = false;
+                city->page.pageMenuPrincipale.quitter = false;
+                city->capitaliste = false;
+                city->communiste = false;
+                city->page.pageMenuPrincipale.faireSauvegarde = true;
+                city->page.pageMenuPrincipale.chargementSauvegarde = false;
+                city->page.pageJeux.menu = false;
+            }
+        }
+        if (city->page.pageMenuPrincipale.faireSauvegarde) {
+            city->page.pageMenuPrincipale.sauvegarde = true;
+            city->page.pageMenuPrincipale.chargementSauvegarde = false;
+            city->page.pageJeux.pageJeu = false;
+            city->page.pageJeux.menu = false;
+        }
+        if (city->page.pageMenuPrincipale.chargementSauvegarde) {
+            city->page.pageMenuPrincipale.sauvegarde = false;
+            city->page.pageMenuPrincipale.chargementSauvegarde = true;
+            city->page.pageJeux.pageJeu = true;
+            city->page.pageJeux.menu = false;
+        }
+    }
     //Bouton QUITTER pageMenuJeu
-    if ((city->mouseX > 126 && city->mouseX < 584 && city->mouseY > 290 && city->mouseY < 410) &&
+    if ((city->mouseX > 69 && city->mouseX < 300 && city->mouseY > 152 && city->mouseY < 210) &&
         IsMouseButtonDown(0)) {
         if (city->page.pageJeux.menu) {
             city->page.pageJeux.pageJeu = false;
@@ -423,6 +568,17 @@ void gestionCliqueSouris(City *city) {
             city->page.pageJeux.BatimentElec = false;
             city->page.pageJeux.menu = false;
             city->page.pageJeux.croix = false;
+
+            city->page.pageJeux.musiqueJeu = false;
+            city->page.pageMenuPrincipale.choix = false;
+            city->page.pageMenuPrincipale.boolMenuPrincipal = true;
+            city->page.pageMenuPrincipale.sauvegarde = false;
+            city->page.pageMenuPrincipale.aide = false;
+            city->page.pageMenuPrincipale.quitter = false;
+            city->capitaliste = false;
+            city->communiste = false;
+            city->page.pageMenuPrincipale.faireSauvegarde = false;
+            city->page.pageMenuPrincipale.chargementSauvegarde = false;
         }
     }
     //Bouton route
@@ -500,15 +656,141 @@ void gestionCliqueSouris(City *city) {
     //Bouton croix
     if ((city->mouseX > 1050 && city->mouseX < 1100 && city->mouseY > 400 && city->mouseY < 450) &&
         IsMouseButtonDown(0)) {
-        city->page.pageJeux.pageJeu = true;
-        city->page.pageJeux.BatimentRoute = false;
-        city->page.pageJeux.BatimentHabitation = false;
-        city->page.pageJeux.BatimentEau = false;
-        city->page.pageJeux.BatimentElec = false;
-        city->page.pageReseauEau.pageEau = false;
-        city->page.pageReseauElec.pageElectricite = false;
+        if (city->page.pageJeux.pageJeu) {
+            city->page.pageJeux.BatimentRoute = false;
+            city->page.pageJeux.BatimentHabitation = false;
+            city->page.pageJeux.BatimentEau = false;
+            city->page.pageJeux.BatimentElec = false;
+            city->page.pageReseauEau.pageEau = false;
+            city->page.pageReseauElec.pageElectricite = false;
+        }
     }
 
+    //PagePrincipale
+    if (city->page.pageMenuPrincipale.boolMenuPrincipal) {
+        if ((city->mouseX > 393 && city->mouseX < 821) && IsMouseButtonDown(0)) {
+            if (city->mouseY > 51 && city->mouseY < 166) {
+                //city->page.pageJeux.pageJeu = true;
+                city->page.pageMenuPrincipale.choix = true;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+                city->page.pageMenuPrincipale.sauvegarde = false;
+                city->page.pageMenuPrincipale.aide = false;
+                city->page.pageMenuPrincipale.quitter = false;
+                city->capitaliste = false;
+                city->communiste = false;
+            }
+            if (city->mouseY > 250 && city->mouseY < 361) {
+                city->page.pageMenuPrincipale.choix = false;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+                city->page.pageMenuPrincipale.sauvegarde = true;
+                city->page.pageMenuPrincipale.aide = false;
+                city->page.pageMenuPrincipale.quitter = false;
+                city->capitaliste = false;
+                city->communiste = false;
+                city->compteurTemps3s = GetTime();
+            }
+            if (city->mouseY > 444 && city->mouseY < 558) {
+                city->page.pageMenuPrincipale.choix = false;
+                city->page.pageMenuPrincipale.sauvegarde = false;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = true;
+                //city->page.pageMenuPrincipale.aide = true;
+                city->page.pageMenuPrincipale.quitter = false;
+                city->capitaliste = false;
+                city->communiste = false;
+            }
+            if (city->mouseY > 624 && city->mouseY < 737) {
+                city->page.pageMenuPrincipale.choix = false;
+                city->page.pageMenuPrincipale.sauvegarde = false;
+                city->page.pageMenuPrincipale.aide = false;
+                //city->page.pageMenuPrincipale.quitter = true;
+                city->quitter = true;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+                city->capitaliste = false;
+                city->communiste = false;
+            }
+        }
+    }
+    if (city->page.pageMenuPrincipale.sauvegarde) {
+        if (city->mouseX > 33 && city->mouseX < 128 && city->mouseY > 33 && city->mouseY < 128 &&
+            IsMouseButtonDown(0)) {
+            city->page.pageJeux.pageJeu = false;
+            city->page.pageMenuPrincipale.choix = false;
+            city->page.pageMenuPrincipale.sauvegarde = false;
+            city->page.pageMenuPrincipale.faireSauvegarde = false;
+            city->page.pageMenuPrincipale.chargementSauvegarde = false;
+            city->page.pageJeux.pageJeu = false;
+            city->page.pageJeux.musiqueJeu = false;
+            city->page.pageJeux.menu = false;
+            city->page.pageMenuPrincipale.boolMenuPrincipal = true;
+            city->capitaliste = false;
+            city->communiste = false;
+        }
+        if ((city->mouseY > 340 && city->mouseY < 458) && IsMouseButtonDown(0)) {
+            if (city->mouseX > 341 && city->mouseX < 520) {
+                city->page.pageJeux.pageJeu = false;
+                city->page.pageMenuPrincipale.choix = false;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+                city->page.pageMenuPrincipale.sauvegarde = false;
+                city->page.pageMenuPrincipale.aide = false;
+                city->page.pageMenuPrincipale.quitter = false;
+                city->capitaliste = false;
+                city->communiste = false;
+                city->page.pageMenuPrincipale.faireSauvegarde = false;
+                city->page.pageMenuPrincipale.chargementSauvegarde = true;
+            }
+            if (city->mouseX > 678 && city->mouseX < 1121) {
+                city->page.pageJeux.pageJeu = false;
+                city->page.pageMenuPrincipale.choix = false;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+                city->page.pageMenuPrincipale.sauvegarde = false;
+                city->page.pageMenuPrincipale.aide = false;
+                city->page.pageMenuPrincipale.quitter = false;
+                city->capitaliste = false;
+                city->communiste = false;
+                city->page.pageMenuPrincipale.faireSauvegarde = true;
+                city->page.pageMenuPrincipale.chargementSauvegarde = false;
+            }
+        }
+        if (city->page.pageMenuPrincipale.faireSauvegarde) {
+            city->page.pageMenuPrincipale.sauvegarde = true;
+            city->page.pageMenuPrincipale.chargementSauvegarde = false;
+            city->page.pageJeux.pageJeu = false;
+        }
+        if (city->page.pageMenuPrincipale.chargementSauvegarde) {
+            city->page.pageMenuPrincipale.sauvegarde = false;
+            city->page.pageMenuPrincipale.chargementSauvegarde = true;
+            city->page.pageJeux.pageJeu = true;
+        }
+    }
+    if (city->page.pageMenuPrincipale.choix) {
+        if ((city->mouseY > 341 && city->mouseY < 472) && IsMouseButtonDown(0)) {
+            if (city->mouseX > 17 && city->mouseX < 528) {
+                city->page.pageJeux.pageJeu = true;
+                city->page.pageJeux.musiqueJeu = true;
+                city->page.pageMenuPrincipale.choix = false;
+                city->capitaliste = true;
+                city->communiste = false;
+                city->commencerPartieTemps = GetTime();
+
+            }
+            if (city->mouseX > 665 && city->mouseX < 1179) {
+                city->page.pageJeux.pageJeu = true;
+                city->page.pageJeux.musiqueJeu = true;
+                city->page.pageMenuPrincipale.choix = false;
+                city->capitaliste = false;
+                city->communiste = true;
+                city->commencerPartieTemps = GetTime();
+            }
+        }
+        if ((city->mouseY > 143 && city->mouseY < 240) && IsMouseButtonDown(0) && city->mouseX > 420 &&
+            city->mouseX < 799) {
+            city->page.pageJeux.pageJeu = false;
+            city->page.pageMenuPrincipale.choix = false;
+            city->page.pageMenuPrincipale.boolMenuPrincipal = true;
+            city->capitaliste = false;
+            city->communiste = false;
+        }
+    }
     // Repérage colonnes et lignes
     for (int i = 0; i < COLONNES; i++) {
         for (int j = 0; j < LIGNES; j++) {
@@ -522,65 +804,14 @@ void gestionCliqueSouris(City *city) {
     }
 }
 
-void initAffichage(City *city) {
-    InitWindow(LARGEUR_ECRAN, HAUTEUR_ECRAN, "ECE-City");
-    SetWindowState(FLAG_WINDOW_RESIZABLE);
-
+void deroulemntPage(City *city) {
+    // boucle on lance le jeu
     initBitmap(city);
-
-    SetTargetFPS(1080);
-    while (!WindowShouldClose()) {
-        city->mouseX = GetMouseX();
-        city->mouseY = GetMouseY();
-        BeginDrawing();
-        DrawTexture(city->tabBitmapTexture[PagePrincipaleToolBox], 0, 0, WHITE);
-
-        for (int i = 0; i < LIGNES; i++) {
-            for (int j = 0; j < COLONNES; j++) {
-                DrawTexture(city->tabBitmapTexture[DecorHerbeImage], j * 20, i * 20 + 100, WHITE);
-                if (i == 0 || i == LIGNES - 1 || j == 0 || j == COLONNES - 1) {
-                    DrawTexture(city->tabBitmapTexture[DecorObstacleCaillouImage], j * 20, i * 20 + 100, WHITE);
-                    city->terrain[i][j].obstacle = true;
-                }
-                if (i == 17 && j == 0) {
-                    DrawTexture(city->tabBitmapTexture[Route], j * 20, i * 20 + 100, BLACK);
-                    city->terrain[i][j].obstacle = true;
-                }
-            }
-        }
-        dessinerGrille();
-
-        DrawTexture(city->tabBitmapTexture[Ruine], 20, 300, WHITE);
-        DrawTexture(city->tabBitmapTexture[Cabanne1], 80, 300, WHITE);
-        DrawTexture(city->tabBitmapTexture[House1], 20, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[House2], 80, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[House3], 140, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[House4], 200, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[House5], 260, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[House6], 320, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[Immeuble1], 380, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[Immeuble2], 440, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[Building1], 500, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[Building2], 560, 200, WHITE);
-        DrawTexture(city->tabBitmapTexture[Building3], 620, 200, WHITE);
-
-        gestionCliqueSouris(city);
-
-        if (city->page.pageJeux.menu) {
-            DrawTexture(city->tabBitmapTexture[PagePrincipaleToolBox], 0, 0, WHITE);
-        }
-
-        if (city->page.pageReseauElec.pageElectricite) {
-            DrawRectangle(0, 99, 900, 800, WHITE);
-        }
-
-        EndDrawing();
-    }
-    unloadTexture(city);
-    CloseWindow();
+    city->page.pageChargement;
+    affichageBoucle(city);
 }
 
-void fonction_Nino_ROUTE(City *city, int nbConstru) {
+void affichageRouteOrientee(City *city) {
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {
             if (city->terrain[i][j].typeBloc == 1) {
@@ -618,13 +849,13 @@ void fonction_Nino_ROUTE(City *city, int nbConstru) {
             }
             if (city->terrain[i][j].typeBloc == 3 && city->terrain[i - 1][j].typeBloc != 3 &&
                 city->terrain[i][j - 1].typeBloc != 3) {
-                DrawTexture(city->tabBitmapTexture[House2], j * 20, i * 20 + 100, WHITE);
-                nbConstru++;
+                //DrawTexture(city->tabBitmapTexture[House2], j * 20, i * 20 + 100, WHITE);
+                DrawTexture(city->tabBitmapTexture[CentraleElectrique], j * 20, i * 20 + 100, WHITE);/////
             }
             if (city->terrain[i][j].typeBloc == 4 && city->terrain[i - 1][j].typeBloc != 4 &&
                 city->terrain[i][j - 1].typeBloc != 4) {
-                DrawTexture(city->tabBitmapTexture[House4], j * 20, i * 20 + 100, WHITE);
-                nbConstru++;
+                //DrawTexture(city->tabBitmapTexture[House4], j * 20, i * 20 + 100, WHITE);
+                DrawTexture(city->tabBitmapTexture[ChateauEau], j * 20, i * 20 + 100, WHITE);/////
             }
             if (city->terrain[i][j].typeBloc == 5 && city->terrain[i - 1][j].typeBloc != 5 &&
                 city->terrain[i][j - 1].typeBloc != 5) {
@@ -633,65 +864,284 @@ void fonction_Nino_ROUTE(City *city, int nbConstru) {
             }
             if (city->terrain[i][j].typeBloc == 6 && city->terrain[i - 1][j].typeBloc != 6 &&
                 city->terrain[i][j - 1].typeBloc != 6) {
-                DrawTexture(city->tabBitmapTexture[Cabanne1], j * 20, i * 20 + 100, WHITE);
-                nbConstru++;
+                //DrawTexture(city->tabBitmapTexture[Cabanne1], j * 20, i * 20 + 100, WHITE);
+                DrawTexture(city->tabBitmapTexture[Cabane2], j * 20, i * 20 + 100, WHITE);//////
                 city->terrain[i][j].obstacle = true;
             }
             if (city->terrain[i][j].typeBloc == 7 && city->terrain[i - 1][j].typeBloc != 7 &&
                 city->terrain[i][j - 1].typeBloc != 7) {
                 DrawTexture(city->tabBitmapTexture[House6], j * 20, i * 20 + 100, WHITE);
-                nbConstru++;
                 city->terrain[i][j].obstacle = true;
             }
             if (city->terrain[i][j].typeBloc == 8 && city->terrain[i - 1][j].typeBloc != 8 &&
                 city->terrain[i][j - 1].typeBloc != 8) {
-                DrawTexture(city->tabBitmapTexture[Immeuble1], j * 20, i * 20 + 100, WHITE);
-                nbConstru++;
+                //DrawTexture(city->tabBitmapTexture[Immeuble1], j * 20, i * 20 + 100, WHITE);
+                DrawTexture(city->tabBitmapTexture[Immeuble3], j * 20, i * 20 + 100, WHITE);/////
                 city->terrain[i][j].obstacle = true;
             }
             if (city->terrain[i][j].typeBloc == 9 && city->terrain[i - 1][j].typeBloc != 9 &&
                 city->terrain[i][j - 1].typeBloc != 9) {
-                DrawTexture(city->tabBitmapTexture[Building2], j * 20, i * 20 + 100, WHITE);
-                nbConstru++;
+                //DrawTexture(city->tabBitmapTexture[Building2], j * 20, i * 20 + 100, WHITE);
+                DrawTexture(city->tabBitmapTexture[Buildingg], j * 20, i * 20 + 100, WHITE);////
                 city->terrain[i][j].obstacle = true;
             }
         }
     }
 }
 
+void initMap (City *city) {
+    DrawText(TextFormat("%d", city->nbHabitant), 1010, 48, 25, BLACK);
+    DrawText(TextFormat("%d", city->argent), 1010, 107, 25, BLACK);
+    DrawText("ece", 1149, 102, 15, DARKGRAY);
+    DrawText("flouz", 1143, 117, 15, DARKGRAY);
+    for (int i = 0; i < LIGNES; i++) {
+        for (int j = 0; j < COLONNES; j++) {
+            DrawTexture(city->tabBitmapTexture[DecorHerbeImage], j * 20, i * 20 + 100, WHITE);
+        }
+    }
+    dessinerGrille();
+}
+
+void pageJeuBatimentRoute (City *city) {
+    if (city->page.pageJeux.BatimentRoute) {
+        DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10, WHITE);
+        DrawTexture(city->tabBitmapTexture[PageRouteSelectionner], 968, 466, WHITE);
+        if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle &&
+            viabiliteeRoutiereGraphique(city, 2)) {
+            DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10, GREEN);
+            if (IsMouseButtonDown(0) && verifierArgent(city, 10)) {
+                city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = 2;
+                city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle = true;
+                city->argent -= 10;
+            }
+        } else if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle &&
+                   !viabiliteeRoutiereGraphique(city, 2)) {
+            DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10,
+                        ORANGE);
+            if (IsMouseButtonDown(0) && verifierArgent(city, 10)) {
+                city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = 2;
+                city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle = true;
+            }
+        } else {
+            DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10, RED);
+        }
+    }
+}
+void pageJeuBatimentHabitation (City *city) {
+    if (city->page.pageJeux.BatimentHabitation) {
+        DrawTexture(city->tabBitmapTexture[PageHabitationSelectionner], 968, 466, WHITE);
+        DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, WHITE);
+        if (obstacleHabitation(city)) {
+            if (!viabiliteeRoutiereGraphique(city, 5)) {
+                DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, DARKGRAY);
+            } else if (!viabiliteeElectriqueGraphique(city, 5)) {
+                DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, YELLOW);
+            } else if (!viabiliteeEauGraphique(city, 5)) {
+                DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, BLUE);
+            } else if (viabiliteeRoutiereGraphique(city, 5) && viabiliteeElectriqueGraphique(city, 5) &&
+                       viabiliteeEauGraphique(city, 5)) {
+                DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, GREEN);
+            }
+            if (IsMouseButtonDown(0) && verifierArgent(city, 1000)) {
+                faireObstacleHabitation(city);
+                faireHabitationMap(city, 5);
+                city->nombreConstruction++;
+            }
+        } else {
+            DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, RED);
+        }
+    }
+}
+void pageJeuBatimentEau (City *city) {
+    if (city->page.pageJeux.BatimentEau) {
+        DrawTexture(city->tabBitmapTexture[PageChateauSelectionner], 968, 466, WHITE);
+        //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, WHITE);
+        DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, WHITE);////
+        if (obstacleAlimentation(city)) {
+            if (!viabiliteeRoutiereGraphique(city, 4)) {
+                //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, DARKGRAY);
+                DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, DARKGRAY);/////
+            } else if (!viabiliteeElectriqueGraphique(city, 4)) {
+                //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, YELLOW);
+                DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, YELLOW);/////
+            } else if (!viabiliteeEauGraphique(city, 4)) {
+                //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, BLUE);
+                DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, BLUE);////
+            } else if (viabiliteeRoutiereGraphique(city, 4) && viabiliteeElectriqueGraphique(city, 4) &&
+                       viabiliteeEauGraphique(city, 4)) {
+                //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, GREEN);
+                DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, GREEN);////
+            }
+            if (IsMouseButtonDown(0) && verifierArgent(city, 100000)) {
+                faireObstacleAlimentation(city);
+                faireAlimentationMap(city, 4);
+                city->nombreConstruction++;
+            }
+        } else {
+            //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, RED);
+            DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, RED);/////
+        }
+    }
+}
+void pageJeuBatimentElectrique (City *city) {
+    if (city->page.pageJeux.BatimentElec) {
+        DrawTexture(city->tabBitmapTexture[PageCentraleSelectionner], 968, 466, WHITE);
+        //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, WHITE);
+        DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, WHITE);////
+        if (obstacleAlimentation(city)) {
+            if (!viabiliteeRoutiereGraphique(city, 3)) {
+                //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, DARKGRAY);
+                DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY,
+                            DARKGRAY);////
+            } else if (!viabiliteeElectriqueGraphique(city, 3)) {
+                //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, YELLOW);
+                DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY,
+                            YELLOW);/////
+            } else if (!viabiliteeEauGraphique(city, 3)) {
+                //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, BLUE);
+                DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, BLUE);/////
+            } else if (viabiliteeRoutiereGraphique(city, 3) && viabiliteeElectriqueGraphique(city, 3) &&
+                       viabiliteeEauGraphique(city, 3)) {
+                //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, GREEN);
+                DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, GREEN);////
+            }
+            if (IsMouseButtonDown(0) && verifierArgent(city, 100000)) {
+                faireObstacleAlimentation(city);
+                faireAlimentationMap(city, 3);
+                city->nombreConstruction++;
+            }
+        } else {
+            //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, RED);
+            DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, RED);////
+        }
+    }
+}
+
+void modeDeJeu(City *city) {
+    if (city->communiste) {
+        city->mode = 2;
+        DrawTexture(city->tabBitmapTexture[ModeCommuniste], 128, 20, WHITE);
+        //Mode communiste
+    }
+    if (city->capitaliste) {
+        city->mode = 1;
+        DrawTexture(city->tabBitmapTexture[ModeCapitaliste], 128, 20, WHITE);
+        //Mode capitalisme
+    }
+    if (city->communiste || city->capitaliste) {
+        city->page.pageJeux.musiqueJeu = true;
+    }
+
+}
+
+void pageSauvegardeEnJeu (City*city) {
+    if (city->page.pageMenuPrincipale.sauvegarde || city->page.pageJeux.sauvegarde) {
+        DrawTexture(city->tabBitmapTexture[NomSauvegarde], 0, 0, WHITE);
+        if (city->page.pageMenuPrincipale.chargementSauvegarde) {
+            lireFichierTexte("../txt/SauvegardeEffectuer/sauvegarde", city);
+            city->page.pageJeux.pageJeu = true;
+        }
+        if (city->page.pageMenuPrincipale.faireSauvegarde) {
+            sauvegarderPartie(city, "../txt/SauvegardeEffectuer/sauvegarde");
+            while (city->temps - city->compteurTemps3s < 3 && !city->quitter) {
+                city->temps = GetTime();
+                BeginDrawing();
+                DrawTexture(city->tabBitmapTexture[PageSauvegardeEffectuer], 0, 0, WHITE);
+                EndDrawing();
+            }
+            city->page.pageMenuPrincipale.faireSauvegarde = false;
+            city->page.pageMenuPrincipale.sauvegarde = false;
+            city->page.pageMenuPrincipale.boolMenuPrincipal = true;
+        }
+    }
+}
+
+void pageEau (City *city) {
+    if (city->page.pageReseauEau.pageEau) {
+        DrawTexture(city->tabBitmapTexture[Niveau1], 963, 169, WHITE);
+        DrawRectangle(0, 99, 900, 701, LIGHTGRAY);
+        for (int i = 0; i < LIGNES; i++) {
+            for (int j = 0; j < COLONNES; j++) {
+                if (city->terrain[i][j].typeBloc == 2) {
+                    DrawRectangle(j * 20, i * 20 + 100, 20, 20, BLUE);
+                }
+                if (city->terrain[i][j].typeBloc == 4) {
+                    DrawRectangle(j * 20, i * 20 + 100, 20, 20, DARKBLUE);
+                }
+            }
+        }
+        //Afficher réseau
+        dessinerGrille();
+    }
+}
+void pageElec(City *city) {
+    if (city->page.pageReseauElec.pageElectricite) {
+        DrawTexture(city->tabBitmapTexture[Niveau2], 963, 169, WHITE);
+        DrawRectangle(0, 99, 900, 701, LIGHTGRAY);
+        for (int i = 0; i < LIGNES; i++) {
+            for (int j = 0; j < COLONNES; j++) {
+                if (city->terrain[i][j].typeBloc == 2) {
+                    DrawRectangle(j * 20, i * 20 + 100, 20, 20, YELLOW);
+                }
+                if (city->terrain[i][j].typeBloc == 3) {
+                    DrawRectangle(j * 20, i * 20 + 100, 20, 20, GOLD);
+                }
+            }
+        }
+        //Afficher réseau
+        dessinerGrille();
+    }
+}
+
+void jeuPartie (City *city){
+    if (city->page.pageJeux.pageJeu) {
+        DrawTexture(city->tabBitmapTexture[MenuEnJeu], 10, 10, WHITE);
+        for (int i = 0; i < city->nombreConstruction; i++) {
+            city->tabConstruction[i].compteur = city->temps - city->tabConstruction[i].tempsPose;
+
+            if ((int) city->tabConstruction[i].compteur != 0 && (int) city->tabConstruction[i].compteur % 15 == 0 &&
+                city->tabConstruction[i].ameliorerBat) {
+                ameliorationBatiment(city, i);
+                city->tabConstruction[i].ameliorerBat = false;
+                argentAJour(city, i);
+            }
+            if ((int) city->tabConstruction[i].compteur % 15 != 0) {
+                city->tabConstruction[i].ameliorerBat = true;
+            }
+        }
+
+        pageJeuBatimentRoute(city);
+        pageJeuBatimentHabitation (city);
+        pageJeuBatimentEau (city);
+        pageJeuBatimentElectrique (city);
+    }
+}
+
 void affichageBoucle(City *city) {
-    bool ameliorer = true;
     InitWindow(LARGEUR_ECRAN, HAUTEUR_ECRAN, "ECE-City");
     SetWindowState(FLAG_WINDOW_RESIZABLE);
 
     initBitmap(city);
+    initSon(city);
 
-    SetTargetFPS(1080);
+    SetTargetFPS(60);
 
-    while (!WindowShouldClose()) {
-        //ClearBackground(RAYWHITE);
+    while (!city->quitter) {
+        if (WindowShouldClose()) {
+            city->quitter = true;
+        }
         BeginDrawing();
 
-        int nbConstru = 0;
         int sec = 0, min = 0, hour = 0;
         city->mouseX = GetMouseX();
         city->mouseY = GetMouseY();
+        updateMusique(city);
 
-        city->temps = GetTime();
-        sec = (int) city->temps;
-
+        city->temps = GetTime() - city->commencerPartieTemps;
         sec = ((int) city->temps % 3600) % 60;
         min = ((int) city->temps % 3600) / 60;
         hour = (int) city->temps / 3600;
 
-
-        if (!(sec==0&&min==0&&hour==0) && sec % 15 == 0 && ameliorer){
-            ameliorationBatiment(city);
-            ameliorer=false;
-        }
-        if (sec % 15 != 0){
-            ameliorer=true;
-        }
 
         gestionCliqueSouris(city);
         DrawTexture(city->tabBitmapTexture[PageMap], 0, 0, WHITE);
@@ -706,149 +1156,31 @@ void affichageBoucle(City *city) {
         if (sec > 0 && min == 0 && hour == 0) {
             DrawText(TextFormat("Temps de jeu : %dsec", sec), 870, 5, 20, BLACK);
         }
-        DrawText(TextFormat("%d", city->nbHabitant), 1010, 48, 25, BLACK);
-        DrawText(TextFormat("%d", city->argent), 1010, 107, 25, BLACK);
-        DrawText("ece", 1149, 102, 15, DARKGRAY);
-        DrawText("flouz", 1143, 117, 15, DARKGRAY);
-        for (int i = 0; i < LIGNES; i++) {
-            for (int j = 0; j < COLONNES; j++) {
-                DrawTexture(city->tabBitmapTexture[DecorHerbeImage], j * 20, i * 20 + 100, WHITE);
-            }
-        }
-        dessinerGrille();
 
-        fonction_Nino_ROUTE(city, nbConstru);
+        initMap(city);
 
-        if (city->page.pageJeux.pageJeu) {
-            //Afficher map
-            if (city->page.pageJeux.BatimentRoute) {
-                DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10, WHITE);
-                DrawTexture(city->tabBitmapTexture[PageRouteSelectionner], 968, 466, WHITE);
-                if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle &&
-                    viabiliteeRoutiereGraphique(city, 2)) {
-                    DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10, GREEN);
-                    if (IsMouseButtonDown(0)) {
-                        city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = 2;
-                        city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle = true;
-                    }
-                } else if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle &&
-                           !viabiliteeRoutiereGraphique(city, 2)) {
-                    DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10,
-                                ORANGE);
-                    if (IsMouseButtonDown(0)) {
-                        city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = 2;
-                        city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle = true;
-                    }
-                } else {
-                    DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10, RED);
-                }
-            }
-            if (city->page.pageJeux.BatimentHabitation) {
-                DrawTexture(city->tabBitmapTexture[PageHabitationSelectionner], 968, 466, WHITE);
-                DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, WHITE);
-                if (obstacleHabitation(city)) {
-                    if (!viabiliteeRoutiereGraphique(city, 5)) {
-                        DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, DARKGRAY);
-                    } else if (!viabiliteeElectriqueGraphique(city, 5)) {
-                        DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, YELLOW);
-                    } else if (!viabiliteeEauGraphique(city, 5)) {
-                        DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, BLUE);
-                    } else if (viabiliteeRoutiereGraphique(city, 5) && viabiliteeElectriqueGraphique(city, 5) &&
-                               viabiliteeEauGraphique(city, 5)) {
-                        DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, GREEN);
-                    }
-                    if (IsMouseButtonDown(0)) {
-                        mettreAJObstacleConstruction(city);
-                        mettreAJConstructionMap(city, 5);
-                        city->nombreConstruction++;
-                    }
-                } else {
-                    DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, RED);
-                }
-            }
-            if (city->page.pageJeux.BatimentEau) {
-                DrawTexture(city->tabBitmapTexture[PageChateauSelectionner], 968, 466, WHITE);
-                DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, WHITE);
-                if (obstacleAlimentation(city)) {
-                    if (!viabiliteeRoutiereGraphique(city, 4)) {
-                        DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, DARKGRAY);
-                    } else if (!viabiliteeElectriqueGraphique(city, 4)) {
-                        DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, YELLOW);
-                    } else if (!viabiliteeEauGraphique(city, 4)) {
-                        DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, BLUE);
-                    } else if (viabiliteeRoutiereGraphique(city, 4) && viabiliteeElectriqueGraphique(city, 4) &&
-                               viabiliteeEauGraphique(city, 4)) {
-                        DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, GREEN);
-                    }
-                    if (IsMouseButtonDown(0)) {
-                        mettreAJObstacleConstruction(city);
-                        mettreAJConstructionMap(city, 4);
-                        city->nombreConstruction++;
-                    }
-                } else {
-                    DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, RED);
-                }
-            }
-            if (city->page.pageJeux.BatimentElec) {
-                DrawTexture(city->tabBitmapTexture[PageCentraleSelectionner], 968, 466, WHITE);
-                DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, WHITE);
-                if (obstacleAlimentation(city)) {
-                    if (!viabiliteeRoutiereGraphique(city, 3)) {
-                        DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, DARKGRAY);
-                    } else if (!viabiliteeElectriqueGraphique(city, 3)) {
-                        DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, YELLOW);
-                    } else if (!viabiliteeEauGraphique(city, 3)) {
-                        DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, BLUE);
-                    } else if (viabiliteeRoutiereGraphique(city, 3) && viabiliteeElectriqueGraphique(city, 3) &&
-                               viabiliteeEauGraphique(city, 3)) {
-                        DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, GREEN);
-                    }
-                    if (IsMouseButtonDown(0)) {
-                        mettreAJObstacleConstruction(city);
-                        mettreAJConstructionMap(city, 3);
-                        city->nombreConstruction++;
-                    }
-                } else {
-                    DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, RED);
-                }
-            }
+        affichageRouteOrientee(city);
+
+        jouerSon(city);
+
+        if (city->page.pageMenuPrincipale.boolMenuPrincipal) {
+            DrawTexture(city->tabBitmapTexture[PageMenuPrincip], 0, 0, WHITE);
         }
+        if (city->page.pageMenuPrincipale.choix) {
+            DrawTexture(city->tabBitmapTexture[PageChoixMode], 0, 0, WHITE);
+        }
+
+        modeDeJeu(city);
+        pageSauvegardeEnJeu (city);
+
         if (city->page.pageJeux.menu) {
-            DrawTexture(city->tabBitmapTexture[PageMenuJeu], 0, 0, WHITE);
-            if (city->page.pageJeux.aide) {
+            DrawTexture(city->tabBitmapTexture[PageMenuJeu], 5, 5, WHITE);
+        }
 
-            }
-            if (city->page.pageJeux.sauvegarde) {
-                DrawTexture(city->tabBitmapTexture[PageSauvegardeEffectuer], 0, 0, GREEN);
-            }
-            if (city->page.pageJeux.quitter) {
-                DrawTexture(city->tabBitmapTexture[PageQuitterSauvegarde], 100, 338, RED);
-            }
-            DrawRectangle(0, 99, 900, 701, WHITE);
-            //Afficher le menu quitter
-        }
-        if (city->page.pageReseauEau.pageEau) {
-            alimenteEau(city);
-            DrawTexture(city->tabBitmapTexture[Niveau1], 963, 169, WHITE);
-            DrawRectangle(0, 99, 900, 701, WHITE);
-            for (int i = 0; i < COLONNES; i++) {
-                for (int j = 0; j < LIGNES; j++) {
-                    if(city->terrain[j][i].eau==true && city->terrain[j][i].typeBloc==2){
-                        DrawRectangle(20*i, 100+20*j,20, 20, BLUE);
-                    }else if(city->terrain[j][i].eau==true){
-                        DrawRectangle(20*i, 100+20*j,20, 20, RED);
-                    }
-                }
-            }
+        jeuPartie(city);
+        pageEau(city);
+        pageElec(city);
 
-            dessinerGrille();
-        }
-        if (city->page.pageReseauElec.pageElectricite) {
-            DrawTexture(city->tabBitmapTexture[Niveau2], 963, 169, WHITE);
-            DrawRectangle(0, 99, 900, 701, WHITE);
-            //Afficher réseau
-            dessinerGrille();
-        }
         if (city->page.pageJeux.BatimentRoute || city->page.pageJeux.BatimentHabitation ||
             city->page.pageJeux.BatimentEau || city->page.pageJeux.BatimentElec || city->page.pageReseauEau.pageEau ||
             city->page.pageReseauElec.pageElectricite) {
@@ -858,5 +1190,6 @@ void affichageBoucle(City *city) {
         EndDrawing();
     }
     unloadTexture(city);
+    arreterSon(city);
     CloseWindow();
 }

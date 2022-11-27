@@ -2,6 +2,10 @@
 #define ECE_CITY_1_E_AFFICHAGE_H
 #include "../../Structures/structures.h"
 #include "../Construction/construction.h"
+#include "../Sauvegarde/sauvegarde.h"
+#include "../../txt/fichierTexte.h"
+#include "../Argent/argent.h"
+#include "../Musique/musique.h"
 #include "../Eau/eau.h"
 #include "raylib.h"
 
