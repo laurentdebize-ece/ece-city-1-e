@@ -63,7 +63,6 @@ void dessinerGrille() {
         traitX += 20;
     }
 }
-
 void initBitmap(City *city) {
     //IMAGE
     city->tabBitmapImage[DecorHerbeImage] = LoadImage("../Images/Decor/land_1.png");
@@ -251,7 +250,6 @@ void initBitmap(City *city) {
     UnloadImage(city->tabBitmapImage[MenuEnJeu]);
 
 }
-
 void unloadTexture(City *city) {
     UnloadTexture(city->tabBitmapTexture[DecorHerbeImage]);
     UnloadTexture(city->tabBitmapTexture[DecorObstacleCaillouImage]);
@@ -813,7 +811,7 @@ void deroulemntPage(City *city) {
     affichageBoucle(city);
 }
 
-void fonction_Nino_ROUTE(City *city) {
+void affichageRouteOrientee(City *city) {
     for (int i = 0; i < LIGNES; i++) {
         for (int j = 0; j < COLONNES; j++) {
             if (city->terrain[i][j].typeBloc == 1) {
@@ -891,8 +889,235 @@ void fonction_Nino_ROUTE(City *city) {
     }
 }
 
+void initMap (City *city) {
+    DrawText(TextFormat("%d", city->nbHabitant), 1010, 48, 25, BLACK);
+    DrawText(TextFormat("%d", city->argent), 1010, 107, 25, BLACK);
+    DrawText("ece", 1149, 102, 15, DARKGRAY);
+    DrawText("flouz", 1143, 117, 15, DARKGRAY);
+    for (int i = 0; i < LIGNES; i++) {
+        for (int j = 0; j < COLONNES; j++) {
+            DrawTexture(city->tabBitmapTexture[DecorHerbeImage], j * 20, i * 20 + 100, WHITE);
+        }
+    }
+    dessinerGrille();
+}
+
+void pageJeuBatimentRoute (City *city) {
+    if (city->page.pageJeux.BatimentRoute) {
+        DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10, WHITE);
+        DrawTexture(city->tabBitmapTexture[PageRouteSelectionner], 968, 466, WHITE);
+        if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle &&
+            viabiliteeRoutiereGraphique(city, 2)) {
+            DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10, GREEN);
+            if (IsMouseButtonDown(0) && verifierArgent(city, 10)) {
+                city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = 2;
+                city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle = true;
+                city->argent -= 10;
+            }
+        } else if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle &&
+                   !viabiliteeRoutiereGraphique(city, 2)) {
+            DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10,
+                        ORANGE);
+            if (IsMouseButtonDown(0) && verifierArgent(city, 10)) {
+                city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = 2;
+                city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle = true;
+            }
+        } else {
+            DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10, RED);
+        }
+    }
+}
+void pageJeuBatimentHabitation (City *city) {
+    if (city->page.pageJeux.BatimentHabitation) {
+        DrawTexture(city->tabBitmapTexture[PageHabitationSelectionner], 968, 466, WHITE);
+        DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, WHITE);
+        if (obstacleHabitation(city)) {
+            if (!viabiliteeRoutiereGraphique(city, 5)) {
+                DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, DARKGRAY);
+            } else if (!viabiliteeElectriqueGraphique(city, 5)) {
+                DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, YELLOW);
+            } else if (!viabiliteeEauGraphique(city, 5)) {
+                DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, BLUE);
+            } else if (viabiliteeRoutiereGraphique(city, 5) && viabiliteeElectriqueGraphique(city, 5) &&
+                       viabiliteeEauGraphique(city, 5)) {
+                DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, GREEN);
+            }
+            if (IsMouseButtonDown(0) && verifierArgent(city, 1000)) {
+                faireObstacleHabitation(city);
+                faireHabitationMap(city, 5);
+                city->nombreConstruction++;
+            }
+        } else {
+            DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, RED);
+        }
+    }
+}
+void pageJeuBatimentEau (City *city) {
+    if (city->page.pageJeux.BatimentEau) {
+        DrawTexture(city->tabBitmapTexture[PageChateauSelectionner], 968, 466, WHITE);
+        //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, WHITE);
+        DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, WHITE);////
+        if (obstacleAlimentation(city)) {
+            if (!viabiliteeRoutiereGraphique(city, 4)) {
+                //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, DARKGRAY);
+                DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, DARKGRAY);/////
+            } else if (!viabiliteeElectriqueGraphique(city, 4)) {
+                //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, YELLOW);
+                DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, YELLOW);/////
+            } else if (!viabiliteeEauGraphique(city, 4)) {
+                //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, BLUE);
+                DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, BLUE);////
+            } else if (viabiliteeRoutiereGraphique(city, 4) && viabiliteeElectriqueGraphique(city, 4) &&
+                       viabiliteeEauGraphique(city, 4)) {
+                //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, GREEN);
+                DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, GREEN);////
+            }
+            if (IsMouseButtonDown(0) && verifierArgent(city, 100000)) {
+                faireObstacleAlimentation(city);
+                faireAlimentationMap(city, 4);
+                city->nombreConstruction++;
+            }
+        } else {
+            //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, RED);
+            DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, RED);/////
+        }
+    }
+}
+void pageJeuBatimentElectrique (City *city) {
+    if (city->page.pageJeux.BatimentElec) {
+        DrawTexture(city->tabBitmapTexture[PageCentraleSelectionner], 968, 466, WHITE);
+        //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, WHITE);
+        DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, WHITE);////
+        if (obstacleAlimentation(city)) {
+            if (!viabiliteeRoutiereGraphique(city, 3)) {
+                //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, DARKGRAY);
+                DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY,
+                            DARKGRAY);////
+            } else if (!viabiliteeElectriqueGraphique(city, 3)) {
+                //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, YELLOW);
+                DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY,
+                            YELLOW);/////
+            } else if (!viabiliteeEauGraphique(city, 3)) {
+                //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, BLUE);
+                DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, BLUE);/////
+            } else if (viabiliteeRoutiereGraphique(city, 3) && viabiliteeElectriqueGraphique(city, 3) &&
+                       viabiliteeEauGraphique(city, 3)) {
+                //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, GREEN);
+                DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, GREEN);////
+            }
+            if (IsMouseButtonDown(0) && verifierArgent(city, 100000)) {
+                faireObstacleAlimentation(city);
+                faireAlimentationMap(city, 3);
+                city->nombreConstruction++;
+            }
+        } else {
+            //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, RED);
+            DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, RED);////
+        }
+    }
+}
+
+void modeDeJeu(City *city) {
+    if (city->communiste) {
+        city->mode = 2;
+        DrawTexture(city->tabBitmapTexture[ModeCommuniste], 128, 20, WHITE);
+        //Mode communiste
+    }
+    if (city->capitaliste) {
+        city->mode = 1;
+        DrawTexture(city->tabBitmapTexture[ModeCapitaliste], 128, 20, WHITE);
+        //Mode capitalisme
+    }
+    if (city->communiste || city->capitaliste) {
+        city->page.pageJeux.musiqueJeu = true;
+    }
+
+}
+
+void pageSauvegardeEnJeu (City*city) {
+    if (city->page.pageMenuPrincipale.sauvegarde || city->page.pageJeux.sauvegarde) {
+        DrawTexture(city->tabBitmapTexture[NomSauvegarde], 0, 0, WHITE);
+        if (city->page.pageMenuPrincipale.chargementSauvegarde) {
+            lireFichierTexte("../txt/SauvegardeEffectuer/sauvegarde", city);
+            city->page.pageJeux.pageJeu = true;
+        }
+        if (city->page.pageMenuPrincipale.faireSauvegarde) {
+            sauvegarderPartie(city, "../txt/SauvegardeEffectuer/sauvegarde");
+            while (city->temps - city->compteurTemps3s < 3 && !city->quitter) {
+                city->temps = GetTime();
+                BeginDrawing();
+                DrawTexture(city->tabBitmapTexture[PageSauvegardeEffectuer], 0, 0, WHITE);
+                EndDrawing();
+            }
+            city->page.pageMenuPrincipale.faireSauvegarde = false;
+            city->page.pageMenuPrincipale.sauvegarde = false;
+            city->page.pageMenuPrincipale.boolMenuPrincipal = true;
+        }
+    }
+}
+
+void pageEau (City *city) {
+    if (city->page.pageReseauEau.pageEau) {
+        DrawTexture(city->tabBitmapTexture[Niveau1], 963, 169, WHITE);
+        DrawRectangle(0, 99, 900, 701, LIGHTGRAY);
+        for (int i = 0; i < LIGNES; i++) {
+            for (int j = 0; j < COLONNES; j++) {
+                if (city->terrain[i][j].typeBloc == 2) {
+                    DrawRectangle(j * 20, i * 20 + 100, 20, 20, BLUE);
+                }
+                if (city->terrain[i][j].typeBloc == 4) {
+                    DrawRectangle(j * 20, i * 20 + 100, 20, 20, DARKBLUE);
+                }
+            }
+        }
+        //Afficher réseau
+        dessinerGrille();
+    }
+}
+void pageElec(City *city) {
+    if (city->page.pageReseauElec.pageElectricite) {
+        DrawTexture(city->tabBitmapTexture[Niveau2], 963, 169, WHITE);
+        DrawRectangle(0, 99, 900, 701, LIGHTGRAY);
+        for (int i = 0; i < LIGNES; i++) {
+            for (int j = 0; j < COLONNES; j++) {
+                if (city->terrain[i][j].typeBloc == 2) {
+                    DrawRectangle(j * 20, i * 20 + 100, 20, 20, YELLOW);
+                }
+                if (city->terrain[i][j].typeBloc == 3) {
+                    DrawRectangle(j * 20, i * 20 + 100, 20, 20, GOLD);
+                }
+            }
+        }
+        //Afficher réseau
+        dessinerGrille();
+    }
+}
+
+void jeuPartie (City *city){
+    if (city->page.pageJeux.pageJeu) {
+        DrawTexture(city->tabBitmapTexture[MenuEnJeu], 10, 10, WHITE);
+        for (int i = 0; i < city->nombreConstruction; i++) {
+            city->tabConstruction[i].compteur = city->temps - city->tabConstruction[i].tempsPose;
+
+            if ((int) city->tabConstruction[i].compteur != 0 && (int) city->tabConstruction[i].compteur % 15 == 0 &&
+                city->tabConstruction[i].ameliorerBat) {
+                ameliorationBatiment(city, i);
+                city->tabConstruction[i].ameliorerBat = false;
+                argentAJour(city, i);
+            }
+            if ((int) city->tabConstruction[i].compteur % 15 != 0) {
+                city->tabConstruction[i].ameliorerBat = true;
+            }
+        }
+
+        pageJeuBatimentRoute(city);
+        pageJeuBatimentHabitation (city);
+        pageJeuBatimentEau (city);
+        pageJeuBatimentElectrique (city);
+    }
+}
+
 void affichageBoucle(City *city) {
-    bool ameliorer = true;
     InitWindow(LARGEUR_ECRAN, HAUTEUR_ECRAN, "ECE-City");
     SetWindowState(FLAG_WINDOW_RESIZABLE);
 
@@ -931,24 +1156,12 @@ void affichageBoucle(City *city) {
         if (sec > 0 && min == 0 && hour == 0) {
             DrawText(TextFormat("Temps de jeu : %dsec", sec), 870, 5, 20, BLACK);
         }
-        DrawText(TextFormat("%d", city->nbHabitant), 1010, 48, 25, BLACK);
-        DrawText(TextFormat("%d", city->argent), 1010, 107, 25, BLACK);
-        DrawText("ece", 1149, 102, 15, DARKGRAY);
-        DrawText("flouz", 1143, 117, 15, DARKGRAY);
-        for (int i = 0; i < LIGNES; i++) {
-            for (int j = 0; j < COLONNES; j++) {
-                DrawTexture(city->tabBitmapTexture[DecorHerbeImage], j * 20, i * 20 + 100, WHITE);
-            }
-        }
-        dessinerGrille();
 
-        fonction_Nino_ROUTE(city);
+        initMap(city);
+
+        affichageRouteOrientee(city);
 
         jouerSon(city);
-
-        if (city->communiste || city->capitaliste) {
-            city->page.pageJeux.musiqueJeu = true;
-        }
 
         if (city->page.pageMenuPrincipale.boolMenuPrincipal) {
             DrawTexture(city->tabBitmapTexture[PageMenuPrincip], 0, 0, WHITE);
@@ -957,195 +1170,17 @@ void affichageBoucle(City *city) {
             DrawTexture(city->tabBitmapTexture[PageChoixMode], 0, 0, WHITE);
         }
 
-        if (city->communiste) {
-            city->mode = 2;
-            DrawTexture(city->tabBitmapTexture[ModeCommuniste], 128, 20, WHITE);
-            //Mode communiste
-        }
-        if (city->capitaliste) {
-            city->mode = 1;
-            DrawTexture(city->tabBitmapTexture[ModeCapitaliste], 128, 20, WHITE);
-            //Mode capitalisme
-        }
-
-        if (city->page.pageMenuPrincipale.sauvegarde || city->page.pageJeux.sauvegarde) {
-            DrawTexture(city->tabBitmapTexture[NomSauvegarde], 0, 0, WHITE);
-            if (city->page.pageMenuPrincipale.chargementSauvegarde) {
-                lireFichierTexte("../txt/SauvegardeEffectuer/sauvegarde", city);
-                city->page.pageJeux.pageJeu = true;
-            }
-            if (city->page.pageMenuPrincipale.faireSauvegarde) {
-                sauvegarderPartie(city, "../txt/SauvegardeEffectuer/sauvegarde");
-                while (city->temps - city->compteurTemps3s < 3 && !city->quitter) {
-                    city->temps = GetTime();
-                    BeginDrawing();
-                    DrawTexture(city->tabBitmapTexture[PageSauvegardeEffectuer], 0, 0, WHITE);
-                    EndDrawing();
-                }
-                city->page.pageMenuPrincipale.faireSauvegarde = false;
-                city->page.pageMenuPrincipale.sauvegarde = false;
-                city->page.pageMenuPrincipale.boolMenuPrincipal = true;
-            }
-        }
+        modeDeJeu(city);
+        pageSauvegardeEnJeu (city);
 
         if (city->page.pageJeux.menu) {
             DrawTexture(city->tabBitmapTexture[PageMenuJeu], 5, 5, WHITE);
         }
 
-        if (city->page.pageJeux.pageJeu) {
-            DrawTexture(city->tabBitmapTexture[MenuEnJeu], 10, 10, WHITE);
-            for (int i = 0; i < city->nombreConstruction; i++) {
-                city->tabConstruction[i].compteur = city->temps - city->tabConstruction[i].tempsPose;
+        jeuPartie(city);
+        pageEau(city);
+        pageElec(city);
 
-                if ((int) city->tabConstruction[i].compteur != 0 && (int) city->tabConstruction[i].compteur % 15 == 0 &&
-                    city->tabConstruction[i].ameliorerBat) {
-                    ameliorationBatiment(city, i);
-                    city->tabConstruction[i].ameliorerBat = false;
-                }
-                if ((int) city->tabConstruction[i].compteur % 15 != 0) {
-                    city->tabConstruction[i].ameliorerBat = true;
-                }
-            }
-
-            //Afficher map
-            if (city->page.pageJeux.BatimentRoute) {
-                DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10, WHITE);
-                DrawTexture(city->tabBitmapTexture[PageRouteSelectionner], 968, 466, WHITE);
-                if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle &&
-                    viabiliteeRoutiereGraphique(city, 2)) {
-                    DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10, GREEN);
-                    if (IsMouseButtonDown(0)) {
-                        city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = 2;
-                        city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle = true;
-                    }
-                } else if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle &&
-                           !viabiliteeRoutiereGraphique(city, 2)) {
-                    DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10,
-                                ORANGE);
-                    if (IsMouseButtonDown(0)) {
-                        city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = 2;
-                        city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle = true;
-                    }
-                } else {
-                    DrawTexture(city->tabBitmapTexture[Route_Horizontale], city->mouseX - 10, city->mouseY - 10, RED);
-                }
-            }
-            if (city->page.pageJeux.BatimentHabitation) {
-                DrawTexture(city->tabBitmapTexture[PageHabitationSelectionner], 968, 466, WHITE);
-                DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, WHITE);
-                if (obstacleHabitation(city)) {
-                    if (!viabiliteeRoutiereGraphique(city, 5)) {
-                        DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, DARKGRAY);
-                    } else if (!viabiliteeElectriqueGraphique(city, 5)) {
-                        DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, YELLOW);
-                    } else if (!viabiliteeEauGraphique(city, 5)) {
-                        DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, BLUE);
-                    } else if (viabiliteeRoutiereGraphique(city, 5) && viabiliteeElectriqueGraphique(city, 5) &&
-                               viabiliteeEauGraphique(city, 5)) {
-                        DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, GREEN);
-                    }
-                    if (IsMouseButtonDown(0)) {
-                        faireObstacleHabitation(city);
-                        faireHabitationMap(city, 5);
-                        city->nombreConstruction++;
-                    }
-                } else {
-                    DrawTexture(city->tabBitmapTexture[Ruine], city->mouseX, city->mouseY, RED);
-                }
-            }
-            if (city->page.pageJeux.BatimentEau) {
-                DrawTexture(city->tabBitmapTexture[PageChateauSelectionner], 968, 466, WHITE);
-                //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, WHITE);
-                DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, WHITE);////
-                if (obstacleAlimentation(city)) {
-                    if (!viabiliteeRoutiereGraphique(city, 4)) {
-                        //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, DARKGRAY);
-                        DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, DARKGRAY);/////
-                    } else if (!viabiliteeElectriqueGraphique(city, 4)) {
-                        //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, YELLOW);
-                        DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, YELLOW);/////
-                    } else if (!viabiliteeEauGraphique(city, 4)) {
-                        //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, BLUE);
-                        DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, BLUE);////
-                    } else if (viabiliteeRoutiereGraphique(city, 4) && viabiliteeElectriqueGraphique(city, 4) &&
-                               viabiliteeEauGraphique(city, 4)) {
-                        //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, GREEN);
-                        DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, GREEN);////
-                    }
-                    if (IsMouseButtonDown(0)) {
-                        faireObstacleAlimentation(city);
-                        faireAlimentationMap(city, 4);
-                        city->nombreConstruction++;
-                    }
-                } else {
-                    //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, RED);
-                    DrawTexture(city->tabBitmapTexture[ChateauEau], city->mouseX, city->mouseY, RED);/////
-                }
-            }
-            if (city->page.pageJeux.BatimentElec) {
-                DrawTexture(city->tabBitmapTexture[PageCentraleSelectionner], 968, 466, WHITE);
-                //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, WHITE);
-                DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, WHITE);////
-                if (obstacleAlimentation(city)) {
-                    if (!viabiliteeRoutiereGraphique(city, 3)) {
-                        //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, DARKGRAY);
-                        DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY,
-                                    DARKGRAY);////
-                    } else if (!viabiliteeElectriqueGraphique(city, 3)) {
-                        //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, YELLOW);
-                        DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY,
-                                    YELLOW);/////
-                    } else if (!viabiliteeEauGraphique(city, 3)) {
-                        //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, BLUE);
-                        DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, BLUE);/////
-                    } else if (viabiliteeRoutiereGraphique(city, 3) && viabiliteeElectriqueGraphique(city, 3) &&
-                               viabiliteeEauGraphique(city, 3)) {
-                        //DrawTexture(city->tabBitmapTexture[House2], city->mouseX, city->mouseY, GREEN);
-                        DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, GREEN);////
-                    }
-                    if (IsMouseButtonDown(0)) {
-                        faireObstacleAlimentation(city);
-                        faireAlimentationMap(city, 3);
-                        city->nombreConstruction++;
-                    }
-                } else {
-                    //DrawTexture(city->tabBitmapTexture[House3], city->mouseX, city->mouseY, RED);
-                    DrawTexture(city->tabBitmapTexture[CentraleElectrique], city->mouseX, city->mouseY, RED);////
-                }
-            }
-        }
-        if (city->page.pageReseauEau.pageEau) {
-            DrawTexture(city->tabBitmapTexture[Niveau1], 963, 169, WHITE);
-            DrawRectangle(0, 99, 900, 701, LIGHTGRAY);
-            for (int i = 0; i < LIGNES; i++) {
-                for (int j = 0; j < COLONNES; j++) {
-                    if (city->terrain[i][j].typeBloc == 2) {
-                        DrawRectangle(j * 20, i * 20 + 100, 20, 20, BLUE);
-                    }
-                    if (city->terrain[i][j].typeBloc == 4) {
-                        DrawRectangle(j * 20, i * 20 + 100, 20, 20, DARKBLUE);
-                    }
-                }
-            }
-            //Afficher réseau
-            dessinerGrille();
-        }
-        if (city->page.pageReseauElec.pageElectricite) {
-            DrawTexture(city->tabBitmapTexture[Niveau2], 963, 169, WHITE);
-            DrawRectangle(0, 99, 900, 701, LIGHTGRAY);
-            for (int i = 0; i < LIGNES; i++) {
-                for (int j = 0; j < COLONNES; j++) {
-                    if (city->terrain[i][j].typeBloc == 2) {
-                        DrawRectangle(j * 20, i * 20 + 100, 20, 20, YELLOW);
-                    }
-                    if (city->terrain[i][j].typeBloc == 3) {
-                        DrawRectangle(j * 20, i * 20 + 100, 20, 20, GOLD);
-                    }
-                }
-            }
-            //Afficher réseau
-            dessinerGrille();
-        }
         if (city->page.pageJeux.BatimentRoute || city->page.pageJeux.BatimentHabitation ||
             city->page.pageJeux.BatimentEau || city->page.pageJeux.BatimentElec || city->page.pageReseauEau.pageEau ||
             city->page.pageReseauElec.pageElectricite) {

@@ -124,6 +124,8 @@ void savoirIndiceConstruction(City *city) {
 
 void ameliorationBatiment(City *city, int i) {
         if (city->tabConstruction[i].typeDeConstruction == 8) {
+            city->nbHabitant -= 100;
+            city->nbHabitant += 1000;
             city->tabConstruction[i].typeDeConstruction = 9;
             city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY].typeBloc = 9;
             city->terrain[city->tabConstruction[i].coordonneeX + 1][city->tabConstruction[i].coordonneeY].typeBloc = 9;
@@ -140,6 +142,8 @@ void ameliorationBatiment(City *city, int i) {
                                                                     2].typeBloc = 9;
         }
         if (city->tabConstruction[i].typeDeConstruction == 7) {
+            city->nbHabitant -= 50;
+            city->nbHabitant += 100;
             city->tabConstruction[i].typeDeConstruction = 8;
             city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY].typeBloc = 8;
             city->terrain[city->tabConstruction[i].coordonneeX + 1][city->tabConstruction[i].coordonneeY].typeBloc = 8;
@@ -156,6 +160,8 @@ void ameliorationBatiment(City *city, int i) {
                                                                     2].typeBloc = 8;
         }
         if (city->tabConstruction[i].typeDeConstruction == 6) {
+            city->nbHabitant -= 10;
+            city->nbHabitant += 50;
             city->tabConstruction[i].typeDeConstruction = 7;
             city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY].typeBloc = 7;
             city->terrain[city->tabConstruction[i].coordonneeX + 1][city->tabConstruction[i].coordonneeY].typeBloc = 7;
@@ -172,6 +178,8 @@ void ameliorationBatiment(City *city, int i) {
                                                                     2].typeBloc = 7;
         }
         if (city->tabConstruction[i].typeDeConstruction == 5) {
+            city->nbHabitant -= 0;
+            city->nbHabitant += 10;
             city->tabConstruction[i].typeDeConstruction = 6;
             city->terrain[city->tabConstruction[i].coordonneeX][city->tabConstruction[i].coordonneeY].typeBloc = 6;
             city->terrain[city->tabConstruction[i].coordonneeX + 1][city->tabConstruction[i].coordonneeY].typeBloc = 6;
@@ -664,6 +672,8 @@ void faireAlimentationMap (City *city, int type) {
     city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 3].typeBloc = type;
     city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 4].typeBloc = type;
     city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 5].typeBloc = type;
+
+    city->argent -= 100000;
 }
 void faireHabitationMap (City *city, int type) {
     city->tabConstruction[city->nombreConstruction].compteur=0;
@@ -680,6 +690,8 @@ void faireHabitationMap (City *city, int type) {
     city->terrain[city->ligneSurMap + 2][city->colonneSurMap].typeBloc = type;
     city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].typeBloc = type;
     city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].typeBloc = type;
+
+    city->argent -= 1000;
 }
 
 /*void mettreAJConstructionMap(City *city, int type) {

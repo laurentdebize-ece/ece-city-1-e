@@ -5,7 +5,8 @@ void capaciteTotalElectriciter(City *city) {
 }
 
 void consommationElectrique(City *city) {
-    city->centrale.flot = city->centrale.capacite - city->nbHabitant;
+    capaciteTotalElectriciter(city);
+    city->centrale.flot = city->centrale.capaciteTotal - city->nbHabitant;
 }
 
 void alimenteElectricite(City *city) {

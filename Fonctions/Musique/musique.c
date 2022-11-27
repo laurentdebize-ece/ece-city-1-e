@@ -67,9 +67,6 @@ void jouerSon(City *city) {
     if (city->page.pageJeux.sauvegarde && city->page.pageMenuPrincipale.sauvegarde) {
         StopMusicStream(city->musique[PagePrincipale]);
         ResumeMusicStream(city->musique[InfraStructure]);
-    } else {
-        StopMusicStream(city->musique[PagePrincipale]);
-        ResumeMusicStream(city->musique[InfraStructure]);
     }
 }
 

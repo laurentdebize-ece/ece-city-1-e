@@ -4,6 +4,7 @@
 #include "../Construction/construction.h"
 #include "../Sauvegarde/sauvegarde.h"
 #include "../../txt/fichierTexte.h"
+#include "../Argent/argent.h"
 #include "../Musique/musique.h"
 #include "raylib.h"
 
