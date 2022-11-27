@@ -312,6 +312,56 @@ void unloadTexture(City *city) {
 
 }
 
+void pageSauvegarder (City *city) {
+    if (city->mouseX > 33 && city->mouseX < 128 && city->mouseY > 33 && city->mouseY < 128 &&
+        IsMouseButtonDown(0)) {
+        city->page.pageJeux.pageJeu = false;
+        city->page.pageMenuPrincipale.choix = false;
+        city->page.pageMenuPrincipale.sauvegarde = false;
+        city->page.pageMenuPrincipale.faireSauvegarde = false;
+        city->page.pageMenuPrincipale.chargementSauvegarde = false;
+        city->page.pageJeux.pageJeu = false;
+        city->page.pageJeux.musiqueJeu = false;
+        city->page.pageJeux.menu = false;
+        city->page.pageMenuPrincipale.boolMenuPrincipal = true;
+        city->capitaliste = false;
+        city->communiste = false;
+    }
+    if ((city->mouseY > 340 && city->mouseY < 458) && IsMouseButtonDown(0)) {
+        if (city->mouseX > 341 && city->mouseX < 520) {
+            city->page.pageJeux.pageJeu = false;
+            city->page.pageMenuPrincipale.choix = false;
+            city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+            city->page.pageMenuPrincipale.sauvegarde = false;
+            city->page.pageMenuPrincipale.aide = false;
+            city->page.pageMenuPrincipale.quitter = false;
+            city->capitaliste = false;
+            city->communiste = false;
+            city->page.pageMenuPrincipale.faireSauvegarde = false;
+            city->page.pageMenuPrincipale.chargementSauvegarde = true;
+        }
+        if (city->mouseX > 678 && city->mouseX < 1121) {
+            city->page.pageJeux.pageJeu = false;
+            city->page.pageMenuPrincipale.choix = false;
+            city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+            city->page.pageMenuPrincipale.sauvegarde = false;
+            city->page.pageMenuPrincipale.aide = false;
+            city->page.pageMenuPrincipale.quitter = false;
+            city->capitaliste = false;
+            city->communiste = false;
+            city->page.pageMenuPrincipale.faireSauvegarde = true;
+            city->page.pageMenuPrincipale.chargementSauvegarde = false;
+        }
+    }
+    if (city->page.pageMenuPrincipale.faireSauvegarde) {
+        city->page.pageMenuPrincipale.sauvegarde = true;
+    }
+    if (city->page.pageMenuPrincipale.chargementSauvegarde) {
+        city->page.pageMenuPrincipale.sauvegarde = false;
+        city->page.pageJeux.pageJeu = true;
+    }
+}
+
 void gestionCliqueSouris(City *city) {
     //Bouton lvl0
     if ((city->mouseX > 963 && city->mouseX < 1028 && city->mouseY > 169 && city->mouseY < 231) &&
@@ -433,6 +483,7 @@ void gestionCliqueSouris(City *city) {
             city->page.pageJeux.pageJeu = false;
             city->page.pageJeux.aide = false;
             city->page.pageJeux.sauvegarde = true;
+            city->page.pageMenuPrincipale.sauvegarde = true;
             city->page.pageJeux.quitter = false;
             city->page.pageReseauEau.pageEau = false;
             city->page.pageReseauElec.pageElectricite = false;
@@ -442,6 +493,65 @@ void gestionCliqueSouris(City *city) {
             city->page.pageJeux.BatimentElec = false;
             city->page.pageJeux.menu = false;
             city->page.pageJeux.croix = false;
+        }
+    }
+    if (city->page.pageJeux.sauvegarde && city->page.pageMenuPrincipale.sauvegarde) {
+        if (city->mouseX > 33 && city->mouseX < 128 && city->mouseY > 33 && city->mouseY < 128 &&
+            IsMouseButtonDown(0)) {
+            city->page.pageJeux.pageJeu = true;
+            city->page.pageJeux.aide = false;
+            city->page.pageJeux.sauvegarde = false;
+            city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+            city->page.pageMenuPrincipale.sauvegarde = false;
+            city->page.pageJeux.quitter = false;
+            city->page.pageReseauEau.pageEau = false;
+            city->page.pageReseauElec.pageElectricite = false;
+            city->page.pageJeux.BatimentRoute = false;
+            city->page.pageJeux.BatimentHabitation = false;
+            city->page.pageJeux.BatimentEau = false;
+            city->page.pageJeux.BatimentElec = false;
+            city->page.pageJeux.menu = false;
+            city->page.pageJeux.croix = false;
+        }
+        if ((city->mouseY > 340 && city->mouseY < 458) && IsMouseButtonDown(0)) {
+            if (city->mouseX > 341 && city->mouseX < 520) {
+                city->page.pageJeux.pageJeu = false;
+                city->page.pageMenuPrincipale.choix = false;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+                city->page.pageMenuPrincipale.sauvegarde = false;
+                city->page.pageMenuPrincipale.aide = false;
+                city->page.pageMenuPrincipale.quitter = false;
+                city->capitaliste = false;
+                city->communiste = false;
+                city->page.pageMenuPrincipale.faireSauvegarde = false;
+                city->page.pageMenuPrincipale.chargementSauvegarde = true;
+                city->page.pageJeux.menu = false;
+            }
+            if (city->mouseX > 678 && city->mouseX < 1121) {
+                city->page.pageJeux.pageJeu = false;
+                city->page.pageMenuPrincipale.choix = false;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = false;
+                city->page.pageMenuPrincipale.sauvegarde = false;
+                city->page.pageMenuPrincipale.aide = false;
+                city->page.pageMenuPrincipale.quitter = false;
+                city->capitaliste = false;
+                city->communiste = false;
+                city->page.pageMenuPrincipale.faireSauvegarde = true;
+                city->page.pageMenuPrincipale.chargementSauvegarde = false;
+                city->page.pageJeux.menu = false;
+            }
+        }
+        if (city->page.pageMenuPrincipale.faireSauvegarde) {
+            city->page.pageMenuPrincipale.sauvegarde = true;
+            city->page.pageMenuPrincipale.chargementSauvegarde = false;
+            city->page.pageJeux.pageJeu = false;
+            city->page.pageJeux.menu = false;
+        }
+        if (city->page.pageMenuPrincipale.chargementSauvegarde) {
+            city->page.pageMenuPrincipale.sauvegarde = false;
+            city->page.pageMenuPrincipale.chargementSauvegarde = true;
+            city->page.pageJeux.pageJeu = true;
+            city->page.pageJeux.menu = false;
         }
     }
     //Bouton QUITTER pageMenuJeu
@@ -573,12 +683,13 @@ void gestionCliqueSouris(City *city) {
             }
             if (city->mouseY > 250 && city->mouseY < 361) {
                 city->page.pageMenuPrincipale.choix = false;
+                city->page.pageMenuPrincipale.boolMenuPrincipal = false;
                 city->page.pageMenuPrincipale.sauvegarde = true;
-                city->compteurTemps3s = GetTime();
                 city->page.pageMenuPrincipale.aide = false;
                 city->page.pageMenuPrincipale.quitter = false;
                 city->capitaliste = false;
                 city->communiste = false;
+                city->compteurTemps3s = GetTime();
             }
             if (city->mouseY > 444 && city->mouseY < 558) {
                 city->page.pageMenuPrincipale.choix = false;
@@ -606,14 +717,15 @@ void gestionCliqueSouris(City *city) {
             IsMouseButtonDown(0)) {
             city->page.pageJeux.pageJeu = false;
             city->page.pageMenuPrincipale.choix = false;
-            city->page.pageMenuPrincipale.boolMenuPrincipal = true;
             city->page.pageMenuPrincipale.sauvegarde = false;
-            city->page.pageMenuPrincipale.aide = false;
-            city->page.pageMenuPrincipale.quitter = false;
+            city->page.pageMenuPrincipale.faireSauvegarde = false;
+            city->page.pageMenuPrincipale.chargementSauvegarde = false;
+            city->page.pageJeux.pageJeu = false;
+            city->page.pageJeux.musiqueJeu = false;
+            city->page.pageJeux.menu = false;
+            city->page.pageMenuPrincipale.boolMenuPrincipal = true;
             city->capitaliste = false;
             city->communiste = false;
-            city->page.pageMenuPrincipale.faireSauvegarde = false;
-            city->page.pageMenuPrincipale.chargementSauvegarde = true;
         }
         if ((city->mouseY > 340 && city->mouseY < 458) && IsMouseButtonDown(0)) {
             if (city->mouseX > 341 && city->mouseX < 520) {
@@ -641,13 +753,16 @@ void gestionCliqueSouris(City *city) {
                 city->page.pageMenuPrincipale.chargementSauvegarde = false;
             }
         }
-    }
-    if (city->page.pageMenuPrincipale.faireSauvegarde) {
-        city->page.pageMenuPrincipale.sauvegarde = true;
-    }
-    if (city->page.pageMenuPrincipale.chargementSauvegarde) {
-        city->page.pageMenuPrincipale.sauvegarde = false;
-        city->page.pageJeux.pageJeu = true;
+        if (city->page.pageMenuPrincipale.faireSauvegarde) {
+            city->page.pageMenuPrincipale.sauvegarde = true;
+            city->page.pageMenuPrincipale.chargementSauvegarde = false;
+            city->page.pageJeux.pageJeu = false;
+        }
+        if (city->page.pageMenuPrincipale.chargementSauvegarde) {
+            city->page.pageMenuPrincipale.sauvegarde = false;
+            city->page.pageMenuPrincipale.chargementSauvegarde = true;
+            city->page.pageJeux.pageJeu = true;
+        }
     }
     if (city->page.pageMenuPrincipale.choix) {
         if ((city->mouseY > 341 && city->mouseY < 472) && IsMouseButtonDown(0)) {

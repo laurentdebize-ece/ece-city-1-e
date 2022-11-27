@@ -30,7 +30,7 @@ void updateMusique(City *city) {
 }
 
 void jouerSon(City *city) {
-    if (city->page.pageMenuPrincipale.boolMenuPrincipal || city->page.pageMenuPrincipale.choix) {
+    if (city->page.pageMenuPrincipale.boolMenuPrincipal || city->page.pageMenuPrincipale.choix || city->page.pageMenuPrincipale.sauvegarde) {
         PlayMusicStream(city->musique[PagePrincipale]);
     } else {
         StopMusicStream(city->musique[PagePrincipale]);
@@ -63,6 +63,13 @@ void jouerSon(City *city) {
     }
     if (city->page.pageJeux.quitter) {
         StopMusicStream(city->musique[InfraStructure]);
+    }
+    if (city->page.pageJeux.sauvegarde && city->page.pageMenuPrincipale.sauvegarde) {
+        StopMusicStream(city->musique[PagePrincipale]);
+        ResumeMusicStream(city->musique[InfraStructure]);
+    } else {
+        StopMusicStream(city->musique[PagePrincipale]);
+        ResumeMusicStream(city->musique[InfraStructure]);
     }
 }
 

@@ -492,6 +492,8 @@ void poserConstruction(City *city, char *nomFichier) {
     fclose(file);
 }
 
+
+// ---------- A FAIRE ---------- //
 void parcoursRoute(City *city, int numeroConstructionInitial) {
 //    city->tabConstruction[i].source = 0;
 //    city->tabConstruction[i].destination = 0;
