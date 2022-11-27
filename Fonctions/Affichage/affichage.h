@@ -2,6 +2,7 @@
 #define ECE_CITY_1_E_AFFICHAGE_H
 #include "../../Structures/structures.h"
 #include "../Construction/construction.h"
+#include "../Eau/eau.h"
 #include "raylib.h"
 
 #define LARGEUR_ECRAN 1200

@@ -828,9 +828,19 @@ void affichageBoucle(City *city) {
             //Afficher le menu quitter
         }
         if (city->page.pageReseauEau.pageEau) {
+            alimenteEau(city);
             DrawTexture(city->tabBitmapTexture[Niveau1], 963, 169, WHITE);
             DrawRectangle(0, 99, 900, 701, WHITE);
-            //Afficher réseau
+            for (int i = 0; i < COLONNES; i++) {
+                for (int j = 0; j < LIGNES; j++) {
+                    if(city->terrain[j][i].eau==true && city->terrain[j][i].typeBloc==2){
+                        DrawRectangle(20*i, 100+20*j,20, 20, BLUE);
+                    }else if(city->terrain[j][i].eau==true){
+                        DrawRectangle(20*i, 100+20*j,20, 20, RED);
+                    }
+                }
+            }
+
             dessinerGrille();
         }
         if (city->page.pageReseauElec.pageElectricite) {

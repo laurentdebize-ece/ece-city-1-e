@@ -4,8 +4,6 @@
 #include "../../Structures/structures.h"
 #include "../Construction/construction.h"
 
-void capaciteTotalEau(City* city);
-
 void consommationEau (City *city);
 
 void alimenteEau(City* city);

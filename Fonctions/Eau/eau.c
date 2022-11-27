@@ -5,7 +5,6 @@ void consommationEau (City *city) {
 
 void alimenteEau(City* city) {
     nbConstruction(city);
-    capaciteTotalEau(city);
     int Batiment = 0, nbChateauEauPlein = city->chateauEau.numeroBatiment;
     int  distance, etape;
     Case fileEau[45 * 35];
@@ -17,8 +16,12 @@ void alimenteEau(City* city) {
             eauCity[i][j] = false;
         }
     }
+    for (int i = 0; i < 35; ++i) {
+        for (int j = 0; j < 45; ++j) {
+            city->terrain[i][j].eau = false;
+        }
+    }
     while (nbChateauEauPlein != 0) {
-        distance = 0;
         int capaciterRestante = city->chateauEau.capacite;
         for (int j = 0; j < 35 * 45; ++j) {
             fileEau[j].y = -1;
@@ -36,10 +39,18 @@ void alimenteEau(City* city) {
             }
             distance = 1;
             if (city->tabConstruction[Batiment].horizontale == true) {//HG
+                for (int i = city->tabConstruction[Batiment].coordonneeX; i < city->tabConstruction[Batiment].coordonneeX+4; ++i) {
+                    for (int j = city->tabConstruction[Batiment].coordonneeY; j < city->tabConstruction[Batiment].coordonneeY+6; ++j) {
+                        eauCity[i][j] = true;
+                    }
+                }
                 for (int j = city->tabConstruction[Batiment].coordonneeX;
                      j < city->tabConstruction[Batiment].coordonneeX + 4; ++j) {//Y!=0 a faire
                     if (city->terrain[j][city->tabConstruction[Batiment].coordonneeY - 1].typeBloc == 2) {
                         city->terrain[j][city->tabConstruction[Batiment].coordonneeY - 1].eau = true;
+
+                        //eauCity[j][city->tabConstruction[Batiment].coordonneeY - 1]=true;
+
                         fileEau[derniereCase].y = city->tabConstruction[Batiment].coordonneeY - 1;
                         fileEau[derniereCase].x = j;
                         fileEau[derniereCase].pred = -1;
@@ -49,9 +60,12 @@ void alimenteEau(City* city) {
                 }
                 for (int j = city->tabConstruction[Batiment].coordonneeX;
                      j < city->tabConstruction[Batiment].coordonneeX + 4; ++j) {
-                    if (city->terrain[j][city->tabConstruction[Batiment].coordonneeY + 3].typeBloc == 2) {
-                        city->terrain[j][city->tabConstruction[Batiment].coordonneeY + 3].eau = true;
-                        fileEau[derniereCase].y = city->tabConstruction[Batiment].coordonneeY + 3;
+                    if (city->terrain[j][city->tabConstruction[Batiment].coordonneeY + 6].typeBloc == 2) {
+                        city->terrain[j][city->tabConstruction[Batiment].coordonneeY + 6].eau = true;
+
+                        //eauCity[j][city->tabConstruction[Batiment].coordonneeY +6]=true;
+
+                        fileEau[derniereCase].y = city->tabConstruction[Batiment].coordonneeY + 6;
                         fileEau[derniereCase].x = j;
                         fileEau[derniereCase].pred = -1;
                         fileEau[derniereCase].distance = distance;
@@ -59,9 +73,12 @@ void alimenteEau(City* city) {
                     }
                 }
                 for (int j = city->tabConstruction[Batiment].coordonneeY;
-                     j < city->tabConstruction[Batiment].coordonneeY + 3; ++j) {// a term modif
+                     j < city->tabConstruction[Batiment].coordonneeY + 6; ++j) {
                     if (city->terrain[city->tabConstruction[Batiment].coordonneeX - 1][j].typeBloc == 2) {
                         city->terrain[city->tabConstruction[Batiment].coordonneeX - 1][j].eau = true;
+
+                        //eauCity[city->tabConstruction[Batiment].coordonneeX - 1][j]=true;
+
                         fileEau[derniereCase].y = j;
                         fileEau[derniereCase].x = city->tabConstruction[Batiment].coordonneeX - 1;
                         fileEau[derniereCase].pred = -1;
@@ -70,9 +87,12 @@ void alimenteEau(City* city) {
                     }
                 }
                 for (int j = city->tabConstruction[Batiment].coordonneeY;
-                     j < city->tabConstruction[Batiment].coordonneeY + 3; ++j) {
+                     j < city->tabConstruction[Batiment].coordonneeY +6; ++j) {
                     if (city->terrain[city->tabConstruction[Batiment].coordonneeX + 4][j].typeBloc == 2) {
                         city->terrain[city->tabConstruction[Batiment].coordonneeY + 4][j].eau = true;
+
+                        //eauCity[city->tabConstruction[Batiment].coordonneeX + 4][j]=true;
+
                         fileEau[derniereCase].y = j;
                         fileEau[derniereCase].x = city->tabConstruction[Batiment].coordonneeX + 4;
                         fileEau[derniereCase].pred = -1;
@@ -81,6 +101,11 @@ void alimenteEau(City* city) {
                     }
                 }
             } else {//HD
+                for (int i = city->tabConstruction[Batiment].coordonneeX; i < city->tabConstruction[Batiment].coordonneeX+6; ++i) {
+                    for (int j = city->tabConstruction[Batiment].coordonneeY; j < city->tabConstruction[Batiment].coordonneeY+4; ++j) {
+                        eauCity[i][j] = true;
+                    }
+                }
                 for (int j = city->tabConstruction[Batiment].coordonneeX - 3;
                      j < city->tabConstruction[Batiment].coordonneeX; ++j) {//Y!=0 a faire
                     if (city->terrain[j][city->tabConstruction[Batiment].coordonneeY - 1].typeBloc == 2) {
@@ -129,7 +154,7 @@ void alimenteEau(City* city) {
             nbChateauEauPlein--;
             etape=derniereCase-1;
             distance++;
-            while (fileEau[caseExplorer].x == -1) {
+            while (fileEau[caseExplorer].x != -1) {
                 if(caseExplorer==etape){
                     etape=derniereCase-1;
                     distance++;
@@ -138,6 +163,7 @@ void alimenteEau(City* city) {
                     city->terrain[fileEau[caseExplorer].x][fileEau[caseExplorer].y - 1].eau == false) {
                     if (city->terrain[fileEau[caseExplorer].x][fileEau[caseExplorer].y - 1].typeBloc == 2) {
                         city->terrain[fileEau[caseExplorer].x][fileEau[caseExplorer].y - 1].eau = true;
+                        eauCity[fileEau[derniereCase].x][fileEau[derniereCase].y]=true;
                         fileEau[derniereCase].y = fileEau[caseExplorer].y - 1;
                         fileEau[derniereCase].x = fileEau[caseExplorer].x;
                         fileEau[derniereCase].distance = distance;
@@ -606,8 +632,8 @@ void alimenteEau(City* city) {
                         }
                     }
                     if (city->terrain[fileEau[caseExplorer].x][fileEau[caseExplorer].y - 1].typeBloc >5) {
-                        for (int j = fileEau[caseExplorer].x - 2; j < fileEau[caseExplorer].x + 2; ++j) {
-                            for (int k = fileEau[caseExplorer].y - 3; k < fileEau[caseExplorer].y + 1; ++k) {
+                        for (int j = fileEau[caseExplorer].x - 1; j < fileEau[caseExplorer].x + 3; ++j) {
+                            for (int k = fileEau[caseExplorer].y - 2; k < fileEau[caseExplorer].y + 2; ++k) {
                                 if (city->terrain[j][k].nbBatiment ==
                                     city->terrain[fileEau[caseExplorer].x][fileEau[caseExplorer].y -
                                                                            1].nbBatiment) {
@@ -616,17 +642,18 @@ void alimenteEau(City* city) {
                             }
                         }
                         int cheminInverce=caseExplorer;
+
                         while (cheminInverce==-1){
                             eauCity[fileEau[cheminInverce].x][fileEau[cheminInverce].y]=true;
                             cheminInverce=fileEau[cheminInverce].pred;
                         }
                     }
+
                     if (city->terrain[fileEau[caseExplorer].x + 1][fileEau[caseExplorer].y].typeBloc >5) {
-                        for (int j = fileEau[caseExplorer].x - 1; j < fileEau[caseExplorer].x + 3; ++j) {
-                            for (int k = fileEau[caseExplorer].y - 2; k < fileEau[caseExplorer].y + 2; ++k) {
-                                if (city->terrain[j][k].nbBatiment ==
-                                    city->terrain[fileEau[caseExplorer].x][fileEau[caseExplorer].y -
-                                                                           1].nbBatiment) {
+
+                        for (int j = fileEau[caseExplorer].x +1; j < fileEau[caseExplorer].x + 4; ++j) {
+                            for (int k = fileEau[caseExplorer].y - 3; k < fileEau[caseExplorer].y + 1; ++k) {
+                                if (city->terrain[j][k].nbBatiment ==city->terrain[fileEau[caseExplorer].x=1][fileEau[caseExplorer].y ].nbBatiment) {
                                     eauCity[j][k] = true;
                                 }
                             }
@@ -642,5 +669,10 @@ void alimenteEau(City* city) {
             }
         }
         Batiment++;
+    }
+    for (int i = 0; i < COLONNES; i++) {
+        for (int j = 0; j < LIGNES; j++) {
+            city->terrain[j][i].eau=eauCity[j][i];
+        }
     }
 }
