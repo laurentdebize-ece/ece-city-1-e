@@ -3,6 +3,7 @@
 #include "Fonctions/Initialisation/initialisation.h"
 #include "Fonctions/Affichage/affichage.h"
 
+
 int main() {
     City city = {0};
     initialisationVille(&city);
