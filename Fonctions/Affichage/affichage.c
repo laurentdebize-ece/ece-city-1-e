@@ -310,56 +310,6 @@ void unloadTexture(City *city) {
 
 }
 
-void pageSauvegarder (City *city) {
-    if (city->mouseX > 33 && city->mouseX < 128 && city->mouseY > 33 && city->mouseY < 128 &&
-        IsMouseButtonDown(0)) {
-        city->page.pageJeux.pageJeu = false;
-        city->page.pageMenuPrincipale.choix = false;
-        city->page.pageMenuPrincipale.sauvegarde = false;
-        city->page.pageMenuPrincipale.faireSauvegarde = false;
-        city->page.pageMenuPrincipale.chargementSauvegarde = false;
-        city->page.pageJeux.pageJeu = false;
-        city->page.pageJeux.musiqueJeu = false;
-        city->page.pageJeux.menu = false;
-        city->page.pageMenuPrincipale.boolMenuPrincipal = true;
-        city->capitaliste = false;
-        city->communiste = false;
-    }
-    if ((city->mouseY > 340 && city->mouseY < 458) && IsMouseButtonDown(0)) {
-        if (city->mouseX > 341 && city->mouseX < 520) {
-            city->page.pageJeux.pageJeu = false;
-            city->page.pageMenuPrincipale.choix = false;
-            city->page.pageMenuPrincipale.boolMenuPrincipal = false;
-            city->page.pageMenuPrincipale.sauvegarde = false;
-            city->page.pageMenuPrincipale.aide = false;
-            city->page.pageMenuPrincipale.quitter = false;
-            city->capitaliste = false;
-            city->communiste = false;
-            city->page.pageMenuPrincipale.faireSauvegarde = false;
-            city->page.pageMenuPrincipale.chargementSauvegarde = true;
-        }
-        if (city->mouseX > 678 && city->mouseX < 1121) {
-            city->page.pageJeux.pageJeu = false;
-            city->page.pageMenuPrincipale.choix = false;
-            city->page.pageMenuPrincipale.boolMenuPrincipal = false;
-            city->page.pageMenuPrincipale.sauvegarde = false;
-            city->page.pageMenuPrincipale.aide = false;
-            city->page.pageMenuPrincipale.quitter = false;
-            city->capitaliste = false;
-            city->communiste = false;
-            city->page.pageMenuPrincipale.faireSauvegarde = true;
-            city->page.pageMenuPrincipale.chargementSauvegarde = false;
-        }
-    }
-    if (city->page.pageMenuPrincipale.faireSauvegarde) {
-        city->page.pageMenuPrincipale.sauvegarde = true;
-    }
-    if (city->page.pageMenuPrincipale.chargementSauvegarde) {
-        city->page.pageMenuPrincipale.sauvegarde = false;
-        city->page.pageJeux.pageJeu = true;
-    }
-}
-
 void gestionCliqueSouris(City *city) {
     //Bouton lvl0
     if ((city->mouseX > 963 && city->mouseX < 1028 && city->mouseY > 169 && city->mouseY < 231) &&
@@ -802,13 +752,6 @@ void gestionCliqueSouris(City *city) {
             }
         }
     }
-}
-
-void deroulemntPage(City *city) {
-    // boucle on lance le jeu
-    initBitmap(city);
-    city->page.pageChargement;
-    affichageBoucle(city);
 }
 
 void affichageRouteOrientee(City *city) {

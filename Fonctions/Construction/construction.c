@@ -500,8 +500,6 @@ void poserConstruction(City *city, char *nomFichier) {
     fclose(file);
 }
 
-
-// ---------- A FAIRE ---------- //
 void parcoursRoute(City *city, int numeroConstructionInitial) {
 //    city->tabConstruction[i].source = 0;
 //    city->tabConstruction[i].destination = 0;
@@ -694,50 +692,6 @@ void faireHabitationMap (City *city, int type) {
     city->argent -= 1000;
 }
 
-/*void mettreAJConstructionMap(City *city, int type) {
-    city->tabConstruction[city->nombreConstruction].typeDeConstruction = type;
-    city->tabConstruction[city->nombreConstruction].coordonneeX = city->ligneSurMap;
-    city->tabConstruction[city->nombreConstruction].coordonneeY = city->colonneSurMap;
-    if (type == 5 || type == 6 || type == 7 || type == 8 || type == 9) {
-        city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = type;
-        city->terrain[city->ligneSurMap][city->colonneSurMap + 1].typeBloc = type;
-        city->terrain[city->ligneSurMap][city->colonneSurMap + 2].typeBloc = type;
-        city->terrain[city->ligneSurMap + 1][city->colonneSurMap].typeBloc = type;
-        city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].typeBloc = type;
-        city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].typeBloc = type;
-        city->terrain[city->ligneSurMap + 2][city->colonneSurMap].typeBloc = type;
-        city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].typeBloc = type;
-        city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].typeBloc = type;
-    }
-    if (type == 3 || type == 4) {
-        city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = type;
-        city->terrain[city->ligneSurMap][city->colonneSurMap + 1].typeBloc = type;
-        city->terrain[city->ligneSurMap][city->colonneSurMap + 2].typeBloc = type;
-        city->terrain[city->ligneSurMap][city->colonneSurMap + 3].typeBloc = type;
-        city->terrain[city->ligneSurMap][city->colonneSurMap + 4].typeBloc = type;
-        city->terrain[city->ligneSurMap][city->colonneSurMap + 5].typeBloc = type;
-        city->terrain[city->ligneSurMap + 1][city->colonneSurMap].typeBloc = type;
-        city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].typeBloc = type;
-        city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].typeBloc = type;
-        city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 3].typeBloc = type;
-        city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 4].typeBloc = type;
-        city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 5].typeBloc = type;
-        city->terrain[city->ligneSurMap + 2][city->colonneSurMap].typeBloc = type;
-        city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 1].typeBloc = type;
-        city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 2].typeBloc = type;
-        city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 3].typeBloc = type;
-        city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 4].typeBloc = type;
-        city->terrain[city->ligneSurMap + 2][city->colonneSurMap + 5].typeBloc = type;
-        city->terrain[city->ligneSurMap + 3][city->colonneSurMap].typeBloc = type;
-        city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 1].typeBloc = type;
-        city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 2].typeBloc = type;
-        city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 3].typeBloc = type;
-        city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 4].typeBloc = type;
-        city->terrain[city->ligneSurMap + 3][city->colonneSurMap + 5].typeBloc = type;
-    }
-}
-*/
-
 bool obstacleAlimentation(City *city) {
     if (!city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle
         && !city->terrain[city->ligneSurMap][city->colonneSurMap + 1].obstacle
@@ -768,31 +722,6 @@ bool obstacleAlimentation(City *city) {
     }
     return false;
 }
-
-/*
-void mettreAJObstacleAlimentation(City *city) {
-    city->terrain[city->ligneSurMap][city->colonneSurMap].obstacle = true;
-    city->terrain[city->ligneSurMap][city->colonneSurMap + 1].obstacle = true;
-    city->terrain[city->ligneSurMap][city->colonneSurMap + 2].obstacle = true;
-    city->terrain[city->ligneSurMap][city->colonneSurMap + 3].obstacle = true;
-    city->terrain[city->ligneSurMap][city->colonneSurMap + 4].obstacle = true;
-    city->terrain[city->ligneSurMap][city->colonneSurMap + 5].obstacle = true;
-    city->terrain[city->ligneSurMap + 1][city->colonneSurMap].obstacle = true;
-    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].obstacle = true;
-    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].obstacle = true;
-}
-void mettreAJAlimentationMap(City *city, int type) {
-    city->terrain[city->ligneSurMap][city->colonneSurMap].typeBloc = type;
-    city->terrain[city->ligneSurMap][city->colonneSurMap + 1].typeBloc = type;
-    city->terrain[city->ligneSurMap][city->colonneSurMap + 2].typeBloc = type;
-    city->terrain[city->ligneSurMap][city->colonneSurMap + 3].typeBloc = type;
-    city->terrain[city->ligneSurMap][city->colonneSurMap + 4].typeBloc = type;
-    city->terrain[city->ligneSurMap][city->colonneSurMap + 5].typeBloc = type;
-    city->terrain[city->ligneSurMap + 1][city->colonneSurMap].typeBloc = type;
-    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 1].typeBloc = type;
-    city->terrain[city->ligneSurMap + 1][city->colonneSurMap + 2].typeBloc = type;
-}
-*/
 
 bool viabiliteeRoutiere(City *city, int numeroConstruction) {
     if ((city->tabConstruction[numeroConstruction].typeDeConstruction == 3) ||
