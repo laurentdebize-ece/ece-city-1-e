@@ -1100,7 +1100,7 @@ void jeuPartie (City *city){
             city->tabConstruction[i].compteur = city->temps - city->tabConstruction[i].tempsPose;
 
             if ((int) city->tabConstruction[i].compteur != 0 && (int) city->tabConstruction[i].compteur % 15 == 0 &&
-                city->tabConstruction[i].ameliorerBat) {
+                city->tabConstruction[i].ameliorerBat && constructionViable(city,i)) {
                 ameliorationBatiment(city, i);
                 city->tabConstruction[i].ameliorerBat = false;
                 argentAJour(city, i);
